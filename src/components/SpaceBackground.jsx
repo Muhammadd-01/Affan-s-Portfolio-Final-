@@ -1,75 +1,100 @@
-"use client"
+'use client';
 
-import { useRef, useEffect } from "react"
-import * as THREE from "three"
+import React, { useRef, useEffect } from 'react';
 
 const SpaceBackground = () => {
-  const mountRef = useRef(null)
-  const rendererRef = useRef(null)
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (!mountRef.current) return
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let mouseX = 0;
+    let mouseY = 0;
 
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    const renderer = new THREE.WebGLRenderer({ alpha: true })
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-    rendererRef.current = renderer
-
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    mountRef.current.appendChild(renderer.domElement)
-
-    const geometry = new THREE.BufferGeometry()
-    const vertices = []
-
-    for (let i = 0; i < 10000; i++) {
-      const x = (Math.random() - 0.5) * 2000
-      const y = (Math.random() - 0.5) * 2000
-      const z = (Math.random() - 0.5) * 2000
-      vertices.push(x, y, z)
-    }
-
-    geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3))
-
-    const material = new THREE.PointsMaterial({ color: 0xffffff, size: 2 })
-    const stars = new THREE.Points(geometry, material)
-    scene.add(stars)
-
-    camera.position.z = 1000
-
-    const animate = () => {
-      requestAnimationFrame(animate)
-      stars.rotation.x += 0.0005
-      stars.rotation.y += 0.0005
-      renderer.render(scene, camera)
-    }
-
-    animate()
-
-    const handleResize = () => {
-      if (camera && renderer) {
-        camera.aspect = window.innerWidth / window.innerHeight
-        camera.updateProjectionMatrix()
-        renderer.setSize(window.innerWidth, window.innerHeight)
+    const createStars = (count) => {
+      const stars = [];
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          vx: Math.floor(Math.random() * 50) - 25,
+          vy: Math.floor(Math.random() * 50) - 25
+        });
       }
-    }
+      return stars;
+    };
 
-    window.addEventListener("resize", handleResize)
+    const drawStars = (stars) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+      stars.forEach((star) => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2, false);
+        ctx.fill();
+      });
+    };
+
+    const moveStars = (stars) => {
+      stars.forEach((star) => {
+        star.x += star.vx / 30;
+        star.y += star.vy / 30;
+        
+        // Applying mouse movement effect
+        star.x += (mouseX - canvas.width / 2) * 0.001;
+        star.y += (mouseY - canvas.height / 2) * 0.001;
+
+        // Reposition the star if it goes off screen
+        if (star.x < 0 || star.x > canvas.width) star.x = Math.random() * canvas.width;
+        if (star.y < 0 || star.y > canvas.height) star.y = Math.random() * canvas.height;
+      });
+    };
+
+    const animate = (stars) => {
+      moveStars(stars);
+      drawStars(stars);
+      animationFrameId = requestAnimationFrame(() => animate(stars));
+    };
+
+    const handleMouseMove = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    const stars = createStars(250);
+    animate(stars);
 
     return () => {
-      window.removeEventListener("resize", handleResize)
-      if (mountRef.current && rendererRef.current) {
-        mountRef.current.removeChild(rendererRef.current.domElement)
-      }
-      // Dispose of Three.js objects
-      geometry.dispose()
-      material.dispose()
-      renderer.dispose()
-    }
-  }, [])
+      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
-  return <div ref={mountRef} style={{ position: "fixed", top: 0, left: 0, zIndex: -1 }} />
-}
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
+        zIndex: -1,
+      }}
+    />
+  );
+};
 
-export default SpaceBackground
-
+export default SpaceBackground;
