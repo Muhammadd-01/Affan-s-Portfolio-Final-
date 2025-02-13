@@ -7,19 +7,24 @@ const ThreeBackground = () => {
   const mountRef = useRef(null)
 
   useEffect(() => {
-    let scene, camera, renderer, stars
+    let scene, camera, renderer, stars, starGeometry
 
     const init = () => {
       scene = new THREE.Scene()
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-      camera.position.z = 5
+      camera.position.z = 1
 
-      renderer = new THREE.WebGLRenderer({ alpha: true })
+      renderer = new THREE.WebGLRenderer({ antialias: true })
       renderer.setSize(window.innerWidth, window.innerHeight)
       mountRef.current.appendChild(renderer.domElement)
 
-      const starGeometry = new THREE.BufferGeometry()
-      const starMaterial = new THREE.PointsMaterial({ color: 0xffffff })
+      starGeometry = new THREE.BufferGeometry()
+      const starMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.1,
+        transparent: true,
+        opacity: 0.8,
+      })
 
       const starVertices = []
       for (let i = 0; i < 10000; i++) {
@@ -36,8 +41,10 @@ const ThreeBackground = () => {
 
     const animate = () => {
       requestAnimationFrame(animate)
-      stars.rotation.x += 0.0002
-      stars.rotation.y += 0.0002
+      if (stars) {
+        stars.rotation.x += 0.0002
+        stars.rotation.y += 0.0002
+      }
       renderer.render(scene, camera)
     }
 
@@ -54,14 +61,13 @@ const ThreeBackground = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize)
-      mountRef.current.removeChild(renderer.domElement)
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement)
+      }
     }
   }, [])
 
-  return (
-    <div ref={mountRef} style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: -1 }} />
-  )
+  return <div ref={mountRef} style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: -1 }} />
 }
 
 export default ThreeBackground
-

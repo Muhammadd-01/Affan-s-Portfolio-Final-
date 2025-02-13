@@ -11,6 +11,7 @@ import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import ThreeBackground from "./components/ThreeBackground"
 import { FaWhatsapp } from "react-icons/fa"
+import { motion } from "framer-motion"
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -42,14 +43,16 @@ function App() {
       <Resume />
       <Contact />
       <Footer />
-      <a
+      <motion.a
         href="https://wa.me/03128538773"
         className="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 z-50"
         target="_blank"
         rel="noopener noreferrer"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         <FaWhatsapp size={24} />
-      </a>
+      </motion.a>
     </div>
   )
 }
