@@ -35,7 +35,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white bg-opacity-80 dark:bg-gray-900 dark:bg-opacity-80 shadow-lg" : "bg-transparent"
+        isScrolled ? "bg-white bg-opacity-20 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,7 +45,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-2xl font-bold text-red-600 dark:text-red-400"
+              className="text-2xl font-bold text-red-600"
             >
               Your Logo
             </motion.span>
@@ -59,7 +59,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index, duration: 0.5 }}
                   href={item.href}
-                  className="text-gray-800 dark:text-white hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors duration-300"
+                  className={`hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors duration-300 ${
+                    isScrolled ? "text-gray-800" : "text-white"
+                  }`}
                 >
                   {item.name}
                 </motion.a>
@@ -69,7 +71,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
                 onClick={toggleDarkMode}
-                className="text-gray-800 dark:text-white hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
+                className={`hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
+                  isScrolled ? "text-gray-800" : "text-white"
+                }`}
               >
                 {darkMode ? <FaSun /> : <FaMoon />}
               </motion.button>
@@ -78,13 +82,17 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleDarkMode}
-              className="text-gray-800 dark:text-white hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-2 transition-colors duration-300"
+              className={`hover:bg-red-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-2 transition-colors duration-300 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
             >
               {darkMode ? <FaSun /> : <FaMoon />}
             </button>
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 dark:text-white hover:text-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-300"
+              className={`inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white transition-colors duration-300 ${
+                isScrolled ? "text-gray-800" : "text-white"
+              }`}
             >
               <span className="sr-only">Open main menu</span>
               {!isOpen ? (
@@ -121,7 +129,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-800 dark:text-white hover:bg-red-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300"
+                className={`hover:bg-red-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
+                  isScrolled ? "text-gray-800" : "text-white"
+                }`}
                 onClick={toggleMenu}
               >
                 {item.name}
