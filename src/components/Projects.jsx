@@ -8,21 +8,21 @@ const projects = [
     id: 1,
     title: "E-commerce Platform",
     description: "A full-stack e-commerce solution with React and Node.js",
-    image: "/path-to-ecommerce-image.jpg",
+    image: "/placeholder.svg",
     category: "Web Development",
   },
   {
     id: 2,
     title: "3D Portfolio Showcase",
     description: "An interactive 3D portfolio using Three.js and React",
-    image: "/path-to-3d-portfolio-image.jpg",
+    image: "/placeholder.svg",
     category: "3D Graphics",
   },
   {
     id: 3,
     title: "Task Management App",
     description: "A React Native mobile app for efficient task management",
-    image: "/path-to-task-app-image.jpg",
+    image: "/placeholder.svg",
     category: "Mobile Development",
   },
   // Add more projects as needed
@@ -30,7 +30,15 @@ const projects = [
 
 const ProjectCard = ({ project }) => {
   return (
-    <motion.div whileHover={{ scale: 1.05 }} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+      style={{
+        background: "rgba(255, 255, 255, 0.1)",
+        backdropFilter: "blur(10px)",
+        border: "1px solid rgba(255, 255, 255, 0.2)",
+      }}
+    >
       <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-48 object-cover" />
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{project.title}</h3>

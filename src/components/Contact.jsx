@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import emailjs from "emailjs-com"
+import { FaWhatsapp } from "react-icons/fa"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,33 +11,14 @@ const Contact = () => {
     message: "",
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitMessage, setSubmitMessage] = useState("")
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    emailjs
-      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData, "YOUR_USER_ID")
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text)
-          setSubmitMessage("Message sent successfully!")
-          setFormData({ name: "", email: "", message: "" })
-        },
-        (error) => {
-          console.log("FAILED...", error)
-          setSubmitMessage("Failed to send message. Please try again.")
-        },
-      )
-      .finally(() => {
-        setIsSubmitting(false)
-      })
+    // Handle form submission here
+    console.log(formData)
   }
 
   return (
@@ -77,25 +58,12 @@ const Contact = () => {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 ></path>
               </svg>
-              <a href="mailto:affan.work05@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-red-500">
-                affan.work05@gmail.com
+              <a href="mailto:john.doe@example.com" className="text-gray-600 dark:text-gray-300 hover:text-red-500">
+                john.doe@example.com
               </a>
             </div>
             <div className="flex items-center">
-              <svg
-                className="w-6 h-6 mr-2 text-red-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path>
-              </svg>
+              <FaWhatsapp className="w-6 h-6 mr-2 text-red-500" />
               <a href="https://wa.me/03128538773" className="text-gray-600 dark:text-gray-300 hover:text-red-500">
                 +92 312 8538773
               </a>
@@ -107,7 +75,10 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="md:w-1/2"
           >
-            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white dark:bg-gray-700 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4"
+            >
               <div className="mb-4">
                 <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="name">
                   Name
@@ -155,19 +126,11 @@ const Contact = () => {
               </div>
               <div className="flex items-center justify-between">
                 <button
-                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105"
                   type="submit"
-                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  Send Message
                 </button>
-                {submitMessage && (
-                  <p
-                    className={`text-sm ${submitMessage.includes("successfully") ? "text-green-500" : "text-red-500"}`}
-                  >
-                    {submitMessage}
-                  </p>
-                )}
               </div>
             </form>
           </motion.div>

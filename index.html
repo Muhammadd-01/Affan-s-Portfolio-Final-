@@ -2,21 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name - Web Developer & Designer</title>
-    <meta name="description" content="Portfolio website of [Your Name], a web developer and designer specializing in React and modern web technologies." />
-    <meta name="keywords" content="web developer, designer, React, portfolio, [Your Name]" />
-    <meta name="author" content="[Your Name]" />
-    <meta property="og:title" content="[Your Name] - Web Developer & Designer" />
-    <meta property="og:description" content="Portfolio website of [Your Name], a web developer and designer specializing in React and modern web technologies." />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:url" content="https://yourwebsite.com" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <title>Your Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#ff0000',
+              secondary: '#000000',
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-
