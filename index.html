@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              primary: '#ff0000',
-              secondary: '#000000',
-            },
-          },
-        },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Affan - Full Stack Developer & UI/UX Enthusiast</title>
+  <meta name="description" content="Portfolio of Affan, a Full Stack Developer and UI/UX Enthusiast. Explore my projects and skills in web development and design.">
+  <meta name="keywords" content="Full Stack Developer, UI/UX, Web Development, Portfolio, Affan">
+  <meta name="author" content="Affan">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-portfolio-url.com/">
+  <meta property="og:title" content="Affan - Full Stack Developer & UI/UX Enthusiast">
+  <meta property="og:description" content="Explore the portfolio of Affan, showcasing web development projects and UI/UX designs.">
+  <meta property="og:image" content="https://your-portfolio-url.com/path-to-your-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://your-portfolio-url.com/">
+  <meta property="twitter:title" content="Affan - Full Stack Developer & UI/UX Enthusiast">
+  <meta property="twitter:description" content="Explore the portfolio of Affan, showcasing web development projects and UI/UX designs.">
+  <meta property="twitter:image" content="https://your-portfolio-url.com/path-to-your-image.jpg">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#ff4136',
+            secondary: '#0074D9',
+          }
+        }
       }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .animate-title span {
+        @apply opacity-0;
+        animation: fadeIn 0.5s forwards;
+      }
+      @keyframes fadeIn {
+        to { @apply opacity-100; }
+      }
+      .animate-fade-in {
+        animation: fadeIn 1s forwards;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>

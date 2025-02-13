@@ -1,58 +1,74 @@
 "use client"
-import { motion } from "framer-motion"
+
+import { useEffect, useRef } from "react"
+import { GitlabIcon as GitHub, Linkedin, Mail } from "lucide-react"
 
 const Hero = () => {
+  const titleRef = useRef(null)
+
+  useEffect(() => {
+    const titleElement = titleRef.current
+    if (titleElement) {
+      const text = titleElement.textContent
+      titleElement.innerHTML = ""
+      text.split("").forEach((char, index) => {
+        const span = document.createElement("span")
+        span.textContent = char
+        span.style.animationDelay = `${index * 0.1}s`
+        span.className = "inline-block opacity-0"
+        titleElement.appendChild(span)
+      })
+    }
+  }, [])
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="md:w-1/2 text-center md:text-left"
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <div className="text-center z-10">
+        <img
+          src="/placeholder.svg?height=128&width=128"
+          alt="Affan"
+          className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg"
+        />
+        <h1 ref={titleRef} className="text-4xl md:text-6xl font-bold mb-4 animate-title">
+          Hi, I'm Affan
+        </h1>
+        <p className="text-xl md:text-2xl mb-8 animate-fade-in">Full Stack Developer | UI/UX Enthusiast</p>
+        <div className="flex justify-center space-x-4 mb-8">
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-300 transition-colors"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-white">
-              Hi, I'm <span className="text-red-300">John Doe</span>
-            </h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-xl md:text-2xl mb-8 text-gray-300"
-            >
-              A passionate full-stack developer creating amazing digital experiences.
-            </motion.p>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}>
-              <a
-                href="#contact"
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 inline-block"
-              >
-                Get in Touch
-              </a>
-            </motion.div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="md:w-1/2 mt-10 md:mt-0"
+            <GitHub size={24} />
+          </a>
+          <a
+            href="https://linkedin.com/in/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-gray-300 transition-colors"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-500 rounded-full blur-lg opacity-75"></div>
-              <motion.img
-                src="/placeholder.svg"
-                alt="John Doe"
-                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto relative z-10"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              />
-            </div>
-          </motion.div>
+            <Linkedin size={24} />
+          </a>
+          <a href="mailto:affan.work05@gmail.com" className="text-white hover:text-gray-300 transition-colors">
+            <Mail size={24} />
+          </a>
+        </div>
+        <div className="flex justify-center space-x-4">
+          <a
+            href="#contact"
+            className="bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
+          >
+            Contact Me
+          </a>
+          <a
+            href="#projects"
+            className="border-2 border-white text-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black transition-colors"
+          >
+            View Projects
+          </a>
         </div>
       </div>
-      <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
     </section>
   )
 }

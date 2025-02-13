@@ -1,95 +1,65 @@
-import { motion } from "framer-motion"
+import { Download, Briefcase, GraduationCap } from "lucide-react"
+
+const TimelineItem = ({ year, title, description, icon }) => (
+  <div className="mb-8 flex justify-between items-center w-full right-timeline">
+    <div className="order-1 w-5/12"></div>
+    <div className="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+      <h1 className="mx-auto font-semibold text-lg text-white">{icon}</h1>
+    </div>
+    <div className="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4">
+      <h3 className="mb-3 font-bold text-white text-xl">{year}</h3>
+      <h4 className="mb-3 font-bold text-white text-lg">{title}</h4>
+      <p className="text-sm leading-snug tracking-wide text-white text-opacity-100">{description}</p>
+    </div>
+  </div>
+)
 
 const Resume = () => {
-  const experiences = [
-    {
-      title: "Senior Web Developer",
-      company: "Tech Innovators Inc.",
-      period: "2020 - Present",
-      description: "Led development of multiple high-traffic web applications using React and Node.js.",
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Digital Solutions Ltd.",
-      period: "2018 - 2020",
-      description: "Developed and maintained various web applications using MERN stack.",
-    },
-    {
-      title: "Junior Developer",
-      company: "StartUp Ventures",
-      period: "2016 - 2018",
-      description: "Assisted in the development of mobile apps using React Native.",
-    },
-  ]
-
-  const education = [
-    {
-      degree: "Master of Science in Computer Science",
-      school: "Tech University",
-      period: "2014 - 2016",
-    },
-    {
-      degree: "Bachelor of Science in Software Engineering",
-      school: "State University",
-      period: "2010 - 2014",
-    },
-  ]
-
   return (
-    <section id="resume" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white"
-        >
-          Resume
-        </motion.h2>
-        <div className="flex flex-col md:flex-row justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="md:w-1/2 mb-8 md:mb-0"
+    <section id="resume" className="py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold mb-8 text-center">Resume</h2>
+        <div className="mb-8 text-center">
+          <a
+            href="/path-to-your-resume.pdf"
+            download
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Work Experience</h3>
-            {experiences.map((exp, index) => (
-              <div key={index} className="mb-6">
-                <h4 className="text-xl font-semibold text-gray-800 dark:text-white">{exp.title}</h4>
-                <p className="text-gray-600 dark:text-gray-300">{exp.company}</p>
-                <p className="text-gray-500 dark:text-gray-400">{exp.period}</p>
-                <p className="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
-              </div>
-            ))}
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:w-1/2"
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Education</h3>
-            {education.map((edu, index) => (
-              <div key={index} className="mb-6">
-                <h4 className="text-xl font-semibold text-gray-800 dark:text-white">{edu.degree}</h4>
-                <p className="text-gray-600 dark:text-gray-300">{edu.school}</p>
-                <p className="text-gray-500 dark:text-gray-400">{edu.period}</p>
-              </div>
-            ))}
-            <div className="mt-8">
-              <a
-                href="/path-to-your-resume.pdf"
-                download
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
-              >
-                <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-                </svg>
-                <span>Download Resume</span>
-              </a>
-            </div>
-          </motion.div>
+            <Download className="mr-2" size={20} />
+            Download Resume
+          </a>
+        </div>
+        <div className="container mx-auto w-full h-full">
+          <div className="relative wrap overflow-hidden p-10 h-full">
+            <div
+              className="border-2-2 absolute border-opacity-20 border-gray-700 h-full border"
+              style={{ left: "50%" }}
+            ></div>
+            <TimelineItem
+              year="2021 - Present"
+              title="Senior Full Stack Developer"
+              description="Leading development of complex web applications using React, Node.js, and MongoDB."
+              icon={<Briefcase size={16} />}
+            />
+            <TimelineItem
+              year="2018 - 2021"
+              title="Full Stack Developer"
+              description="Developed and maintained various web applications using modern JavaScript frameworks."
+              icon={<Briefcase size={16} />}
+            />
+            <TimelineItem
+              year="2016 - 2018"
+              title="Junior Web Developer"
+              description="Started my career as a junior developer, focusing on front-end technologies."
+              icon={<Briefcase size={16} />}
+            />
+            <TimelineItem
+              year="2012 - 2016"
+              title="Bachelor's in Computer Science"
+              description="Graduated with honors, specializing in web technologies and software engineering."
+              icon={<GraduationCap size={16} />}
+            />
+          </div>
         </div>
       </div>
     </section>

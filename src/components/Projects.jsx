@@ -1,101 +1,82 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { ExternalLink, GitlabIcon as GitHub } from "lucide-react"
 
 const projects = [
   {
-    id: 1,
-    title: "E-commerce Platform",
-    description: "A full-stack e-commerce solution with React and Node.js",
-    image: "/placeholder.svg",
-    category: "Web Development",
+    title: "Project 1",
+    description: "A brief description of Project 1",
+    image: "/path-to-project1-image.jpg",
+    technologies: ["React", "Node.js", "MongoDB"],
+    liveLink: "https://project1.com",
+    githubLink: "https://github.com/yourusername/project1",
+    category: "Web App",
   },
-  {
-    id: 2,
-    title: "3D Portfolio Showcase",
-    description: "An interactive 3D portfolio using Three.js and React",
-    image: "/placeholder.svg",
-    category: "3D Graphics",
-  },
-  {
-    id: 3,
-    title: "Task Management App",
-    description: "A React Native mobile app for efficient task management",
-    image: "/placeholder.svg",
-    category: "Mobile Development",
-  },
-  // Add more projects as needed
+  // Add more projects here
 ]
 
-const ProjectCard = ({ project }) => {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
-      style={{
-        background: "rgba(255, 255, 255, 0.1)",
-        backdropFilter: "blur(10px)",
-        border: "1px solid rgba(255, 255, 255, 0.2)",
-      }}
-    >
-      <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-48 object-cover" />
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{project.title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-        <span className="inline-block bg-red-200 dark:bg-red-700 rounded-full px-3 py-1 text-sm font-semibold text-red-700 dark:text-red-200">
-          {project.category}
-        </span>
+const ProjectCard = ({ project }) => (
+  <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-48 object-cover" />
+    <div className="p-6">
+      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+      <p className="text-gray-300 mb-4">{project.description}</p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {project.technologies.map((tech, index) => (
+          <span key={index} className="bg-gray-700 text-white text-xs px-2 py-1 rounded">
+            {tech}
+          </span>
+        ))}
       </div>
-    </motion.div>
-  )
-}
+      <div className="flex justify-between">
+        <a
+          href={project.liveLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-blue-400 hover:text-blue-300"
+        >
+          <ExternalLink size={16} className="mr-1" /> Live Demo
+        </a>
+        <a
+          href={project.githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center text-gray-400 hover:text-gray-300"
+        >
+          <GitHub size={16} className="mr-1" /> Source Code
+        </a>
+      </div>
+    </div>
+  </div>
+)
 
 const Projects = () => {
   const [filter, setFilter] = useState("All")
+  const categories = ["All", ...new Set(projects.map((project) => project.category))]
 
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-gray-100 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white"
-        >
-          My Projects
-        </motion.h2>
+    <section id="projects" className="py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold mb-8 text-center">My Projects</h2>
         <div className="flex justify-center mb-8">
-          <button
-            onClick={() => setFilter("All")}
-            className={`mx-2 px-4 py-2 rounded-full ${filter === "All" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white"}`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setFilter("Web Development")}
-            className={`mx-2 px-4 py-2 rounded-full ${filter === "Web Development" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white"}`}
-          >
-            Web Development
-          </button>
-          <button
-            onClick={() => setFilter("3D Graphics")}
-            className={`mx-2 px-4 py-2 rounded-full ${filter === "3D Graphics" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white"}`}
-          >
-            3D Graphics
-          </button>
-          <button
-            onClick={() => setFilter("Mobile Development")}
-            className={`mx-2 px-4 py-2 rounded-full ${filter === "Mobile Development" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white"}`}
-          >
-            Mobile Development
-          </button>
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => setFilter(category)}
+              className={`mx-2 px-4 py-2 rounded-full ${
+                filter === category ? "bg-white text-black" : "bg-gray-700 text-white"
+              } hover:bg-opacity-80 transition-colors`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
           ))}
         </div>
       </div>
