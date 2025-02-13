@@ -1,137 +1,179 @@
 "use client"
-import styled from "styled-components"
+
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa"
-
-const ContactSection = styled.section`
-  padding: 4rem 2rem;
-  background: ${({ theme }) => theme.bg};
-`
-
-const ContactContent = styled(motion.div)`
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-`
-
-const ContactInfo = styled.div`
-  flex: 1;
-  min-width: 300px;
-`
-
-const ContactTitle = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: ${({ theme }) => theme.text};
-`
-
-const ContactItem = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  color: ${({ theme }) => theme.textSecondary};
-`
-
-const ContactIcon = styled.span`
-  margin-right: 1rem;
-  color: ${({ theme }) => theme.primary};
-`
-
-const ContactForm = styled.form`
-  flex: 1;
-  min-width: 300px;
-`
-
-const Input = styled.input`
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  border-radius: 4px;
-  background: ${({ theme }) => theme.inputBg};
-  color: ${({ theme }) => theme.text};
-`
-
-const TextArea = styled.textarea`
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  border-radius: 4px;
-  background: ${({ theme }) => theme.inputBg};
-  color: ${({ theme }) => theme.text};
-  resize: vertical;
-  min-height: 100px;
-`
-
-const SubmitButton = styled(motion.button)`
-  background: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.bg};
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-`
-
-const MapContainer = styled.div`
-  width: 100%;
-  height: 300px;
-  margin-top: 2rem;
-`
+import emailjs from "emailjs-com"
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission logic here
+    setIsSubmitting(true)
+
+    emailjs
+      .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData, "YOUR_USER_ID")
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text)
+          setSubmitMessage("Message sent successfully!")
+          setFormData({ name: "", email: "", message: "" })
+        },
+        (error) => {
+          console.log("FAILED...", error)
+          setSubmitMessage("Failed to send message. Please try again.")
+        },
+      )
+      .finally(() => {
+        setIsSubmitting(false)
+      })
   }
 
   return (
-    <ContactSection id="contact">
-      <ContactContent initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <ContactInfo>
-          <ContactTitle>Get in Touch</ContactTitle>
-          <ContactItem>
-            <ContactIcon>
-              <FaMapMarkerAlt />
-            </ContactIcon>
-            123 Web Dev Street, Internet City, 12345
-          </ContactItem>
-          <ContactItem>
-            <ContactIcon>
-              <FaEnvelope />
-            </ContactIcon>
-            affan.work05@gmail.com
-          </ContactItem>
-          <ContactItem>
-            <ContactIcon>
-              <FaPhone />
-            </ContactIcon>
-            +92 312 8538773
-          </ContactItem>
-        </ContactInfo>
-        <ContactForm onSubmit={handleSubmit}>
-          <Input type="text" placeholder="Name" required />
-          <Input type="email" placeholder="Email" required />
-          <TextArea placeholder="Message" required />
-          <SubmitButton type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            Send Message
-          </SubmitButton>
-        </ContactForm>
-        <MapContainer>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.5862416111!2d67.0591568!3d24.8826874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e70a31f45a9%3A0x7c4b9f7b5d2a1e0a!2sKarachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1652345678901!5m2!1sen!2s"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
-        </MapContainer>
-      </ContactContent>
-    </ContactSection>
+    <section id="contact" className="py-20 bg-gray-100 dark:bg-gray-800">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white"
+        >
+          Contact Me
+        </motion.h2>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:w-1/2 mb-8 md:mb-0"
+          >
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Get in Touch</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              I'm always open to new opportunities and collaborations. Feel free to reach out!
+            </p>
+            <div className="flex items-center mb-4">
+              <svg
+                className="w-6 h-6 mr-2 text-red-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <a href="mailto:affan.work05@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-red-500">
+                affan.work05@gmail.com
+              </a>
+            </div>
+            <div className="flex items-center">
+              <svg
+                className="w-6 h-6 mr-2 text-red-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+              <a href="https://wa.me/03128538773" className="text-gray-600 dark:text-gray-300 hover:text-red-500">
+                +92 312 8538773
+              </a>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="md:w-1/2"
+          >
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <div className="mb-4">
+                <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:text-white dark:border-gray-500"
+                  id="name"
+                  type="text"
+                  placeholder="Your Name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:text-white dark:border-gray-500"
+                  id="email"
+                  type="email"
+                  placeholder="Your Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="message">
+                  Message
+                </label>
+                <textarea
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:text-white dark:border-gray-500"
+                  id="message"
+                  placeholder="Your Message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows="4"
+                ></textarea>
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
+                {submitMessage && (
+                  <p
+                    className={`text-sm ${submitMessage.includes("successfully") ? "text-green-500" : "text-red-500"}`}
+                  >
+                    {submitMessage}
+                  </p>
+                )}
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   )
 }
 
