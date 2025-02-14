@@ -11,6 +11,12 @@ const education = [
   { year: '2010 - 2012', degree: 'Associate Degree in Web Development', school: 'Community College' },
 ];
 
+const cardVariants = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0 },
+  hover: { scale: 1.05, boxShadow: '0 20px 30px rgba(0, 0, 0, 0.5)' },
+};
+
 const Resume = () => {
   return (
     <section id="resume" className="py-20">
@@ -30,13 +36,16 @@ const Resume = () => {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="mb-8 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 bg-gradient-to-r from-gray-700 to-gray-800"
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="mb-8 p-6 rounded-xl bg-gradient-to-r from-gray-700 to-gray-800 text-white cursor-pointer transition duration-300"
+                initial="initial"
+                whileInView="animate"
+                whileHover="hover"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                transition={{ duration: 0.3, delay: index * 0.2 }}
               >
                 <div className="flex justify-between items-center mb-2">
-                  <h4 className="text-2xl font-medium text-white">{exp.title}</h4>
+                  <h4 className="text-2xl font-medium">{exp.title}</h4>
                   <span className="text-gray-400">{exp.year}</span>
                 </div>
                 <p className="text-gray-400">{exp.company}</p>
@@ -49,13 +58,16 @@ const Resume = () => {
             {education.map((edu, index) => (
               <motion.div
                 key={index}
-                className="mb-8 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 bg-gradient-to-r from-gray-700 to-gray-800"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="mb-8 p-6 rounded-xl bg-gradient-to-r from-gray-700 to-gray-800 text-white cursor-pointer transition duration-300"
+                initial="initial"
+                whileInView="animate"
+                whileHover="hover"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                transition={{ duration: 0.3, delay: index * 0.2 }}
               >
                 <div className="flex justify-between items-center mb-2">
-                  <h4 className="text-2xl font-medium text-white">{edu.degree}</h4>
+                  <h4 className="text-2xl font-medium">{edu.degree}</h4>
                   <span className="text-gray-400">{edu.year}</span>
                 </div>
                 <p className="text-gray-400">{edu.school}</p>
