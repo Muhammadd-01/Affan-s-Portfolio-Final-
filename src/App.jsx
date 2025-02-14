@@ -24,73 +24,55 @@ function App() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mountRef.current.appendChild(renderer.domElement)
 
-    // Space Background: Stars
-    const starsGeometry = new THREE.BufferGeometry()
-    const starCount = 20000
-    const starArray = new Float32Array(starCount * 3)
-    for (let i = 0; i < starCount * 3; i++) {
-      starArray[i] = (Math.random() - 0.5) * 100
-    }
-    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starArray, 3))
-    const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.2, transparent: true })
-    const stars = new THREE.Points(starsGeometry, starsMaterial)
-    scene.add(stars)
+    // Create Particles
+    const particlesGeometry = new THREE.BufferGeometry()
+    const particlesCnt = 10000
+    const posArray = new Float32Array(particlesCnt * 3)
 
-    // Floating Objects: Spheres and Toruses
-    const objectArray = []
-
-    for (let i = 0; i < 10; i++) {
-      const geometry = Math.random() > 0.5 
-        ? new THREE.SphereGeometry(0.5, 32, 32) 
-        : new THREE.TorusGeometry(0.3, 0.1, 16, 100)
-      const material = new THREE.MeshStandardMaterial({
-        color: Math.random() * 0xffffff,
-        roughness: 0.5,
-        metalness: 0.7
-      })
-      const object = new THREE.Mesh(geometry, material)
-
-      object.position.set(
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30
-      )
-      scene.add(object)
-      objectArray.push(object)
+    for (let i = 0; i < particlesCnt * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 30
     }
 
-    // Lighting
-    const pointLight = new THREE.PointLight(0xffffff, 2)
-    pointLight.position.set(5, 5, 5)
-    scene.add(pointLight)
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5)
-    scene.add(ambientLight)
-
-    // Scroll-Based Camera Movement
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY
-      camera.position.z = 5 + scrollY * 0.01
-      camera.position.y = -scrollY * 0.005
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.7,
+      blending: THREE.AdditiveBlending,
     })
 
-    // Animation Loop
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
+    scene.add(particlesMesh)
+
+    camera.position.z = 5
+
+    let mouseX = 0
+    let mouseY = 0
+
+    // Mouse Move Event
+    const animateParticles = (event) => {
+      mouseX = (event.clientX / window.innerWidth) - 0.5
+      mouseY = (event.clientY / window.innerHeight) - 0.5
+    }
+    document.addEventListener('mousemove', animateParticles)
+
     const clock = new THREE.Clock()
+
+    // Animation Loop
     const animate = () => {
       requestAnimationFrame(animate)
 
       const elapsedTime = clock.getElapsedTime()
 
-      // Rotate Objects
-      objectArray.forEach((obj, index) => {
-        obj.rotation.x += 0.01
-        obj.rotation.y += 0.01
-        obj.position.y += Math.sin(elapsedTime + index) * 0.01
-      })
+      // Rotate Particles
+      particlesMesh.rotation.y = elapsedTime * 0.02
+      particlesMesh.rotation.x = elapsedTime * 0.01
 
-      // Move Stars for Parallax Effect
-      stars.rotation.x = elapsedTime * 0.02
-      stars.rotation.y = elapsedTime * 0.04
+      // Mouse-based Movement
+      particlesMesh.position.x = mouseX * 2
+      particlesMesh.position.y = -mouseY * 2
 
       renderer.render(scene, camera)
     }
@@ -109,6 +91,7 @@ function App() {
     // Clean up
     return () => {
       window.removeEventListener('resize', onWindowResize)
+      document.removeEventListener('mousemove', animateParticles)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
