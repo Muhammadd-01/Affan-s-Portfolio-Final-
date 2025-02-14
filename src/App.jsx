@@ -46,6 +46,28 @@ function App() {
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
     scene.add(particlesMesh)
 
+    // Add floating cubes
+    const cubeArray = []
+    const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0055, roughness: 0.5, metalness: 0.7 })
+
+    for (let i = 0; i < 20; i++) {
+      const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
+      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+
+      cube.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10
+      )
+      scene.add(cube)
+      cubeArray.push(cube)
+    }
+
+    // Add dynamic lighting
+    const pointLight = new THREE.PointLight(0xff0055, 1.5, 50)
+    pointLight.position.set(2, 3, 4)
+    scene.add(pointLight)
+
     camera.position.z = 5
 
     let mouseX = 0
@@ -85,6 +107,17 @@ function App() {
         positions[i + 2] = z + Math.sin(elapsedTime * 0.2 + z) * 0.01
       }
       particlesGeometry.attributes.position.needsUpdate = true
+
+      // Animate cubes
+      cubeArray.forEach((cube, index) => {
+        cube.rotation.x += 0.01
+        cube.rotation.y += 0.01
+        cube.position.y += Math.sin(elapsedTime + index) * 0.005
+      })
+
+      // Move light around
+      pointLight.position.x = Math.sin(elapsedTime) * 5
+      pointLight.position.z = Math.cos(elapsedTime) * 5
 
       renderer.render(scene, camera)
     }
