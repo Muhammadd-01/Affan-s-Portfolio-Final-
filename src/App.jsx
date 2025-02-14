@@ -36,7 +36,7 @@ function App() {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.003,
+      size: 0.005,
       color: 0xffffff,
       transparent: true,
       opacity: 0.8,
@@ -109,7 +109,7 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen bg-black text-white">
       <div ref={mountRef} className="fixed top-0 left-0 w-full h-full z-0" />
       <div className="relative z-10">
         <Navbar />
