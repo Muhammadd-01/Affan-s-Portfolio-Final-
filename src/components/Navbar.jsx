@@ -1,29 +1,72 @@
-import React, { useState } from "react";
+"use client"
 
-const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false);
+import { useState } from "react"
+import { Sun, Moon, Menu, X } from "lucide-react"
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark");
-  };
+const Navbar = ({ darkMode, setDarkMode }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const navItems = ["About", "Skills", "Projects", "Contact"]
 
   return (
-    <nav className="fixed top-0 w-full bg-black/70 backdrop-blur-md z-50">
-      <div className="container mx-auto flex justify-between items-center p-4">
-        <a href="#" className="text-2xl font-bold">DeepSeek</a>
-        <div className="flex space-x-4">
-          <a href="#about" className="hover:text-red-500">About</a>
-          <a href="#projects" className="hover:text-red-500">Projects</a>
-          <a href="#resume" className="hover:text-red-500">Resume</a>
-          <a href="#contact" className="hover:text-red-500">Contact</a>
-          <button onClick={toggleDarkMode} className="p-2 bg-gray-800 rounded-full">
-            {darkMode ? "🌙" : "☀️"}
-          </button>
+    <nav className="sticky top-0 z-50 bg-black bg-opacity-50 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <a href="#" className="text-white font-bold text-xl">
+              Affan
+            </a>
+          </div>
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              {navItems.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <div className="md:hidden ml-2">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-gray-300 hover:bg-gray-700 hover:text-white px-2 py-1 rounded-md"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+      {isOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
+
