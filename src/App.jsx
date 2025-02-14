@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import * as THREE from "three"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
@@ -10,18 +10,10 @@ import Resume from "./components/Resume"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import WhatsAppButton from "./components/WhatsAppButton"
+import UpButton from "./components/UpButton"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false)
   const mountRef = useRef(null)
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  }, [darkMode])
 
   useEffect(() => {
     // Three.js scene setup
@@ -78,10 +70,10 @@ function App() {
   }, [])
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-red-500 to-black text-white ${darkMode ? "dark" : ""}`}>
+    <div className="min-h-screen bg-primary text-white">
       <div ref={mountRef} className="fixed top-0 left-0 w-full h-full z-0" />
       <div className="relative z-10">
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Navbar />
         <Hero />
         <About />
         <Projects />
@@ -89,6 +81,7 @@ function App() {
         <Contact />
         <Footer />
         <WhatsAppButton />
+        <UpButton />
       </div>
     </div>
   )

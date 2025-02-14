@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 const projects = [
   {
@@ -48,10 +48,10 @@ const Projects = () => {
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-black bg-opacity-50">
+    <section id="projects" className="py-20 bg-primary">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl font-bold mb-8 text-center"
+          className="text-3xl font-bold mb-8 text-center text-text"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -65,22 +65,22 @@ const Projects = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {["All", "Web", "Mobile"].map((category) => (
-            <button
+            <motion.button
               key={category}
               onClick={() => setFilter(category)}
               className={`mx-2 px-4 py-2 rounded-full transition duration-300 ${
-                filter === category ? "bg-white text-black" : "bg-gray-800 text-white hover:bg-gray-700"
+                filter === category ? "bg-text text-primary" : "bg-accent text-white hover:bg-text hover:text-primary"
               }`}
             >
               {category}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105"
+              className="bg-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105"
               onClick={() => setSelectedProject(project)}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -88,42 +88,46 @@ const Projects = () => {
             >
               <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-48 object-cover" />
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                <h3 className="text-xl font-semibold mb-2 text-text">{project.title}</h3>
                 <p className="text-gray-400">{project.category}</p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      {selectedProject && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
+      <AnimatePresence>
+        {selectedProject && (
           <motion.div
-            className="bg-white text-black rounded-lg p-8 max-w-2xl"
-            initial={{ scale: 0.5, y: -100 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.5, y: -100 }}
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <h3 className="text-2xl font-bold mb-4">{selectedProject.title}</h3>
-            <img
-              src={selectedProject.image || "/placeholder.svg"}
-              alt={selectedProject.title}
-              className="w-full h-64 object-cover mb-4 rounded"
-            />
-            <p className="mb-4">{selectedProject.description}</p>
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300"
+            <motion.div
+              className="bg-secondary text-white rounded-lg p-8 max-w-2xl"
+              initial={{ scale: 0.5, y: -100 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.5, y: -100 }}
             >
-              Close
-            </button>
+              <h3 className="text-2xl font-bold mb-4 text-text">{selectedProject.title}</h3>
+              <img
+                src={selectedProject.image || "/placeholder.svg"}
+                alt={selectedProject.title}
+                className="w-full h-64 object-cover mb-4 rounded"
+              />
+              <p className="mb-4">{selectedProject.description}</p>
+              <motion.button
+                onClick={() => setSelectedProject(null)}
+                className="bg-text text-primary px-4 py-2 rounded hover:bg-accent hover:text-white transition duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Close
+              </motion.button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   )
 }

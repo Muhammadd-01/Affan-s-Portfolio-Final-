@@ -18,10 +18,10 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-20 bg-black bg-opacity-50">
+    <section id="about" className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl font-bold mb-8 text-center"
+          className="text-3xl font-bold mb-8 text-center text-text"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -42,7 +42,7 @@ const About = () => {
             community meetups.
           </motion.p>
           <motion.h3
-            className="text-2xl font-semibold mb-4"
+            className="text-2xl font-semibold mb-4 text-text"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -53,7 +53,7 @@ const About = () => {
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-800 rounded-lg p-3 text-center hover:bg-gray-700 transition duration-300 transform hover:scale-105"
+                className="bg-accent rounded-lg p-3 text-center hover:bg-text hover:text-primary transition duration-300 transform hover:scale-105"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
