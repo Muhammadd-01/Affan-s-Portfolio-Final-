@@ -1,21 +1,7 @@
-"use client"
-
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 
 const Hero = () => {
-  const [imageIndex, setImageIndex] = useState(0)
-  const images = [
-    "https://randomuser.me/api/portraits/men/32.jpg",
-    "https://randomuser.me/api/portraits/men/33.jpg",
-    "https://randomuser.me/api/portraits/men/34.jpg",
-  ]
-
-  const nextImage = () => {
-    setImageIndex((prevIndex) => (prevIndex + 1) % images.length)
-  }
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -36,6 +22,36 @@ const Hero = () => {
     },
   }
 
+  const textVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.5,
+      },
+    },
+  }
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", damping: 12, stiffness: 200 },
+    },
+  }
+
+  const AnimatedText = ({ text, className }) => (
+    <motion.span className={className} variants={textVariants} initial="hidden" animate="visible">
+      {text.split("").map((char, index) => (
+        <motion.span key={index} variants={letterVariants}>
+          {char}
+        </motion.span>
+      ))}
+    </motion.span>
+  )
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
@@ -45,20 +61,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative w-64 h-64 mx-auto cursor-pointer" onClick={nextImage}>
-            <AnimatePresence>
-              <motion.img
-                key={imageIndex}
-                src={images[imageIndex]}
-                alt="Affan"
-                className="w-full h-full rounded-full object-cover"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              />
-            </AnimatePresence>
-          </div>
+          <img src="/path-to-your-image.jpg" alt="Affan" className="rounded-full w-64 h-64 object-cover mx-auto" />
         </motion.div>
         <motion.div
           className="md:w-1/2 text-center md:text-left"
@@ -67,10 +70,10 @@ const Hero = () => {
           animate="visible"
         >
           <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 text-text" variants={itemVariants}>
-            Hi, I'm Affan
+            <AnimatedText text="Hi, I'm Affan" />
           </motion.h1>
           <motion.p className="text-xl md:text-2xl mb-8 text-accent" variants={itemVariants}>
-            Full-Stack Developer | UI/UX Enthusiast | Tech Innovator
+            <AnimatedText text="Full-Stack Developer | UI/UX Enthusiast | Tech Innovator" />
           </motion.p>
           <motion.p className="text-lg mb-8" variants={itemVariants}>
             I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and

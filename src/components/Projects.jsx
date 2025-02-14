@@ -9,7 +9,7 @@ const projects = [
     id: 1,
     title: "AI-Powered Task Manager",
     category: "Web",
-    image: "https://source.unsplash.com/random/800x600?task",
+    image: "/images/ai-task-manager.jpg",
     description:
       "An intelligent task management application that uses machine learning to prioritize and categorize tasks, enhancing productivity.",
     technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
@@ -20,7 +20,7 @@ const projects = [
     id: 2,
     title: "Blockchain Voting System",
     category: "Web",
-    image: "https://source.unsplash.com/random/800x600?blockchain",
+    image: "/images/blockchain-voting.jpg",
     description:
       "A secure and transparent voting system built on blockchain technology, ensuring tamper-proof elections.",
     technologies: ["Ethereum", "Solidity", "Web3.js", "React"],
@@ -31,7 +31,7 @@ const projects = [
     id: 3,
     title: "AR Shopping Experience",
     category: "Mobile",
-    image: "https://source.unsplash.com/random/800x600?augmented-reality",
+    image: "/images/ar-shopping.jpg",
     description:
       "An augmented reality mobile app that allows users to visualize products in their own space before purchasing.",
     technologies: ["React Native", "ARKit", "ARCore", "Node.js"],
@@ -42,7 +42,7 @@ const projects = [
     id: 4,
     title: "Real-time Collaboration Platform",
     category: "Web",
-    image: "https://source.unsplash.com/random/800x600?collaboration",
+    image: "/images/collab-platform.jpg",
     description:
       "A real-time collaboration tool for remote teams, featuring video conferencing, shared whiteboards, and project management tools.",
     technologies: ["WebRTC", "Socket.io", "React", "Express"],
@@ -53,7 +53,7 @@ const projects = [
     id: 5,
     title: "IoT Smart Home Hub",
     category: "IoT",
-    image: "https://source.unsplash.com/random/800x600?smarthome",
+    image: "/images/smart-home-hub.jpg",
     description:
       "A centralized smart home system that integrates various IoT devices and provides a user-friendly interface for home automation.",
     technologies: ["Raspberry Pi", "Python", "MQTT", "React"],
@@ -69,7 +69,7 @@ const Projects = () => {
   const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter)
 
   return (
-    <section id="projects" className="py-20 bg-primary">
+    <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-4xl font-bold mb-12 text-center text-text"
