@@ -1,9 +1,14 @@
 import { motion } from "framer-motion"
 import { GitlabIcon as GitHub, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react"
 
+// Scroll to Top Function
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}
+
 const Footer = () => {
   return (
-    <footer className="bg-black bg-opacity-80 py-12 text-white">
+    <footer className="bg-black bg-opacity-30 py-12 text-white backdrop-blur-lg">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
@@ -29,9 +34,12 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-4 text-teal-300">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="hover:text-teal-300 transition duration-300">
+                <button
+                  onClick={scrollToTop}
+                  className="hover:text-teal-300 transition duration-300"
+                >
                   Home
-                </a>
+                </button>
               </li>
               <li>
                 <a href="#about" className="hover:text-teal-300 transition duration-300">
