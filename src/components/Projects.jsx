@@ -2,42 +2,63 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 
 const projects = [
   {
     id: 1,
-    title: "E-commerce Platform",
+    title: "AI-Powered Task Manager",
     category: "Web",
-    image: "https://source.unsplash.com/random/800x600?ecommerce",
-    description: "A full-featured e-commerce platform built with React, Node.js, and MongoDB.",
+    image: "https://source.unsplash.com/random/800x600?task",
+    description:
+      "An intelligent task management application that uses machine learning to prioritize and categorize tasks, enhancing productivity.",
+    technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
+    github: "https://github.com/affan-portfolio/ai-task-manager",
+    live: "https://ai-task-manager.demo.com",
   },
   {
     id: 2,
-    title: "Task Management App",
-    category: "Mobile",
-    image: "https://source.unsplash.com/random/800x600?task",
-    description: "A mobile app for task management and productivity, developed using React Native.",
+    title: "Blockchain Voting System",
+    category: "Web",
+    image: "https://source.unsplash.com/random/800x600?blockchain",
+    description:
+      "A secure and transparent voting system built on blockchain technology, ensuring tamper-proof elections.",
+    technologies: ["Ethereum", "Solidity", "Web3.js", "React"],
+    github: "https://github.com/affan-portfolio/blockchain-voting",
+    live: "https://blockchain-voting.demo.com",
   },
   {
     id: 3,
-    title: "Portfolio Website",
-    category: "Web",
-    image: "https://source.unsplash.com/random/800x600?portfolio",
-    description: "A responsive portfolio website showcasing my projects and skills.",
+    title: "AR Shopping Experience",
+    category: "Mobile",
+    image: "https://source.unsplash.com/random/800x600?augmented-reality",
+    description:
+      "An augmented reality mobile app that allows users to visualize products in their own space before purchasing.",
+    technologies: ["React Native", "ARKit", "ARCore", "Node.js"],
+    github: "https://github.com/affan-portfolio/ar-shopping",
+    live: "https://ar-shopping.demo.com",
   },
   {
     id: 4,
-    title: "Weather Forecast App",
+    title: "Real-time Collaboration Platform",
     category: "Web",
-    image: "https://source.unsplash.com/random/800x600?weather",
-    description: "A weather forecast application using React and integrating with a weather API.",
+    image: "https://source.unsplash.com/random/800x600?collaboration",
+    description:
+      "A real-time collaboration tool for remote teams, featuring video conferencing, shared whiteboards, and project management tools.",
+    technologies: ["WebRTC", "Socket.io", "React", "Express"],
+    github: "https://github.com/affan-portfolio/collab-platform",
+    live: "https://collab-platform.demo.com",
   },
   {
     id: 5,
-    title: "Social Media Dashboard",
-    category: "Web",
-    image: "https://source.unsplash.com/random/800x600?dashboard",
-    description: "A comprehensive social media dashboard for analytics and content management.",
+    title: "IoT Smart Home Hub",
+    category: "IoT",
+    image: "https://source.unsplash.com/random/800x600?smarthome",
+    description:
+      "A centralized smart home system that integrates various IoT devices and provides a user-friendly interface for home automation.",
+    technologies: ["Raspberry Pi", "Python", "MQTT", "React"],
+    github: "https://github.com/affan-portfolio/smart-home-hub",
+    live: "https://smart-home-hub.demo.com",
   },
 ]
 
@@ -51,7 +72,7 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-primary">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl font-bold mb-8 text-center text-text"
+          className="text-4xl font-bold mb-12 text-center text-text"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -64,13 +85,15 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {["All", "Web", "Mobile"].map((category) => (
+          {["All", "Web", "Mobile", "IoT"].map((category) => (
             <motion.button
               key={category}
               onClick={() => setFilter(category)}
               className={`mx-2 px-4 py-2 rounded-full transition duration-300 ${
                 filter === category ? "bg-text text-primary" : "bg-accent text-white hover:bg-text hover:text-primary"
               }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {category}
             </motion.button>
@@ -80,16 +103,25 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="bg-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105"
-              onClick={() => setSelectedProject(project)}
+              className="bg-secondary rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => setSelectedProject(project)}
             >
               <img src={project.image || "/placeholder.svg"} alt={project.title} className="w-full h-48 object-cover" />
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2 text-text">{project.title}</h3>
-                <p className="text-gray-400">{project.category}</p>
+                <p className="text-sm text-gray-400 mb-4">{project.category}</p>
+                <p className="text-sm mb-4">{project.description.substring(0, 100)}...</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="text-xs bg-accent text-white px-2 py-1 rounded-full">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -104,7 +136,7 @@ const Projects = () => {
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-secondary text-white rounded-lg p-8 max-w-2xl"
+              className="bg-secondary text-white rounded-lg p-8 max-w-2xl w-full"
               initial={{ scale: 0.5, y: -100 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.5, y: -100 }}
@@ -116,14 +148,37 @@ const Projects = () => {
                 className="w-full h-64 object-cover mb-4 rounded"
               />
               <p className="mb-4">{selectedProject.description}</p>
-              <motion.button
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedProject.technologies.map((tech) => (
+                  <span key={tech} className="text-xs bg-accent text-white px-2 py-1 rounded-full">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <div className="flex justify-between">
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-text hover:text-white transition-colors duration-300"
+                >
+                  <FaGithub className="mr-2" /> View on GitHub
+                </a>
+                <a
+                  href={selectedProject.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-text hover:text-white transition-colors duration-300"
+                >
+                  <FaExternalLinkAlt className="mr-2" /> Live Demo
+                </a>
+              </div>
+              <button
                 onClick={() => setSelectedProject(null)}
-                className="bg-text text-primary px-4 py-2 rounded hover:bg-accent hover:text-white transition duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="mt-6 bg-text text-primary px-4 py-2 rounded hover:bg-accent transition duration-300"
               >
                 Close
-              </motion.button>
+              </button>
             </motion.div>
           </motion.div>
         )}

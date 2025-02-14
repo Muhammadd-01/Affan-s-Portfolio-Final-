@@ -5,6 +5,7 @@ import * as THREE from "three"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import About from "./components/About"
+import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Resume from "./components/Resume"
 import Contact from "./components/Contact"
@@ -40,49 +41,58 @@ function App() {
     const stars = new THREE.Points(starsGeometry, starsMaterial)
     scene.add(stars)
 
-    // Create nebula
-    const nebulaTexture = new THREE.TextureLoader().load("/nebula.jpg")
-    const nebulaGeometry = new THREE.PlaneGeometry(2000, 2000)
-    const nebulaMaterial = new THREE.MeshBasicMaterial({ map: nebulaTexture, transparent: true, opacity: 0.3 })
-    const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial)
-    nebula.position.z = -1000
-    scene.add(nebula)
+    // Create moving particles
+    const particlesGeometry = new THREE.BufferGeometry()
+    const particlesCnt = 5000
+    const posArray = new Float32Array(particlesCnt * 3)
+
+    for (let i = 0; i < particlesCnt * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 5
+    }
+
+    particlesGeometry.setAttribute("position", new THREE.BufferAttribute(posArray, 3))
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.005,
+      color: 0x49c5b6,
+    })
+
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
+    scene.add(particlesMesh)
 
     camera.position.z = 5
 
     let mouseX = 0
     let mouseY = 0
-    let targetX = 0
-    let targetY = 0
 
-    const windowHalfX = window.innerWidth / 2
-    const windowHalfY = window.innerHeight / 2
+    const animateParticles = (event) => {
+      mouseY = event.clientY
+      mouseX = event.clientX
+    }
+
+    document.addEventListener("mousemove", animateParticles)
+
+    const clock = new THREE.Clock()
 
     // Animation
     const animate = () => {
       requestAnimationFrame(animate)
 
-      targetX = mouseX * 0.001
-      targetY = mouseY * 0.001
+      const elapsedTime = clock.getElapsedTime()
 
-      stars.rotation.y += (targetX - stars.rotation.y) * 0.05
-      stars.rotation.x += (targetY - stars.rotation.x) * 0.05
+      // Animate stars
+      stars.rotation.y += 0.00005
 
-      nebula.rotation.y += (targetX - nebula.rotation.y) * 0.02
-      nebula.rotation.x += (targetY - nebula.rotation.x) * 0.02
+      // Animate particles
+      particlesMesh.rotation.y = -0.1 * elapsedTime
+      if (mouseX > 0) {
+        particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
+        particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00008)
+      }
 
       renderer.render(scene, camera)
     }
 
     animate()
-
-    // Mouse move effect
-    const onMouseMove = (event) => {
-      mouseX = event.clientX - windowHalfX
-      mouseY = event.clientY - windowHalfY
-    }
-
-    window.addEventListener("mousemove", onMouseMove)
 
     // Handle window resize
     const onWindowResize = () => {
@@ -95,8 +105,8 @@ function App() {
 
     // Clean up
     return () => {
-      window.removeEventListener("mousemove", onMouseMove)
       window.removeEventListener("resize", onWindowResize)
+      document.removeEventListener("mousemove", animateParticles)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
@@ -108,6 +118,7 @@ function App() {
         <Navbar />
         <Hero />
         <About />
+        <Skills />
         <Projects />
         <Resume />
         <Contact />

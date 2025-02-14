@@ -1,11 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 
 const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [imageIndex, setImageIndex] = useState(0)
+  const images = [
+    "https://randomuser.me/api/portraits/men/32.jpg",
+    "https://randomuser.me/api/portraits/men/33.jpg",
+    "https://randomuser.me/api/portraits/men/34.jpg",
+  ]
+
+  const nextImage = () => {
+    setImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -36,27 +45,19 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div
-            className="relative w-64 h-64 mx-auto"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <motion.img
-              src="https://randomuser.me/api/portraits/men/32.jpg"
-              alt="Affan"
-              className="w-full h-full rounded-full object-cover"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: isHovered ? 0 : 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.img
-              src="https://randomuser.me/api/portraits/men/33.jpg"
-              alt="Affan Alternative"
-              className="w-full h-full rounded-full object-cover absolute top-0 left-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isHovered ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
-            />
+          <div className="relative w-64 h-64 mx-auto cursor-pointer" onClick={nextImage}>
+            <AnimatePresence>
+              <motion.img
+                key={imageIndex}
+                src={images[imageIndex]}
+                alt="Affan"
+                className="w-full h-full rounded-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              />
+            </AnimatePresence>
           </div>
         </motion.div>
         <motion.div
@@ -69,11 +70,11 @@ const Hero = () => {
             Hi, I'm Affan
           </motion.h1>
           <motion.p className="text-xl md:text-2xl mb-8 text-accent" variants={itemVariants}>
-            Web Developer | Designer | Creative Thinker
+            Full-Stack Developer | UI/UX Enthusiast | Tech Innovator
           </motion.p>
           <motion.p className="text-lg mb-8" variants={itemVariants}>
-            I'm a passionate full-stack developer with expertise in creating innovative web solutions. With a keen eye
-            for design and a love for clean code, I bring ideas to life through captivating digital experiences.
+            I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and
+            cutting-edge technologies, I transform complex problems into seamless experiences.
           </motion.p>
           <motion.div className="space-x-4" variants={itemVariants}>
             <motion.a
@@ -82,7 +83,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Contact Me
+              Let's Connect
             </motion.a>
             <motion.a
               href="#projects"
@@ -90,13 +91,13 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Projects
+              Explore My Work
             </motion.a>
           </motion.div>
           <motion.div className="mt-8 flex justify-center md:justify-start space-x-4" variants={itemVariants}>
-            <SocialIcon href="https://github.com/yourusername" icon={<FaGithub />} />
-            <SocialIcon href="https://linkedin.com/in/yourusername" icon={<FaLinkedin />} />
-            <SocialIcon href="https://twitter.com/yourusername" icon={<FaTwitter />} />
+            <SocialIcon href="https://github.com/affan-portfolio" icon={<FaGithub />} />
+            <SocialIcon href="https://linkedin.com/in/affan-dev" icon={<FaLinkedin />} />
+            <SocialIcon href="https://twitter.com/affan_codes" icon={<FaTwitter />} />
           </motion.div>
         </motion.div>
       </div>
@@ -110,7 +111,7 @@ const SocialIcon = ({ href, icon }) => (
     target="_blank"
     rel="noopener noreferrer"
     className="text-white hover:text-text transition-colors duration-300"
-    whileHover={{ scale: 1.2 }}
+    whileHover={{ scale: 1.2, rotate: 5 }}
     whileTap={{ scale: 0.9 }}
   >
     {icon}
