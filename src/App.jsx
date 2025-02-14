@@ -1,17 +1,15 @@
-"use client"
-
-import { useEffect, useRef } from "react"
-import * as THREE from "three"
-import Navbar from "./components/Navbar"
-import Hero from "./components/Hero"
-import About from "./components/About"
-import Skills from "./components/Skills"
-import Projects from "./components/Projects"
-import Resume from "./components/Resume"
-import Contact from "./components/Contact"
-import Footer from "./components/Footer"
-import WhatsAppButton from "./components/WhatsAppButton"
-import UpButton from "./components/UpButton"
+import React, { useEffect, useRef } from 'react'
+import * as THREE from 'three'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import About from './components/About'
+import Skills from './components/Skills'
+import Projects from './components/Projects'
+import Resume from './components/Resume'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
+import UpButton from './components/UpButton'
 
 function App() {
   const mountRef = useRef(null)
@@ -20,40 +18,29 @@ function App() {
     // Three.js scene setup
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-    const renderer = new THREE.WebGLRenderer({ alpha: true })
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
 
     renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mountRef.current.appendChild(renderer.domElement)
 
-    // Create stars
-    const starsGeometry = new THREE.BufferGeometry()
-    const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 })
-
-    const starsVertices = []
-    for (let i = 0; i < 15000; i++) {
-      const x = (Math.random() - 0.5) * 2000
-      const y = (Math.random() - 0.5) * 2000
-      const z = -Math.random() * 2000
-      starsVertices.push(x, y, z)
-    }
-
-    starsGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starsVertices, 3))
-    const stars = new THREE.Points(starsGeometry, starsMaterial)
-    scene.add(stars)
-
-    // Create moving particles
+    // Create particles
     const particlesGeometry = new THREE.BufferGeometry()
-    const particlesCnt = 5000
+    const particlesCnt = 15000
     const posArray = new Float32Array(particlesCnt * 3)
 
     for (let i = 0; i < particlesCnt * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 5
+      posArray[i] = (Math.random() - 0.5) * 15
     }
 
-    particlesGeometry.setAttribute("position", new THREE.BufferAttribute(posArray, 3))
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.005,
-      color: 0x49c5b6,
+      size: 0.003,
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending,
     })
 
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
@@ -65,11 +52,11 @@ function App() {
     let mouseY = 0
 
     const animateParticles = (event) => {
-      mouseY = event.clientY
-      mouseX = event.clientX
+      mouseY = event.clientY / window.innerHeight
+      mouseX = event.clientX / window.innerWidth
     }
 
-    document.addEventListener("mousemove", animateParticles)
+    document.addEventListener('mousemove', animateParticles)
 
     const clock = new THREE.Clock()
 
@@ -79,15 +66,25 @@ function App() {
 
       const elapsedTime = clock.getElapsedTime()
 
-      // Animate stars
-      stars.rotation.y += 0.00005
+      // Rotate particles
+      particlesMesh.rotation.y = elapsedTime * 0.05
 
-      // Animate particles
-      particlesMesh.rotation.y = -0.1 * elapsedTime
-      if (mouseX > 0) {
-        particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
-        particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00008)
+      // Move particles based on mouse position
+      particlesMesh.rotation.x = mouseY * 0.5
+      particlesMesh.rotation.y = mouseX * 0.5
+
+      // Update particles positions
+      const positions = particlesGeometry.attributes.position.array
+      for (let i = 0; i < positions.length; i += 3) {
+        const x = positions[i]
+        const y = positions[i + 1]
+        const z = positions[i + 2]
+
+        positions[i] = x + Math.sin(elapsedTime * 0.2 + x) * 0.01
+        positions[i + 1] = y + Math.cos(elapsedTime * 0.2 + y) * 0.01
+        positions[i + 2] = z + Math.sin(elapsedTime * 0.2 + z) * 0.01
       }
+      particlesGeometry.attributes.position.needsUpdate = true
 
       renderer.render(scene, camera)
     }
@@ -101,18 +98,18 @@ function App() {
       renderer.setSize(window.innerWidth, window.innerHeight)
     }
 
-    window.addEventListener("resize", onWindowResize)
+    window.addEventListener('resize', onWindowResize)
 
     // Clean up
     return () => {
-      window.removeEventListener("resize", onWindowResize)
-      document.removeEventListener("mousemove", animateParticles)
+      window.removeEventListener('resize', onWindowResize)
+      document.removeEventListener('mousemove', animateParticles)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
 
   return (
-    <div className="min-h-screen bg-primary text-white">
+    <div className="min-h-screen text-white">
       <div ref={mountRef} className="fixed top-0 left-0 w-full h-full z-0" />
       <div className="relative z-10">
         <Navbar />
@@ -131,4 +128,3 @@ function App() {
 }
 
 export default App
-
