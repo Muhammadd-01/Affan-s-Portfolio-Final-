@@ -39,9 +39,9 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
         {/* Introduction Text */}
-        <div className="text-center md:text-left md:w-1/2">
+        <div className="text-center md:text-left md:w-1/2 mt-8 md:mt-0">
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4 text-white"
             variants={textVariants}
@@ -92,9 +92,8 @@ const Hero = () => {
         </div>
 
         {/* Profile Picture */}
-        <div className="md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+        <div className="w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0">
           <motion.div
-            className="w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             whileHover={{ scale: 1.05 }}
