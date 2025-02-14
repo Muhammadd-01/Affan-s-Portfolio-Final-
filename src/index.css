@@ -7,3 +7,32 @@
     height: 100%;
     z-index: -10;
   }
+
+  /* Glitch Effect */
+.glitch-effect {
+  position: relative;
+  display: inline-block;
+  color: #00f6ff;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px 0 #ff007f, -2px -2px 0 #ff007f;
+  }
+  20% {
+    text-shadow: -2px -2px 0 #ff007f, 2px 2px 0 #ff007f;
+  }
+  40% {
+    text-shadow: 2px -2px 0 #ff007f, -2px 2px 0 #ff007f;
+  }
+  60% {
+    text-shadow: -2px 2px 0 #ff007f, 2px -2px 0 #ff007f;
+  }
+  80% {
+    text-shadow: 2px 2px 0 #ff007f, -2px -2px 0 #ff007f;
+  }
+  100% {
+    text-shadow: -2px -2px 0 #ff007f, 2px 2px 0 #ff007f;
+  }
+}
