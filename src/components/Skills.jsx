@@ -19,26 +19,26 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20">
       <motion.h2
-        className="text-4xl font-bold mb-12 text-center text-text"
+        className="text-4xl font-bold mb-12 text-center text-black"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         My Skills
       </motion.h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="bg-primary rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            initial={{ opacity: 0, scale: 0.5 }}
+            className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             whileHover={{ scale: 1.05 }}
           >
             <div className="text-6xl mb-4 flex justify-center">{skill.icon}</div>
-            <h3 className="text-xl font-semibold mb-2 text-center">{skill.name}</h3>
-            <p className="text-text text-center">{skill.level}</p>
+            <h3 className="text-xl font-semibold mb-2 text-center text-black">{skill.name}</h3>
+            <p className="text-gray-700 text-center">{skill.level}</p>
           </motion.div>
         ))}
       </div>
