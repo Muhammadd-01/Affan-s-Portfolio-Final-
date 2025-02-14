@@ -26,7 +26,7 @@ function App() {
 
     // Create Particles
     const particlesGeometry = new THREE.BufferGeometry()
-    const particlesCnt = 10000
+    const particlesCnt = 12000
     const posArray = new Float32Array(particlesCnt * 3)
 
     for (let i = 0; i < particlesCnt * 3; i++) {
@@ -36,10 +36,10 @@ function App() {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
+      size: 0.03,
       color: 0xffffff,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.8,
       blending: THREE.AdditiveBlending,
     })
 
@@ -58,6 +58,48 @@ function App() {
     }
     document.addEventListener('mousemove', animateParticles)
 
+    // Pop-Out Particles on Click
+    const popOutParticles = (event) => {
+      const burstGeometry = new THREE.BufferGeometry()
+      const burstCnt = 100
+      const burstArray = new Float32Array(burstCnt * 3)
+
+      for (let i = 0; i < burstCnt * 3; i++) {
+        burstArray[i] = (Math.random() - 0.5) * 1
+      }
+
+      burstGeometry.setAttribute('position', new THREE.BufferAttribute(burstArray, 3))
+
+      const burstMaterial = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0xff6666,
+        transparent: true,
+        opacity: 0.9,
+        blending: THREE.AdditiveBlending,
+      })
+
+      const burstMesh = new THREE.Points(burstGeometry, burstMaterial)
+      burstMesh.position.set(
+        (event.clientX / window.innerWidth - 0.5) * 10,
+        -(event.clientY / window.innerHeight - 0.5) * 10,
+        0
+      )
+      scene.add(burstMesh)
+
+      // Animate burst fade and movement
+      const burstAnimation = () => {
+        burstMesh.material.opacity -= 0.02
+        burstMesh.position.z -= 0.05
+        if (burstMesh.material.opacity > 0) {
+          requestAnimationFrame(burstAnimation)
+        } else {
+          scene.remove(burstMesh)
+        }
+      }
+      burstAnimation()
+    }
+    document.addEventListener('click', popOutParticles)
+
     const clock = new THREE.Clock()
 
     // Animation Loop
@@ -66,13 +108,13 @@ function App() {
 
       const elapsedTime = clock.getElapsedTime()
 
-      // Rotate Particles
-      particlesMesh.rotation.y = elapsedTime * 0.02
-      particlesMesh.rotation.x = elapsedTime * 0.01
+      // Rotate Particles Faster
+      particlesMesh.rotation.y = elapsedTime * 0.08
+      particlesMesh.rotation.x = elapsedTime * 0.04
 
-      // Mouse-based Movement
-      particlesMesh.position.x = mouseX * 2
-      particlesMesh.position.y = -mouseY * 2
+      // Fast Mouse-based Movement
+      particlesMesh.position.x += (mouseX * 5 - particlesMesh.position.x) * 0.1
+      particlesMesh.position.y += (-mouseY * 5 - particlesMesh.position.y) * 0.1
 
       renderer.render(scene, camera)
     }
@@ -92,6 +134,7 @@ function App() {
     return () => {
       window.removeEventListener('resize', onWindowResize)
       document.removeEventListener('mousemove', animateParticles)
+      document.removeEventListener('click', popOutParticles)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
