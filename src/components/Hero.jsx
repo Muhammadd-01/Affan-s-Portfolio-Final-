@@ -2,9 +2,30 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false)
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  }
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
@@ -40,17 +61,21 @@ const Hero = () => {
         </motion.div>
         <motion.div
           className="md:w-1/2 text-center md:text-left"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Hi, I'm Affan</h1>
-          <p className="text-xl md:text-2xl mb-8 text-text">Web Developer | Designer | Creative Thinker</p>
-          <p className="text-lg mb-8">
+          <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 text-text" variants={itemVariants}>
+            Hi, I'm Affan
+          </motion.h1>
+          <motion.p className="text-xl md:text-2xl mb-8 text-accent" variants={itemVariants}>
+            Web Developer | Designer | Creative Thinker
+          </motion.p>
+          <motion.p className="text-lg mb-8" variants={itemVariants}>
             I'm a passionate full-stack developer with expertise in creating innovative web solutions. With a keen eye
             for design and a love for clean code, I bring ideas to life through captivating digital experiences.
-          </p>
-          <div className="space-x-4">
+          </motion.p>
+          <motion.div className="space-x-4" variants={itemVariants}>
             <motion.a
               href="#contact"
               className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-text transition duration-300"
@@ -67,12 +92,30 @@ const Hero = () => {
             >
               View Projects
             </motion.a>
-          </div>
+          </motion.div>
+          <motion.div className="mt-8 flex justify-center md:justify-start space-x-4" variants={itemVariants}>
+            <SocialIcon href="https://github.com/yourusername" icon={<FaGithub />} />
+            <SocialIcon href="https://linkedin.com/in/yourusername" icon={<FaLinkedin />} />
+            <SocialIcon href="https://twitter.com/yourusername" icon={<FaTwitter />} />
+          </motion.div>
         </motion.div>
       </div>
     </section>
   )
 }
+
+const SocialIcon = ({ href, icon }) => (
+  <motion.a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white hover:text-text transition-colors duration-300"
+    whileHover={{ scale: 1.2 }}
+    whileTap={{ scale: 0.9 }}
+  >
+    {icon}
+  </motion.a>
+)
 
 export default Hero
 

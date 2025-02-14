@@ -2,19 +2,18 @@ import { motion } from "framer-motion"
 
 const About = () => {
   const skills = [
-    "JavaScript",
-    "React",
-    "Node.js",
-    "HTML/CSS",
-    "Tailwind CSS",
-    "Git",
-    "Responsive Design",
-    "TypeScript",
-    "Next.js",
-    "GraphQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
+    { name: "JavaScript", level: 90 },
+    { name: "React", level: 85 },
+    { name: "Node.js", level: 80 },
+    { name: "HTML/CSS", level: 95 },
+    { name: "Tailwind CSS", level: 90 },
+    { name: "Git", level: 85 },
+    { name: "TypeScript", level: 75 },
+    { name: "Next.js", level: 80 },
+    { name: "GraphQL", level: 70 },
+    { name: "MongoDB", level: 75 },
+    { name: "AWS", level: 65 },
+    { name: "Docker", level: 60 },
   ]
 
   return (
@@ -49,16 +48,27 @@ const About = () => {
           >
             Skills & Expertise
           </motion.h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
-                className="bg-accent rounded-lg p-3 text-center hover:bg-text hover:text-primary transition duration-300 transform hover:scale-105"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
+                className="mb-4"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {skill}
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-white">{skill.name}</span>
+                  <span className="text-text">{skill.level}%</span>
+                </div>
+                <div className="w-full bg-primary rounded-full h-2">
+                  <motion.div
+                    className="bg-text h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${skill.level}%` }}
+                    transition={{ duration: 1, delay: index * 0.1 }}
+                  />
+                </div>
               </motion.div>
             ))}
           </div>

@@ -29,7 +29,7 @@ function App() {
     const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 })
 
     const starsVertices = []
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 15000; i++) {
       const x = (Math.random() - 0.5) * 2000
       const y = (Math.random() - 0.5) * 2000
       const z = -Math.random() * 2000
@@ -40,12 +40,37 @@ function App() {
     const stars = new THREE.Points(starsGeometry, starsMaterial)
     scene.add(stars)
 
+    // Create nebula
+    const nebulaTexture = new THREE.TextureLoader().load("/nebula.jpg")
+    const nebulaGeometry = new THREE.PlaneGeometry(2000, 2000)
+    const nebulaMaterial = new THREE.MeshBasicMaterial({ map: nebulaTexture, transparent: true, opacity: 0.3 })
+    const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial)
+    nebula.position.z = -1000
+    scene.add(nebula)
+
     camera.position.z = 5
+
+    let mouseX = 0
+    let mouseY = 0
+    let targetX = 0
+    let targetY = 0
+
+    const windowHalfX = window.innerWidth / 2
+    const windowHalfY = window.innerHeight / 2
 
     // Animation
     const animate = () => {
       requestAnimationFrame(animate)
-      stars.rotation.y += 0.0002
+
+      targetX = mouseX * 0.001
+      targetY = mouseY * 0.001
+
+      stars.rotation.y += (targetX - stars.rotation.y) * 0.05
+      stars.rotation.x += (targetY - stars.rotation.x) * 0.05
+
+      nebula.rotation.y += (targetX - nebula.rotation.y) * 0.02
+      nebula.rotation.x += (targetY - nebula.rotation.x) * 0.02
+
       renderer.render(scene, camera)
     }
 
@@ -53,18 +78,25 @@ function App() {
 
     // Mouse move effect
     const onMouseMove = (event) => {
-      const mouseX = (event.clientX / window.innerWidth) * 2 - 1
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1
-
-      stars.rotation.y += mouseX * 0.0005
-      stars.rotation.x += mouseY * 0.0005
+      mouseX = event.clientX - windowHalfX
+      mouseY = event.clientY - windowHalfY
     }
 
     window.addEventListener("mousemove", onMouseMove)
 
+    // Handle window resize
+    const onWindowResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    }
+
+    window.addEventListener("resize", onWindowResize)
+
     // Clean up
     return () => {
       window.removeEventListener("mousemove", onMouseMove)
+      window.removeEventListener("resize", onWindowResize)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
