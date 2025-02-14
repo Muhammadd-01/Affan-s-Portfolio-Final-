@@ -13,6 +13,7 @@ import UpButton from './components/UpButton'
 
 function App() {
   const mountRef = useRef(null)
+  const cursorRef = useRef(null)
 
   useEffect(() => {
     // Three.js scene setup
@@ -24,100 +25,73 @@ function App() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mountRef.current.appendChild(renderer.domElement)
 
-    // Create particles
-    const particlesGeometry = new THREE.BufferGeometry()
-    const particlesCnt = 15000
-    const posArray = new Float32Array(particlesCnt * 3)
-
-    for (let i = 0; i < particlesCnt * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 15
+    // Space Background: Stars
+    const starsGeometry = new THREE.BufferGeometry()
+    const starCount = 20000
+    const starArray = new Float32Array(starCount * 3)
+    for (let i = 0; i < starCount * 3; i++) {
+      starArray[i] = (Math.random() - 0.5) * 100
     }
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(starArray, 3))
+    const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.2, transparent: true })
+    const stars = new THREE.Points(starsGeometry, starsMaterial)
+    scene.add(stars)
 
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+    // Floating Objects: Spheres and Toruses
+    const objectArray = []
 
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.005,
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-    })
+    for (let i = 0; i < 10; i++) {
+      const geometry = Math.random() > 0.5 
+        ? new THREE.SphereGeometry(0.5, 32, 32) 
+        : new THREE.TorusGeometry(0.3, 0.1, 16, 100)
+      const material = new THREE.MeshStandardMaterial({
+        color: Math.random() * 0xffffff,
+        roughness: 0.5,
+        metalness: 0.7
+      })
+      const object = new THREE.Mesh(geometry, material)
 
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
-    scene.add(particlesMesh)
-
-    // Add floating cubes
-    const cubeArray = []
-    const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0xff0055, roughness: 0.5, metalness: 0.7 })
-
-    for (let i = 0; i < 20; i++) {
-      const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
-      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
-
-      cube.position.set(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10
+      object.position.set(
+        (Math.random() - 0.5) * 30,
+        (Math.random() - 0.5) * 30,
+        (Math.random() - 0.5) * 30
       )
-      scene.add(cube)
-      cubeArray.push(cube)
+      scene.add(object)
+      objectArray.push(object)
     }
 
-    // Add dynamic lighting
-    const pointLight = new THREE.PointLight(0xff0055, 1.5, 50)
-    pointLight.position.set(2, 3, 4)
+    // Lighting
+    const pointLight = new THREE.PointLight(0xffffff, 2)
+    pointLight.position.set(5, 5, 5)
     scene.add(pointLight)
 
-    camera.position.z = 5
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5)
+    scene.add(ambientLight)
 
-    let mouseX = 0
-    let mouseY = 0
+    // Scroll-Based Camera Movement
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY
+      camera.position.z = 5 + scrollY * 0.01
+      camera.position.y = -scrollY * 0.005
+    })
 
-    const animateParticles = (event) => {
-      mouseY = event.clientY / window.innerHeight
-      mouseX = event.clientX / window.innerWidth
-    }
-
-    document.addEventListener('mousemove', animateParticles)
-
+    // Animation Loop
     const clock = new THREE.Clock()
-
-    // Animation
     const animate = () => {
       requestAnimationFrame(animate)
 
       const elapsedTime = clock.getElapsedTime()
 
-      // Rotate particles
-      particlesMesh.rotation.y = elapsedTime * 0.05
-
-      // Move particles based on mouse position
-      particlesMesh.rotation.x = mouseY * 0.5
-      particlesMesh.rotation.y = mouseX * 0.5
-
-      // Update particles positions
-      const positions = particlesGeometry.attributes.position.array
-      for (let i = 0; i < positions.length; i += 3) {
-        const x = positions[i]
-        const y = positions[i + 1]
-        const z = positions[i + 2]
-
-        positions[i] = x + Math.sin(elapsedTime * 0.2 + x) * 0.01
-        positions[i + 1] = y + Math.cos(elapsedTime * 0.2 + y) * 0.01
-        positions[i + 2] = z + Math.sin(elapsedTime * 0.2 + z) * 0.01
-      }
-      particlesGeometry.attributes.position.needsUpdate = true
-
-      // Animate cubes
-      cubeArray.forEach((cube, index) => {
-        cube.rotation.x += 0.01
-        cube.rotation.y += 0.01
-        cube.position.y += Math.sin(elapsedTime + index) * 0.005
+      // Rotate Objects
+      objectArray.forEach((obj, index) => {
+        obj.rotation.x += 0.01
+        obj.rotation.y += 0.01
+        obj.position.y += Math.sin(elapsedTime + index) * 0.01
       })
 
-      // Move light around
-      pointLight.position.x = Math.sin(elapsedTime) * 5
-      pointLight.position.z = Math.cos(elapsedTime) * 5
+      // Move Stars for Parallax Effect
+      stars.rotation.x = elapsedTime * 0.02
+      stars.rotation.y = elapsedTime * 0.04
 
       renderer.render(scene, camera)
     }
@@ -133,10 +107,18 @@ function App() {
 
     window.addEventListener('resize', onWindowResize)
 
+    // Cursor Follower Effect
+    const handleMouseMove = (event) => {
+      const { clientX, clientY } = event
+      cursorRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
     // Clean up
     return () => {
       window.removeEventListener('resize', onWindowResize)
-      document.removeEventListener('mousemove', animateParticles)
+      window.removeEventListener('mousemove', handleMouseMove)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
@@ -156,6 +138,13 @@ function App() {
         <WhatsAppButton />
         <UpButton />
       </div>
+
+      {/* Cursor Follower Button */}
+      <div 
+        ref={cursorRef} 
+        className="fixed w-6 h-6 bg-red-500 rounded-full pointer-events-none z-50 transition-transform duration-150 ease-out"
+        style={{ transform: 'translate3d(-50%, -50%, 0)' }}
+      />
     </div>
   )
 }
