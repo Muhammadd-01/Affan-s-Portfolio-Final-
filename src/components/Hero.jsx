@@ -1,84 +1,72 @@
-import { motion } from "framer-motion"
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  }
+  const [isHovered, setIsHovered] = useState(false);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 100 },
-    },
-  }
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const textVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.5,
-      },
-    },
-  }
-
-  const letterVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", damping: 12, stiffness: 200 },
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 200,
+      },
     },
-  }
+  };
 
-  const AnimatedText = ({ text, className }) => (
-    <motion.span className={className} variants={textVariants} initial="hidden" animate="visible">
-      {text.split("").map((char, index) => (
-        <motion.span key={index} variants={letterVariants}>
-          {char}
-        </motion.span>
-      ))}
-    </motion.span>
-  )
+  const loopVariants = {
+    animate: {
+      y: [0, -20, 0],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        repeatType: "loop",
+      },
+    },
+  };
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4">
-        <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
-          {/* Profile Picture */}
-          <motion.div
-            className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-6 border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300"
-            variants={itemVariants}
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+        {/* Introduction Text */}
+        <div className="text-center md:text-left md:w-1/2">
+          <motion.h1
+            className="text-4xl md:text-6xl font-bold mb-4 text-white"
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <img
-              src="https://via.placeholder.com/150" 
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 text-white" variants={itemVariants}>
-            <AnimatedText text="Hi, I'm Affan" />
+            Hi, I'm Affan
           </motion.h1>
-          <motion.p className="text-xl md:text-2xl mb-8 text-gray-300" variants={itemVariants}>
-            <AnimatedText text="Full-Stack Developer | UI/UX Enthusiast | Tech Innovator" />
+          <motion.p
+            className="text-xl md:text-2xl mb-8 text-gray-300"
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            Full-Stack Developer | UI/UX Enthusiast | Tech Innovator
           </motion.p>
-          <motion.p className="text-lg mb-8 max-w-2xl mx-auto" variants={itemVariants}>
-            I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and
-            cutting-edge technologies, I transform complex problems into seamless experiences.
+          <motion.p
+            className="text-lg mb-8 max-w-2xl"
+            variants={loopVariants}
+            initial="animate"
+            animate="animate"
+          >
+            I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and cutting-edge technologies, I transform complex problems into seamless experiences.
           </motion.p>
-          <motion.div className="space-x-4" variants={itemVariants}>
+          <div className="space-x-4">
             <motion.a
               href="#contact"
               className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition duration-300"
@@ -95,17 +83,42 @@ const Hero = () => {
             >
               Explore My Work
             </motion.a>
-          </motion.div>
-          <motion.div className="mt-8 flex justify-center space-x-4" variants={itemVariants}>
+          </div>
+          <div className="mt-8 flex justify-center md:justify-start space-x-4">
             <SocialIcon href="https://github.com/affan-portfolio" icon={<FaGithub />} />
             <SocialIcon href="https://linkedin.com/in/affan-dev" icon={<FaLinkedin />} />
             <SocialIcon href="https://twitter.com/affan_codes" icon={<FaTwitter />} />
+          </div>
+        </div>
+
+        {/* Profile Picture */}
+        <div className="md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0">
+          <motion.div
+            className="w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.img
+              key={isHovered ? "hovered" : "default"}
+              src={
+                isHovered
+                  ? "https://via.placeholder.com/150/0000FF/808080?text=New+Pose" // Hovered image
+                  : "https://via.placeholder.com/150" // Default image
+              }
+              alt="Profile"
+              className="w-full h-full object-cover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const SocialIcon = ({ href, icon }) => (
   <motion.a
@@ -118,6 +131,6 @@ const SocialIcon = ({ href, icon }) => (
   >
     {icon}
   </motion.a>
-)
+);
 
-export default Hero
+export default Hero;
