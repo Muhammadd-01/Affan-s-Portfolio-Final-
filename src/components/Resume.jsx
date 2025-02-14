@@ -1,58 +1,83 @@
+import { motion } from 'framer-motion';
+
+const experiences = [
+  { year: '2021 - Present', title: 'Senior Web Developer', company: 'Tech Co.' },
+  { year: '2018 - 2021', title: 'Web Developer', company: 'Digital Agency' },
+  { year: '2016 - 2018', title: 'Junior Developer', company: 'Startup Inc.' },
+];
+
+const education = [
+  { year: '2012 - 2016', degree: 'Bachelor of Science in Computer Science', school: 'University of Technology' },
+  { year: '2010 - 2012', degree: 'Associate Degree in Web Development', school: 'Community College' },
+];
+
 const Resume = () => {
-  const experiences = [
-    { year: "2021 - Present", title: "Senior Web Developer", company: "Tech Co." },
-    { year: "2018 - 2021", title: "Web Developer", company: "Digital Agency" },
-    { year: "2016 - 2018", title: "Junior Developer", company: "Startup Inc." },
-  ]
-
-  const education = [
-    { year: "2012 - 2016", degree: "Bachelor of Science in Computer Science", school: "University of Technology" },
-    { year: "2010 - 2012", degree: "Associate Degree in Web Development", school: "Community College" },
-  ]
-
   return (
-    <section id="resume" className="py-20 bg-black bg-opacity-50">
+    <section id="resume" className="py-20 bg-black bg-opacity-80 backdrop-blur-lg">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Resume</h2>
-        <div className="max-w-3xl mx-auto">
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-center text-white"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Resume
+        </motion.h2>
+
+        <div className="max-w-4xl mx-auto">
           <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-4">Work Experience</h3>
+            <h3 className="text-3xl font-semibold mb-6 text-teal-300">Work Experience</h3>
             {experiences.map((exp, index) => (
-              <div key={index} className="mb-6 animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
+              <motion.div
+                key={index}
+                className="mb-8 bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
                 <div className="flex justify-between items-center mb-2">
-                  <h4 className="text-xl font-medium">{exp.title}</h4>
+                  <h4 className="text-2xl font-medium text-white">{exp.title}</h4>
                   <span className="text-gray-400">{exp.year}</span>
                 </div>
-                <p className="text-gray-300">{exp.company}</p>
-              </div>
+                <p className="text-gray-400">{exp.company}</p>
+              </motion.div>
             ))}
           </div>
+
           <div>
-            <h3 className="text-2xl font-semibold mb-4">Education</h3>
+            <h3 className="text-3xl font-semibold mb-6 text-teal-300">Education</h3>
             {education.map((edu, index) => (
-              <div key={index} className="mb-6 animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
+              <motion.div
+                key={index}
+                className="mb-8 bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
                 <div className="flex justify-between items-center mb-2">
-                  <h4 className="text-xl font-medium">{edu.degree}</h4>
+                  <h4 className="text-2xl font-medium text-white">{edu.degree}</h4>
                   <span className="text-gray-400">{edu.year}</span>
                 </div>
-                <p className="text-gray-300">{edu.school}</p>
-              </div>
+                <p className="text-gray-400">{edu.school}</p>
+              </motion.div>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <a
+
+          <div className="mt-12 text-center">
+            <motion.a
               href="/path-to-your-resume.pdf"
               download
-              className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition duration-300"
+              className="bg-teal-300 text-black px-8 py-3 rounded-full font-semibold hover:bg-teal-400 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               Download Full Resume
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Resume
-
+export default Resume;
