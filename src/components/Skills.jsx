@@ -30,20 +30,32 @@ const Skills = () => {
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-md transition-transform transform hover:scale-105 hover:rotate-1 hover:shadow-2xl group"
-            initial={{ opacity: 0, y: 50, rotate: -2 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            className="relative rounded-xl p-6 shadow-md transition-transform transform hover:scale-105 hover:rotate-1 hover:shadow-2xl group border-2 border-transparent hover:border-white hover:border-opacity-30"
+            initial={{ opacity: 0, y: 50, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ scale: 1.08, rotate: 2 }}
           >
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 opacity-20 blur-md transition-all duration-700 group-hover:opacity-30 group-hover:blur-lg"></div>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-white to-transparent opacity-5 blur-md transition-all duration-700 group-hover:opacity-20 group-hover:blur-lg"></div>
             <div className="relative">
-              <div className="h-1 w-12 bg-gradient-to-r from-cyan-400 to-blue-500 mb-4 transition-transform duration-300 transform group-hover:scale-x-150"></div>
-              <h3 className="text-xl font-semibold mb-2 text-center group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r from-purple-400 to-pink-600 transition-all duration-300">
+              <motion.h3
+                className="text-xl font-semibold mb-2 text-center text-white group-hover:text-white transition-colors duration-300"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 {skill.name}
-              </h3>
-              <p className="text-gray-400 text-center">{skill.level}</p>
+              </motion.h3>
+              <motion.p
+                className="text-gray-400 text-center group-hover:text-gray-200 transition-colors duration-300"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                {skill.level}
+              </motion.p>
             </div>
+            <div className="absolute inset-0 rounded-xl border border-white border-opacity-10 group-hover:border-opacity-50 transition-all duration-500"></div>
           </motion.div>
         ))}
       </div>
