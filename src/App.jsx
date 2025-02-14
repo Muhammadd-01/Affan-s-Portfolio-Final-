@@ -13,7 +13,6 @@ import UpButton from './components/UpButton'
 
 function App() {
   const mountRef = useRef(null)
-  const cursorRef = useRef(null)
 
   useEffect(() => {
     // Three.js scene setup
@@ -107,18 +106,9 @@ function App() {
 
     window.addEventListener('resize', onWindowResize)
 
-    // Cursor Follower Effect
-    const handleMouseMove = (event) => {
-      const { clientX, clientY } = event
-      cursorRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-
     // Clean up
     return () => {
       window.removeEventListener('resize', onWindowResize)
-      window.removeEventListener('mousemove', handleMouseMove)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
@@ -138,13 +128,6 @@ function App() {
         <WhatsAppButton />
         <UpButton />
       </div>
-
-      {/* Cursor Follower Button */}
-      <div 
-        ref={cursorRef} 
-        className="fixed w-6 h-6 bg-red-500 rounded-full pointer-events-none z-50 transition-transform duration-150 ease-out"
-        style={{ transform: 'translate3d(-50%, -50%, 0)' }}
-      />
     </div>
   )
 }
