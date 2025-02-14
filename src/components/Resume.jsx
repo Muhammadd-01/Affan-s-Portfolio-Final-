@@ -13,8 +13,8 @@ const education = [
 
 const Resume = () => {
   return (
-    <section id="resume" className="py-20 bg-black bg-opacity-80 backdrop-blur-lg">
-      <div className="container mx-auto px-4">
+    <section id="resume" className="py-20">
+      <div className="mx-auto px-4">
         <motion.h2
           className="text-4xl font-bold mb-12 text-center text-white"
           initial={{ opacity: 0, y: -50 }}
@@ -30,7 +30,7 @@ const Resume = () => {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="mb-8 bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300"
+                className="mb-8 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 bg-gradient-to-r from-gray-700 to-gray-800"
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -49,7 +49,7 @@ const Resume = () => {
             {education.map((edu, index) => (
               <motion.div
                 key={index}
-                className="mb-8 bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300"
+                className="mb-8 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-300 bg-gradient-to-r from-gray-700 to-gray-800"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
