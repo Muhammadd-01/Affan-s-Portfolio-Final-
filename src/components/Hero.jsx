@@ -56,6 +56,18 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4">
         <motion.div className="text-center" variants={containerVariants} initial="hidden" animate="visible">
+          {/* Profile Picture */}
+          <motion.div
+            className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-6 border-4 border-white shadow-lg hover:scale-105 transition-transform duration-300"
+            variants={itemVariants}
+          >
+            <img
+              src="https://via.placeholder.com/150" 
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
           <motion.h1 className="text-4xl md:text-6xl font-bold mb-4 text-white" variants={itemVariants}>
             <AnimatedText text="Hi, I'm Affan" />
           </motion.h1>
@@ -109,4 +121,3 @@ const SocialIcon = ({ href, icon }) => (
 )
 
 export default Hero
-
