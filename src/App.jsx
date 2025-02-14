@@ -24,22 +24,22 @@ function App() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     mountRef.current.appendChild(renderer.domElement)
 
-    // Create Particles
+    // Space Moving Particles with Glow
     const particlesGeometry = new THREE.BufferGeometry()
-    const particlesCnt = 12000
+    const particlesCnt = 10000
     const posArray = new Float32Array(particlesCnt * 3)
 
     for (let i = 0; i < particlesCnt * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 30
+      posArray[i] = (Math.random() - 0.5) * 100
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.03,
-      color: 0xffffff,
+      size: 0.07, // Slightly bigger for better visibility
+      color: 0x00ffff,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.5,
       blending: THREE.AdditiveBlending,
     })
 
@@ -53,68 +53,30 @@ function App() {
 
     // Mouse Move Event
     const animateParticles = (event) => {
-      mouseX = (event.clientX / window.innerWidth) - 0.5
-      mouseY = (event.clientY / window.innerHeight) - 0.5
+      mouseX = (event.clientX / window.innerWidth - 0.5) * 2
+      mouseY = (event.clientY / window.innerHeight - 0.5) * 2
     }
     document.addEventListener('mousemove', animateParticles)
 
-    // Pop-Out Particles on Click
-    const popOutParticles = (event) => {
-      const burstGeometry = new THREE.BufferGeometry()
-      const burstCnt = 100
-      const burstArray = new Float32Array(burstCnt * 3)
-
-      for (let i = 0; i < burstCnt * 3; i++) {
-        burstArray[i] = (Math.random() - 0.5) * 1
-      }
-
-      burstGeometry.setAttribute('position', new THREE.BufferAttribute(burstArray, 3))
-
-      const burstMaterial = new THREE.PointsMaterial({
-        size: 0.05,
-        color: 0xff6666,
-        transparent: true,
-        opacity: 0.9,
-        blending: THREE.AdditiveBlending,
-      })
-
-      const burstMesh = new THREE.Points(burstGeometry, burstMaterial)
-      burstMesh.position.set(
-        (event.clientX / window.innerWidth - 0.5) * 10,
-        -(event.clientY / window.innerHeight - 0.5) * 10,
-        0
-      )
-      scene.add(burstMesh)
-
-      // Animate burst fade and movement
-      const burstAnimation = () => {
-        burstMesh.material.opacity -= 0.02
-        burstMesh.position.z -= 0.05
-        if (burstMesh.material.opacity > 0) {
-          requestAnimationFrame(burstAnimation)
-        } else {
-          scene.remove(burstMesh)
-        }
-      }
-      burstAnimation()
-    }
-    document.addEventListener('click', popOutParticles)
-
     const clock = new THREE.Clock()
 
-    // Animation Loop
+    // Animation Loop with Glow Effect
     const animate = () => {
       requestAnimationFrame(animate)
 
       const elapsedTime = clock.getElapsedTime()
 
-      // Rotate Particles Faster
-      particlesMesh.rotation.y = elapsedTime * 0.08
-      particlesMesh.rotation.x = elapsedTime * 0.04
+      // Particles rotate and move with cursor for dynamic feel
+      particlesMesh.rotation.y = elapsedTime * 0.2 + mouseX * 0.5
+      particlesMesh.rotation.x = elapsedTime * 0.1 + mouseY * 0.5
 
-      // Fast Mouse-based Movement
-      particlesMesh.position.x += (mouseX * 5 - particlesMesh.position.x) * 0.1
-      particlesMesh.position.y += (-mouseY * 5 - particlesMesh.position.y) * 0.1
+      // Depth movement for hyperspace effect
+      particlesMesh.position.z += Math.sin(elapsedTime * 0.5) * 0.05
+      particlesMesh.position.x += Math.cos(elapsedTime * 0.3) * 0.05
+      particlesMesh.position.y += Math.sin(elapsedTime * 0.4) * 0.05
+
+      // Pulsating Glow Effect
+      particlesMaterial.opacity = 0.5 + Math.sin(elapsedTime * 2) * 0.3
 
       renderer.render(scene, camera)
     }
@@ -134,7 +96,6 @@ function App() {
     return () => {
       window.removeEventListener('resize', onWindowResize)
       document.removeEventListener('mousemove', animateParticles)
-      document.removeEventListener('click', popOutParticles)
       mountRef.current.removeChild(renderer.domElement)
     }
   }, [])
