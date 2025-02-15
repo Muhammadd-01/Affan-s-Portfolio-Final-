@@ -41,7 +41,7 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-20 md:gap-24">
         {/* Introduction Text */}
-        <div className="text-center md:text-left md:w-1/2">
+        <div className="text-center md:text-left md:w-1/2 order-2 md:order-1">
           <motion.h1
             className="text-4xl md:text-6xl font-bold mb-4 text-white"
             variants={textVariants}
@@ -92,7 +92,7 @@ const Hero = () => {
         </div>
 
         {/* Profile Picture */}
-        <div className="w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-16 md:mb-0">
+        <div className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-20">
           <motion.div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
