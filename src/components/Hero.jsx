@@ -41,9 +41,10 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-center gap-10 md:gap-16">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+        
         {/* Profile Picture Container */}
-        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 transition-transform duration-500 ease-in-out hover:-translate-y-3 relative group">
+        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 transition-transform duration-500 ease-in-out hover:-translate-y-3 relative group order-first md:order-none">
           <motion.div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -95,6 +96,7 @@ const Hero = () => {
           >
             I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and cutting-edge technologies, I transform complex problems into seamless experiences.
           </motion.p>
+
           <div className="space-x-4">
             <motion.a
               href="#contact"
@@ -113,6 +115,7 @@ const Hero = () => {
               Explore My Work
             </motion.a>
           </div>
+
           <div className="mt-8 flex justify-center md:justify-start space-x-4">
             <SocialIcon href="https://github.com/Muhammadd-01" icon={<FaGithub />} />
             <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
