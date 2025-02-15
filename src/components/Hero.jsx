@@ -92,7 +92,7 @@ const Hero = () => {
         </div>
 
         {/* Profile Picture */}
-        <div className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-20">
+        <div className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60">
           <motion.div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
