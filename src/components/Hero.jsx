@@ -22,28 +22,11 @@ const Hero = () => {
     setIsHovered(false);
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 200,
-      },
-    },
-  };
-
-  const loopVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    },
+  const gradientText = {
+    background: "linear-gradient(90deg, #00C9FF, #92FE9D)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    animation: "gradient-move 3s infinite alternate",
   };
 
   return (
@@ -51,39 +34,32 @@ const Hero = () => {
       <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-20 md:gap-24">
         {/* Introduction Text */}
         <div className="text-center md:text-left md:w-1/2 order-2 md:order-1">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-4 text-white"
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
+          <h1
+            className="text-4xl md:text-6xl font-bold mb-4"
+            style={gradientText}
           >
             Hi, I'm Affan
-          </motion.h1>
+          </h1>
 
-          <motion.div
-            className="text-xl md:text-2xl mb-8 text-green-400 font-semibold"
-            variants={textVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentWord}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.5 }}
-              >
-                {words[currentWord]}
-              </motion.span>
-            </AnimatePresence>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentWord}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.6 }}
+              className="text-xl md:text-2xl mb-8 font-semibold"
+              style={gradientText}
+            >
+              {words[currentWord]}
+            </motion.div>
+          </AnimatePresence>
 
           <motion.p
-            className="text-lg mb-8 max-w-2xl"
-            variants={loopVariants}
-            initial="animate"
-            animate="animate"
+            className="text-lg mb-8 max-w-2xl text-gray-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and cutting-edge technologies, I transform complex problems into seamless experiences.
           </motion.p>
