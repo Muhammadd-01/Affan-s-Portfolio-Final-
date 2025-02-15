@@ -2,64 +2,51 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { gsap } from "gsap";
+import SplitType from "split-type";
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
-  const words = ["Full-Stack Developer", "UI/UX Enthusiast", "Tech Innovator"];
+  const [currentIndex, setCurrentIndex] = useState(0);
   const textRef = useRef(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  const roles = ["Full-Stack Developer", "UI/UX Enthusiast", "Tech Innovator"];
 
   useEffect(() => {
+    // GSAP Text Split Animation
+    const splitText = new SplitType(textRef.current, { types: "chars" });
+
     gsap.fromTo(
-      textRef.current,
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+      splitText.chars,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, stagger: 0.05, duration: 1, ease: "power4.out" }
     );
-  }, [currentWord]);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % roles.length);
+    }, 4000);
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
-  const gradientText = {
-    background: "linear-gradient(90deg, #00C9FF, #92FE9D)",
+  const glowingText = {
+    background: "linear-gradient(90deg, #12c2e9, #c471ed, #f64f59)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    animation: "gradient-move 3s infinite alternate",
+    filter: "drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8))",
   };
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-20 md:gap-24">
-        {/* Introduction Text */}
+      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-16 md:gap-24">
+        
+        {/* Text Section */}
         <div className="text-center md:text-left md:w-1/2 order-2 md:order-1">
-          <h1
-            className="text-4xl md:text-6xl font-bold mb-4"
-            style={gradientText}
-          >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4" style={glowingText}>
             Hi, I'm Affan
           </h1>
-
-          <div ref={textRef}>
-            <motion.div
-              key={currentWord}
-              className="text-xl md:text-2xl mb-8 font-semibold"
-              style={gradientText}
-            >
-              {words[currentWord]}
-            </motion.div>
-          </div>
+          <h2 ref={textRef} className="text-2xl md:text-3xl font-semibold mb-6">
+            {roles[currentIndex]}
+          </h2>
 
           <motion.p
             className="text-lg mb-8 max-w-2xl text-gray-300"
@@ -67,7 +54,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            I craft elegant, efficient, and user-centric digital solutions. With a passion for clean code and cutting-edge technologies, I transform complex problems into seamless experiences.
+            I craft elegant, efficient, and user-centric digital solutions. Passionate about cutting-edge technologies, I turn complex problems into seamless experiences.
           </motion.p>
           <div className="space-x-4">
             <motion.a
@@ -95,28 +82,27 @@ const Hero = () => {
         </div>
 
         {/* Profile Picture */}
-        <div className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60">
-          <motion.div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            whileHover={{ scale: 1.05 }}
+        <motion.div
+          className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60"
+          whileHover={{ scale: 1.1 }}
+          animate={{ y: [0, -10, 0], transition: { duration: 2, repeat: Infinity } }}
+        >
+          <motion.img
+            key={isHovered ? "hovered" : "default"}
+            src={
+              isHovered
+                ? "https://via.placeholder.com/150/0000FF/808080?text=New+Pose" // Hovered image
+                : "https://via.placeholder.com/150" // Default image
+            }
+            alt="Profile"
+            className="w-full h-full object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-          >
-            <motion.img
-              key={isHovered ? "hovered" : "default"}
-              src={
-                isHovered
-                  ? "https://via.placeholder.com/150/0000FF/808080?text=New+Pose" // Hovered image
-                  : "https://via.placeholder.com/150" // Default image
-              }
-              alt="Profile"
-              className="w-full h-full object-cover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
-        </div>
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
+        </motion.div>
       </div>
     </section>
   );

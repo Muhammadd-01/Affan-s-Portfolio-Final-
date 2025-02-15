@@ -24,6 +24,7 @@
     "react-intersection-observer": "^9.15.1",
     "react-router-dom": "^7.1.5",
     "react-scroll": "^1.9.2",
+    "split-type": "^0.3.4",
     "styled-components": "^6.1.15",
     "three": "^0.173.0"
   },

@@ -36,3 +36,8 @@
     text-shadow: -2px -2px 0 #ff007f, 2px 2px 0 #ff007f;
   }
 }
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
