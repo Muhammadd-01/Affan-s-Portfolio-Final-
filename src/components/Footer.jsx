@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 const Footer = () => {
   const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
-  const aboutText = "We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.";
+  const aboutText =
+    "We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.";
 
   useEffect(() => {
     let index = 0;
@@ -30,7 +31,6 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           {/* About Section */}
-          {/* About Section */}
           <motion.div
             className="w-full md:w-1/3 text-center md:text-left"
             initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,6 @@ const Footer = () => {
               ></span>
             </p>
           </motion.div>
-
 
           {/* Quick Links */}
           <motion.div
@@ -102,21 +101,49 @@ const Footer = () => {
             <p className="text-gray-300">
               Karachi, Pakistan
               <br />
-              Email: <a href="mailto:affan.work05@gmail.com" className="hover:text-teal-400 transition duration-300">affan.work05@gmail.com</a>
+              Email:{" "}
+              <a
+                href="mailto:affan.work05@gmail.com"
+                className="hover:text-teal-400 transition duration-300"
+              >
+                affan.work05@gmail.com
+              </a>
               <br />
-              Phone: <a href="tel:+923128538773" className="hover:text-teal-400 transition duration-300">+92 312 8538773</a>
+              Phone:{" "}
+              <a
+                href="tel:+923128538773"
+                className="hover:text-teal-400 transition duration-300"
+              >
+                +92 312 8538773
+              </a>
             </p>
             <div className="flex justify-center md:justify-end space-x-4 mt-4">
-              <a href="#" className="hover:text-teal-400 transition duration-300">
+              <a
+                href="https://www.facebook.com/profile.php?id=61572493182768"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal-400 transition duration-300"
+              >
                 <FaFacebook size={24} />
               </a>
-              <a href="#" className="hover:text-teal-400 transition duration-300">
+              <a
+                href="#"
+                className="hover:text-teal-400 transition duration-300"
+              >
                 <FaTwitter size={24} />
               </a>
-              <a href="#" className="hover:text-teal-400 transition duration-300">
+              <a
+                href="https://www.instagram.com/almuharib._.7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-teal-400 transition duration-300"
+              >
                 <FaInstagram size={24} />
               </a>
-              <a href="#" className="hover:text-teal-400 transition duration-300">
+              <a
+                href="#"
+                className="hover:text-teal-400 transition duration-300"
+              >
                 <FaLinkedin size={24} />
               </a>
             </div>
