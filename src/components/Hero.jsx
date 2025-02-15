@@ -1,18 +1,28 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { gsap } from "gsap";
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [currentWord, setCurrentWord] = useState(0);
   const words = ["Full-Stack Developer", "UI/UX Enthusiast", "Tech Innovator"];
-  
+  const textRef = useRef(null);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    gsap.fromTo(
+      textRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+    );
+  }, [currentWord]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -41,19 +51,15 @@ const Hero = () => {
             Hi, I'm Affan
           </h1>
 
-          <AnimatePresence mode="wait">
+          <div ref={textRef}>
             <motion.div
               key={currentWord}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.6 }}
               className="text-xl md:text-2xl mb-8 font-semibold"
               style={gradientText}
             >
               {words[currentWord]}
             </motion.div>
-          </AnimatePresence>
+          </div>
 
           <motion.p
             className="text-lg mb-8 max-w-2xl text-gray-300"
