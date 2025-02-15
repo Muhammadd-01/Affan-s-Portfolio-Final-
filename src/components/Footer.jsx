@@ -141,7 +141,9 @@ const Footer = () => {
                 <FaInstagram size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/muhammad-affan-8ab604280"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-teal-400 transition duration-300"
               >
                 <FaLinkedin size={24} />
