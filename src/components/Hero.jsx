@@ -114,8 +114,8 @@ const Hero = () => {
             </motion.a>
           </div>
           <div className="mt-8 flex justify-center md:justify-start space-x-4">
-            <SocialIcon href="https://github.com/affan-portfolio" icon={<FaGithub />} />
-            <SocialIcon href="https://linkedin.com/in/affan-dev" icon={<FaLinkedin />} />
+            <SocialIcon href="https://github.com/Muhammadd-01" icon={<FaGithub />} />
+            <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
             <SocialIcon href="https://twitter.com/affan_codes" icon={<FaTwitter />} />
           </div>
         </div>
