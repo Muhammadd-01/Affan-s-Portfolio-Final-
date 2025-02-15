@@ -1,130 +1,118 @@
-import { motion } from "framer-motion"
-import { GitlabIcon as GitHub, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react"
-
-// Scroll to Top Function
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" })
-}
+import { motion } from "framer-motion";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
+  const scrollToSection = (id) => {
+    document.querySelector(id).scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="bg-black bg-opacity-30 py-12 text-white backdrop-blur-lg">
+    <footer className="text-white bg-transparent py-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* About Section */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            className="w-full md:w-1/3 text-center md:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-teal-300">About Me</h3>
-            <p className="text-gray-400 hover:text-teal-300 transition duration-300">
-              I'm Affan, a passionate web developer creating futuristic digital experiences.
+            <h3 className="text-2xl font-bold mb-4">About Us</h3>
+            <p className="text-gray-300 leading-relaxed">
+              We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.
             </p>
           </motion.div>
 
-          {/* Quick Links Section */}
+          {/* Quick Links */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            className="w-full md:w-1/3 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-teal-300">Quick Links</h3>
+            <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <button
-                  onClick={scrollToTop}
-                  className="hover:text-teal-300 transition duration-300"
+                  onClick={() => scrollToSection("#hero")}
+                  className="hover:text-teal-400 transition duration-300"
                 >
                   Home
                 </button>
               </li>
               <li>
-                <a href="#about" className="hover:text-teal-300 transition duration-300">
+                <button
+                  onClick={() => scrollToSection("#about")}
+                  className="hover:text-teal-400 transition duration-300"
+                >
                   About
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#projects" className="hover:text-teal-300 transition duration-300">
+                <button
+                  onClick={() => scrollToSection("#projects")}
+                  className="hover:text-teal-400 transition duration-300"
+                >
                   Projects
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#contact" className="hover:text-teal-300 transition duration-300">
+                <button
+                  onClick={() => scrollToSection("#contact")}
+                  className="hover:text-teal-400 transition duration-300"
+                >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </motion.div>
 
-          {/* Contact Info Section */}
+          {/* Contact Details */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            className="w-full md:w-1/3 text-center md:text-right"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-teal-300">Contact Info</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li className="flex items-center hover:text-teal-300 transition duration-300">
-                <Mail className="mr-2" /> affan.work05@gmail.com
-              </li>
-              <li className="flex items-center hover:text-teal-300 transition duration-300">
-                <Phone className="mr-2" /> +92 312 8538773
-              </li>
-              <li className="flex items-center hover:text-teal-300 transition duration-300">
-                <MapPin className="mr-2" /> Lahore, Pakistan
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Social Media Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-xl font-semibold mb-4 text-teal-300">Follow Me</h3>
-            <div className="flex space-x-4">
-              <motion.a
-                href="#"
-                className="text-gray-400 hover:text-teal-300 transition duration-300"
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <GitHub />
-              </motion.a>
-              <motion.a
-                href="#"
-                className="text-gray-400 hover:text-teal-300 transition duration-300"
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Linkedin />
-              </motion.a>
-              <motion.a
-                href="#"
-                className="text-gray-400 hover:text-teal-300 transition duration-300"
-                whileHover={{ scale: 1.2, rotate: 10 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Twitter />
-              </motion.a>
+            <h3 className="text-2xl font-bold mb-4">Contact</h3>
+            <p className="text-gray-300">
+              Karachi, Pakistan
+              <br />
+              Email: <a href="mailto:affan.work05@gmail.com" className="hover:text-teal-400 transition duration-300">affan.work05@gmail.com</a>
+              <br />
+              Phone: <a href="tel:+923128538773" className="hover:text-teal-400 transition duration-300">+92 312 8538773</a>
+            </p>
+            <div className="flex justify-center md:justify-end space-x-4 mt-4">
+              <a href="#" className="hover:text-teal-400 transition duration-300">
+                <FaFacebook size={24} />
+              </a>
+              <a href="#" className="hover:text-teal-400 transition duration-300">
+                <FaTwitter size={24} />
+              </a>
+              <a href="#" className="hover:text-teal-400 transition duration-300">
+                <FaInstagram size={24} />
+              </a>
+              <a href="#" className="hover:text-teal-400 transition duration-300">
+                <FaLinkedin size={24} />
+              </a>
             </div>
           </motion.div>
         </div>
 
-        <hr className="my-8 border-gray-700" />
-
-        <div className="text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Affan. All rights reserved.</p>
-        </div>
+        {/* Footer Bottom */}
+        <motion.div
+          className="text-center mt-10 border-t border-gray-700 pt-4 text-gray-400 text-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, ease: "easeOut" }}
+        >
+          &copy; {new Date().getFullYear()} DeepSeek. All rights reserved.
+        </motion.div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
