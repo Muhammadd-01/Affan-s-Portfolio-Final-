@@ -95,12 +95,12 @@ const Hero = () => {
         </div>
 
         {/* Profile Picture */}
-        <div className="order-1 md:order-2 w-40 h-40 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60">
+        <div className="order-1 md:order-2 w-60 h-60 md:w-80 md:h-80 rounded-full overflow-hidden border-4 shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60 transition-transform duration-500 ease-in-out hover:scale-105 hover:rotate-6 hover:shadow-neon">
           <motion.div
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.1, rotate: 10 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             <motion.img
               key={isHovered ? "hovered" : "default"}
@@ -110,7 +110,7 @@ const Hero = () => {
                   : "/src/assets/image1.jpg" // Default image
               }
               alt="Profile"
-              className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+              className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
