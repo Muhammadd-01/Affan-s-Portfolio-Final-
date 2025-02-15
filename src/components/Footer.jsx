@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const Footer = () => {
   const [typedText, setTypedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
   const aboutText = "We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.";
 
   useEffect(() => {
@@ -11,7 +12,10 @@ const Footer = () => {
     const typeInterval = setInterval(() => {
       setTypedText((prev) => prev + aboutText[index]);
       index++;
-      if (index === aboutText.length) clearInterval(typeInterval);
+      if (index === aboutText.length) {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+      }
     }, 50);
   }, []);
 
@@ -24,7 +28,8 @@ const Footer = () => {
   return (
     <footer className="text-white bg-transparent py-10">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+          {/* About Section */}
           {/* About Section */}
           <motion.div
             className="w-full md:w-1/3 text-center md:text-left"
@@ -33,10 +38,14 @@ const Footer = () => {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <h3 className="text-2xl font-bold mb-4">About Us</h3>
-            <p className="text-gray-300 leading-relaxed">
-              <span className="border-r-4 border-teal-400 pr-1 animate-pulse">{typedText}</span>
+            <p className="text-gray-300 leading-relaxed text-justify">
+              {aboutText.substring(0, typedText.length)}
+              <span
+                className={`border-r-4 border-teal-400 animate-typing`}
+              ></span>
             </p>
           </motion.div>
+
 
           {/* Quick Links */}
           <motion.div

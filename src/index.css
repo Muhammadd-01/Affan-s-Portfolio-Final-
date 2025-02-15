@@ -47,3 +47,16 @@
               0 0 35px rgba(0, 255, 255, 0.4), 
               0 0 45px rgba(0, 255, 255, 0.3);
 }
+
+/* Typewriter Cursor Animation */
+@keyframes typing {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #92FE9D;
+  }
+}
+.animate-typing {
+  animation: typing 1s steps(1) infinite;
+}
