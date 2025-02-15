@@ -1,7 +1,20 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const [typedText, setTypedText] = useState("");
+  const aboutText = "We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.";
+
+  useEffect(() => {
+    let index = 0;
+    const typeInterval = setInterval(() => {
+      setTypedText((prev) => prev + aboutText[index]);
+      index++;
+      if (index === aboutText.length) clearInterval(typeInterval);
+    }, 50);
+  }, []);
+
   const scrollToSection = (id) => {
     document.querySelector(id).scrollIntoView({
       behavior: "smooth",
@@ -21,7 +34,7 @@ const Footer = () => {
           >
             <h3 className="text-2xl font-bold mb-4">About Us</h3>
             <p className="text-gray-300 leading-relaxed">
-              We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.
+              <span className="border-r-4 border-teal-400 pr-1 animate-pulse">{typedText}</span>
             </p>
           </motion.div>
 
@@ -108,7 +121,7 @@ const Footer = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.6, ease: "easeOut" }}
         >
-          &copy; {new Date().getFullYear()} DeepSeek. All rights reserved.
+          &copy; 2025 Affan. All rights reserved.
         </motion.div>
       </div>
     </footer>
