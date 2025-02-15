@@ -41,9 +41,35 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
-      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center gap-20 md:gap-24">
+      <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center justify-center gap-10 md:gap-16">
+        {/* Profile Picture Container */}
+        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 transition-transform duration-500 ease-in-out hover:-translate-y-3 relative group">
+          <motion.div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="w-full h-full rounded-full overflow-hidden"
+          >
+            <motion.img
+              key={isHovered ? "hovered" : "default"}
+              src={
+                isHovered
+                  ? "/src/assets/image2.jpg" // Hovered image
+                  : "/src/assets/image1.jpg" // Default image
+              }
+              alt="Profile"
+              className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 opacity-30 blur-xl transition duration-500 ease-in-out group-hover:opacity-50"></div>
+          </motion.div>
+        </div>
+
         {/* Introduction Text */}
-        <div className="text-center md:text-left md:w-1/2 order-2 md:order-1">
+        <div className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center">
           <h1
             className="text-4xl md:text-6xl font-bold mb-4"
             style={gradientText}
@@ -92,30 +118,6 @@ const Hero = () => {
             <SocialIcon href="https://linkedin.com/in/affan-dev" icon={<FaLinkedin />} />
             <SocialIcon href="https://twitter.com/affan_codes" icon={<FaTwitter />} />
           </div>
-        </div>
-
-        {/* Profile Picture */}
-        <div className="order-1 md:order-2 w-60 h-60 md:w-80 md:h-80 rounded-full overflow-hidden border-4 shadow-lg flex-shrink-0 mb-8 md:mb-0 md:ml-60 transition-transform duration-500 ease-in-out hover:scale-105 hover:rotate-6 hover:shadow-neon">
-          <motion.div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            whileHover={{ scale: 1.1, rotate: 10 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-          >
-            <motion.img
-              key={isHovered ? "hovered" : "default"}
-              src={
-                isHovered
-                  ? "/src/assets/image2.jpg" // Hovered image
-                  : "/src/assets/image1.jpg" // Default image
-              }
-              alt="Profile"
-              className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
         </div>
       </div>
     </section>
