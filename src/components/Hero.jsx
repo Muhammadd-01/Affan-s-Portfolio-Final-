@@ -1,9 +1,18 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [currentWord, setCurrentWord] = useState(0);
+  const words = ["Full-Stack Developer", "UI/UX Enthusiast", "Tech Innovator"];
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -50,14 +59,26 @@ const Hero = () => {
           >
             Hi, I'm Affan
           </motion.h1>
-          <motion.p
-            className="text-xl md:text-2xl mb-8 text-gray-300"
+
+          <motion.div
+            className="text-xl md:text-2xl mb-8 text-green-400 font-semibold"
             variants={textVariants}
             initial="hidden"
             animate="visible"
           >
-            Full-Stack Developer | UI/UX Enthusiast | Tech Innovator
-          </motion.p>
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentWord}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.5 }}
+              >
+                {words[currentWord]}
+              </motion.span>
+            </AnimatePresence>
+          </motion.div>
+
           <motion.p
             className="text-lg mb-8 max-w-2xl"
             variants={loopVariants}
