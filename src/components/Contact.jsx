@@ -22,8 +22,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-900 opacity-30 blur-xl"></div>
+    <section id="contact" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-5xl font-bold mb-12 text-center text-cyan-400 drop-shadow-lg"
@@ -61,7 +60,7 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
+              <form onSubmit={handleSubmit} className="space-y-6 p-8 rounded-xl shadow-2xl border border-gray-700">
                 <motion.div whileHover={{ scale: 1.02 }}>
                   <label htmlFor="name" className="block text-lg font-medium mb-2 text-cyan-300">
                     Name
