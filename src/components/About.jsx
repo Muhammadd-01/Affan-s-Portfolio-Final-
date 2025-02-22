@@ -35,21 +35,6 @@ const About = () => {
       >
         When I'm not coding, I enjoy exploring new tech trends, contributing to open-source projects, and sharing knowledge with the developer community. I believe that continuous learning and collaboration are key to growing as a developer.
       </motion.p>
-      <motion.div
-        className="flex justify-center items-center mt-10"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-      >
-        <motion.img
-          src="/assets/profile-pic.png"
-          alt="Profile Picture"
-          className="w-40 h-40 rounded-full border-4 border-green-400 shadow-lg"
-          initial={{ opacity: 0, rotateY: 180 }}
-          animate={{ opacity: 1, rotateY: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        />
-      </motion.div>
     </section>
   );
 };
