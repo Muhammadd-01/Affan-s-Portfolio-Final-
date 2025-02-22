@@ -51,6 +51,14 @@ const Skills = () => {
               >
                 {skill.name}
               </motion.h3>
+              <motion.p
+                className="text-gray-400 text-sm group-hover:text-gray-200 transition-colors duration-300"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                {skill.level}
+              </motion.p>
             </div>
             <div className="absolute inset-0 rounded-xl border border-white border-opacity-10 group-hover:border-opacity-50 transition-all duration-500"></div>
           </motion.div>
