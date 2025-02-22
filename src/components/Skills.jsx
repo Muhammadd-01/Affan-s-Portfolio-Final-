@@ -29,16 +29,17 @@ const Skills = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         whileHover={{ scale: 1.1 }}
       >
-        My Futuristic Skills
+        My Skills
       </motion.h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="relative rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 hover:border-cyan-400 hover:border-opacity-50 hover:rotate-3"
+            className="relative rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 hover:border-cyan-400 hover:border-opacity-50"
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            whileHover={{ rotate: 5, scale: 1.1 }}
           >
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 via-transparent to-purple-600 opacity-10 blur-md transition-all duration-700 group-hover:opacity-30 group-hover:blur-xl"></div>
             <div className="relative text-center">
@@ -50,14 +51,6 @@ const Skills = () => {
               >
                 {skill.name}
               </motion.h3>
-              <motion.p
-                className="text-gray-400 group-hover:text-purple-300 transition-colors duration-300 text-lg"
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-              >
-                {skill.level}
-              </motion.p>
             </div>
             <div className="absolute inset-0 rounded-xl border border-white border-opacity-10 group-hover:border-opacity-50 transition-all duration-500"></div>
           </motion.div>
