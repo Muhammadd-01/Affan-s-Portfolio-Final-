@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 
 const education = [
-  { year: "2023 - Present", degree: "Bachelor's in Computer Science", school: "XYZ University" },
-  { year: "2021 - 2023", degree: "Diploma in Web Development", school: "ABC Institute" },
+  { year: "2023 - Present", degree: "ADSE Diploma", school: "Aptech" },
+  { year: "2021 - 2023", degree: "HSC", school: "Superior Government College" },
+  { year: "2020 - 2021", degree: "SSC", school: "MJM School" },
 ];
 
 const cardVariants = {
