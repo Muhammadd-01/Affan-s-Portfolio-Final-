@@ -9,7 +9,7 @@ const projects = [
     id: 1,
     title: "AI-Powered Task Manager",
     category: "Web",
-    image: "https://source.unsplash.com/400x300/?ai,technology",
+    image: "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=AI+Task+Manager",
     description:
       "An intelligent task management application that uses machine learning to prioritize and categorize tasks, enhancing productivity.",
     technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
@@ -20,7 +20,7 @@ const projects = [
     id: 2,
     title: "Blockchain Voting System",
     category: "Web",
-    image: "https://source.unsplash.com/400x300/?blockchain,crypto",
+    image: "https://via.placeholder.com/400x300/008000/FFFFFF?text=Blockchain+Voting",
     description:
       "A secure and transparent voting system built on blockchain technology, ensuring tamper-proof elections.",
     technologies: ["Ethereum", "Solidity", "Web3.js", "React"],
@@ -31,7 +31,7 @@ const projects = [
     id: 3,
     title: "AR Shopping Experience",
     category: "Mobile",
-    image: "https://source.unsplash.com/400x300/?ar,shopping",
+    image: "https://via.placeholder.com/400x300/FF0000/FFFFFF?text=AR+Shopping",
     description:
       "An augmented reality mobile app that allows users to visualize products in their own space before purchasing.",
     technologies: ["React Native", "ARKit", "ARCore", "Node.js"],
@@ -42,7 +42,7 @@ const projects = [
     id: 4,
     title: "Real-time Collaboration Platform",
     category: "Web",
-    image: "https://source.unsplash.com/400x300/?collaboration,work",
+    image: "https://via.placeholder.com/400x300/800080/FFFFFF?text=Collaboration+Platform",
     description:
       "A real-time collaboration tool for remote teams, featuring video conferencing, shared whiteboards, and project management tools.",
     technologies: ["WebRTC", "Socket.io", "React", "Express"],
@@ -53,7 +53,7 @@ const projects = [
     id: 5,
     title: "IoT Smart Home Hub",
     category: "IoT",
-    image: "https://source.unsplash.com/400x300/?iot,smarthome",
+    image: "https://via.placeholder.com/400x300/FFA500/FFFFFF?text=IoT+Smart+Home",
     description:
       "A centralized smart home system that integrates various IoT devices and provides a user-friendly interface for home automation.",
     technologies: ["Raspberry Pi", "Python", "MQTT", "React"],
@@ -64,7 +64,7 @@ const projects = [
     id: 6,
     title: "AI Image Generator",
     category: "Web",
-    image: "https://source.unsplash.com/400x300/?ai,image",
+    image: "https://via.placeholder.com/400x300/000000/FFFFFF?text=AI+Image+Generator",
     description:
       "An AI-powered tool that generates stunning images based on user input, powered by deep learning models.",
     technologies: ["Python", "TensorFlow", "React"],
