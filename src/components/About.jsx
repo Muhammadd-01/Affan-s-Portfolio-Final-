@@ -2,38 +2,42 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 text-white">
+    <section id="about" className="py-20 text-white relative overflow-hidden">
       <motion.h2
-        className="text-4xl font-bold mb-8 text-center"
+        className="text-5xl font-extrabold mb-8 text-center relative z-10"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        whileHover={{ scale: 1.1 }}
       >
-        About Me
+        Who Am I?
       </motion.h2>
       <motion.p
-        className="text-lg mb-8 mx-auto max-w-3xl text-center"
+        className="text-xl mb-8 mx-auto max-w-3xl text-center relative z-10 leading-relaxed"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        whileHover={{ x: 10 }}
       >
-        I'm a passionate and dedicated full-stack web developer with a strong background in designing and developing modern, user-friendly, and high-performance web applications. I thrive on solving complex problems and bringing creative ideas to life through code. My journey into the world of development started with curiosity and has turned into a lifelong passion.
+        A digital artisan, passionate about crafting seamless web experiences that captivate and engage. My journey started with curiosity and evolved into a deep-rooted love for problem-solving and innovation in the digital realm.
       </motion.p>
       <motion.p
-        className="text-lg mb-8 mx-auto max-w-3xl text-center"
+        className="text-xl mb-8 mx-auto max-w-3xl text-center relative z-10 leading-relaxed"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        whileHover={{ x: -10 }}
       >
-        Over the years, I have honed my ability to create seamless user experiences by combining my technical expertise with an eye for design. I constantly explore new technologies to stay ahead in the ever-evolving tech industry. My goal is to build innovative solutions that make a positive impact on people's lives.
+        I specialize in transforming ideas into digital reality, leveraging modern technologies to build applications that are not only functional but also visually stunning. My philosophy? Design with purpose, develop with precision, and always stay ahead of the curve.
       </motion.p>
       <motion.p
-        className="text-lg mb-8 mx-auto max-w-3xl text-center"
+        className="text-xl mb-8 mx-auto max-w-3xl text-center relative z-10 leading-relaxed"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        whileHover={{ scale: 1.05 }}
       >
-        When I'm not coding, I enjoy exploring new tech trends, contributing to open-source projects, and sharing knowledge with the developer community. I believe that continuous learning and collaboration are key to growing as a developer.
+        Beyond coding, I’m an advocate for open-source collaboration, continuous learning, and embracing the ever-evolving tech landscape. Let’s create something extraordinary together!
       </motion.p>
     </section>
   );
