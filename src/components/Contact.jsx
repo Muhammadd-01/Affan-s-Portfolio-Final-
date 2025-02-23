@@ -11,7 +11,7 @@ const Contact = () => {
     message: "",
   });
 
-  const [messageSent, setMessageSent] = useState(false);
+  const [messageSent, setMessageSent] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,20 +20,31 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const response = await fetch(
+        "https://server-4z1oylqgw-muhammadd-01s-projects.vercel.app/api/contact", // Update with your correct backend URL
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    if (response.ok) {
-      setMessageSent(true);
-      setFormData({ name: "", email: "", message: "" });
+      const data = await response.json();
 
-      // Hide message after 3 seconds with fade-out effect
-      setTimeout(() => {
-        setMessageSent(false);
-      }, 3000);
+      if (response.ok) {
+        setMessageSent({ success: true, text: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
+
+        // Hide message after 3 seconds
+        setTimeout(() => {
+          setMessageSent(null);
+        }, 3000);
+      } else {
+        setMessageSent({ success: false, text: data.error || "Failed to send message." });
+      }
+    } catch (error) {
+      setMessageSent({ success: false, text: "Network error, please try again." });
     }
   };
 
@@ -50,15 +61,17 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Neon Silver Glowing Background Message */}
+          {/* Success or Error Message */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }} // Fade out over 3 seconds
-              className="neon-glow p-4 rounded-md text-center mb-4 border border-gray-500 shadow-lg text-lg font-semibold tracking-wide"
+              transition={{ delay: 1, duration: 2 }}
+              className={`p-4 rounded-md text-center mb-4 border shadow-lg text-lg font-semibold tracking-wide ${
+                messageSent.success ? "text-green-400 border-green-400" : "text-red-400 border-red-400"
+              }`}
             >
-              ✨ Message Sent Successfully!
+              {messageSent.text}
             </motion.div>
           )}
 
@@ -160,21 +173,6 @@ const Contact = () => {
           </div>
         </div>
       </div>
-
-      {/* Neon Glowing Background CSS */}
-      <style jsx>{`
-        .neon-glow {
-          background: rgba(192, 192, 192, 0.1); /* Light transparent silver */
-          color: white;
-          border: 2px solid #c0c0c0;
-          box-shadow: 
-            0 0 5px #c0c0c0,
-            0 0 10px #ffffff,
-            0 0 20px #aaaaaa,
-            0 0 30px #c0c0c0;
-          transition: opacity 2s ease-in-out;
-        }
-      `}</style>
     </section>
   );
 };
