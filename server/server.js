@@ -5,16 +5,13 @@ const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-// Allow only your frontend domain to access the backend
-app.use(cors({ origin: process.env.VITE_BACKEND_URL || "*" }));
-
-// Nodemailer transport setup
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // Read from environment variables
-    pass: process.env.EMAIL_PASS, // Read from environment variables
+    user: process.env.EMAIL_USER, // Read from .env
+    pass: process.env.EMAIL_PASS, // Read from .env
   },
 });
 
@@ -45,12 +42,10 @@ app.post("/send", async (req, res) => {
     res.status(200).json({ message: "Message sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ error: "Error sending email. Please try again later." });
+    res.status(500).json({ error: "Error sending email" });
   }
 });
 
-// Use port from environment variables or default to 5000
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });
