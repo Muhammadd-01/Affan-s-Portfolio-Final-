@@ -10,7 +10,9 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
   const [messageSent, setMessageSent] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false); // For smooth reload effect
 
   useEffect(() => {
     if (localStorage.getItem("messageSent") === "true") {
@@ -39,12 +41,20 @@ const Contact = () => {
 
     if (response.ok) {
       localStorage.setItem("messageSent", "true");
-      window.location.reload();
+
+      // **Trigger fade-out effect before reload**
+      setFadeOut(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 600); // **Smooth transition duration**
     }
   };
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <motion.section
+      id="contact"
+      className={`py-20 relative overflow-hidden ${fadeOut ? "opacity-0 transition-opacity duration-500" : "opacity-100"}`}
+    >
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-5xl font-bold mb-12 text-center text-cyan-400 drop-shadow-lg"
@@ -56,7 +66,7 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Success Message with 3s Fade-Out */}
+          {/* Success Message with Fade-Out */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
@@ -166,7 +176,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
