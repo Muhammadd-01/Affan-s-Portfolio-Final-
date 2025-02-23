@@ -17,16 +17,16 @@ app.post("/send", async (req, res) => {
     service: "gmail",
     auth: {
       user: "affan.work05@gmail.com", // Your Gmail
-      pass: process.env.EMAIL_PASS, // Use your App Password stored in .env
+      pass: process.env.EMAIL_PASS, // App Password
     },
   });
 
   const mailOptions = {
-    from: `"${name}" <${email}>`, // The sender's email will show in the "From" field
-    to: "affan.work05@gmail.com", // Your email
+    from: `"${name} <${email}>" via DeepSeek" <affan.work05@gmail.com>`, // Shows sender’s name + email
+    to: "affan.work05@gmail.com",
     replyTo: email, // Ensures replies go to the sender
-    subject: `New Contact Form Submission from ${name}`,
-    text: `You have received a new message from ${name} (${email}):\n\n${message}`,
+    subject: `New Message from ${name}`,
+    text: `You received a message from ${name} (${email}):\n\n${message}`,
     html: `
       <h2>New Contact Form Submission</h2>
       <p><strong>Name:</strong> ${name}</p>
@@ -36,23 +36,8 @@ app.post("/send", async (req, res) => {
     `,
   };
 
-  const confirmationMailOptions = {
-    from: `"DeepSeek Team" <affan.work05@gmail.com>`, // Your email
-    to: email, // Send confirmation to sender
-    subject: "Thank you for reaching out!",
-    text: `Hi ${name},\n\nThank you for contacting us. We have received your message and will get back to you soon.\n\nYour message:\n"${message}"\n\nBest regards,\nDeepSeek Team`,
-    html: `
-      <h2>Thank You for Contacting Us!</h2>
-      <p>Hi ${name},</p>
-      <p>We have received your message and will get back to you soon.</p>
-      <blockquote>"${message}"</blockquote>
-      <p>Best regards,<br><strong>DeepSeek Team</strong></p>
-    `,
-  };
-
   try {
-    await transporter.sendMail(mailOptions); // Send to you
-    await transporter.sendMail(confirmationMailOptions); // Send confirmation to sender
+    await transporter.sendMail(mailOptions);
     res.status(200).json({ message: "Message sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
