@@ -12,19 +12,6 @@ const Contact = () => {
   });
 
   const [messageSent, setMessageSent] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false); // For smooth reload effect
-
-  useEffect(() => {
-    if (localStorage.getItem("messageSent") === "true") {
-      setMessageSent(true);
-      localStorage.removeItem("messageSent");
-
-      // Hide the message after 3 seconds with a fade-out effect
-      setTimeout(() => {
-        setMessageSent(false);
-      }, 3000);
-    }
-  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,21 +27,18 @@ const Contact = () => {
     });
 
     if (response.ok) {
-      localStorage.setItem("messageSent", "true");
+      setMessageSent(true);
+      setFormData({ name: "", email: "", message: "" });
 
-      // **Trigger fade-out effect before reload**
-      setFadeOut(true);
+      // Hide message after 3 seconds with fade-out effect
       setTimeout(() => {
-        window.location.reload();
-      }, 600); // **Smooth transition duration**
+        setMessageSent(false);
+      }, 3000);
     }
   };
 
   return (
-    <motion.section
-      id="contact"
-      className={`py-20 relative overflow-hidden ${fadeOut ? "opacity-0 transition-opacity duration-500" : "opacity-100"}`}
-    >
+    <section id="contact" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
           className="text-5xl font-bold mb-12 text-center text-cyan-400 drop-shadow-lg"
@@ -66,15 +50,15 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Success Message with Fade-Out */}
+          {/* Success Message with Silver Neon & Fade-Out */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }} // Slight fade-out over 3 seconds
-              className="bg-green-500 text-white p-3 rounded-md text-center mb-4"
+              transition={{ delay: 1, duration: 2 }} // Fades out over 3 seconds
+              className="bg-gray-800 text-[#C0C0C0] p-3 rounded-md text-center mb-4 border border-gray-500 shadow-lg"
             >
-              ✅ Message sent successfully!
+              ✨ Message sent successfully!
             </motion.div>
           )}
 
@@ -176,7 +160,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
