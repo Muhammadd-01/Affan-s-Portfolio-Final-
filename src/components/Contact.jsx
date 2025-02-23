@@ -20,7 +20,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/send", {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/send`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -50,12 +50,11 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Neon Silver Glowing Background Message */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }} // Fade out over 3 seconds
+              transition={{ delay: 1, duration: 2 }}
               className="neon-glow p-4 rounded-md text-center mb-4 border border-gray-500 shadow-lg text-lg font-semibold tracking-wide"
             >
               ✨ Message Sent Successfully!
@@ -161,10 +160,9 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Neon Glowing Background CSS */}
       <style jsx>{`
         .neon-glow {
-          background: rgba(192, 192, 192, 0.1); /* Light transparent silver */
+          background: rgba(192, 192, 192, 0.1);
           color: white;
           border: 2px solid #c0c0c0;
           box-shadow: 
