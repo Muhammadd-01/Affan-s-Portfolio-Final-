@@ -1,3 +1,4 @@
+require("dotenv").config(); // Load environment variables
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
@@ -6,6 +7,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER, // Read from .env
+    pass: process.env.EMAIL_PASS, // Read from .env
+  },
+});
+
 app.post("/send", async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -13,18 +22,10 @@ app.post("/send", async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "affan.work05@gmail.com", // Your Gmail
-      pass: process.env.EMAIL_PASS, // App Password
-    },
-  });
-
   const mailOptions = {
-    from: `"${name} <${email}>" via DeepSeek" <affan.work05@gmail.com>`, // Shows sender’s name + email
-    to: "affan.work05@gmail.com",
-    replyTo: email, // Ensures replies go to the sender
+    from: `"${name}" <${email}>`, // Shows sender’s email
+    to: process.env.EMAIL_USER, // Your email
+    replyTo: email, // Ensures replies go to sender
     subject: `New Message from ${name}`,
     text: `You received a message from ${name} (${email}):\n\n${message}`,
     html: `
