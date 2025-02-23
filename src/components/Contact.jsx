@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
@@ -50,15 +50,16 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Success Message with Silver Neon & Fade-Out */}
+          {/* Silver Neon Success Message */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }} // Fades out over 3 seconds
-              className="bg-gray-800 text-[#C0C0C0] p-3 rounded-md text-center mb-4 border border-gray-500 shadow-lg"
+              transition={{ delay: 1, duration: 2 }} // Fade out over 3 seconds
+              className="bg-gray-900 text-[#C0C0C0] p-3 rounded-md text-center mb-4 border border-gray-600 shadow-lg text-lg font-semibold tracking-wide
+                         neon-glow"
             >
-              ✨ Message sent successfully!
+              ✨ Message Sent Successfully!
             </motion.div>
           )}
 
@@ -160,6 +161,14 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      {/* Custom Neon Glow CSS */}
+      <style jsx>{`
+        .neon-glow {
+          color: #c0c0c0;
+          text-shadow: 0 0 5px #ffffff, 0 0 10px #c0c0c0, 0 0 15px #aaaaaa;
+        }
+      `}</style>
     </section>
   );
 };
