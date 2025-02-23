@@ -13,15 +13,14 @@ const Contact = () => {
   const [messageSent, setMessageSent] = useState(false);
 
   useEffect(() => {
-    // Check if message was sent before reloading
     if (localStorage.getItem("messageSent") === "true") {
       setMessageSent(true);
-      localStorage.removeItem("messageSent"); // Remove flag after showing
+      localStorage.removeItem("messageSent");
 
-      // Set a timeout to hide the message after 2 seconds
+      // Hide the message after 5 seconds
       setTimeout(() => {
         setMessageSent(false);
-      }, 2000);
+      }, 5000);
     }
   }, []);
 
@@ -39,8 +38,8 @@ const Contact = () => {
     });
 
     if (response.ok) {
-      localStorage.setItem("messageSent", "true"); // Store message sent flag
-      window.location.reload(); // Reload to trigger success message
+      localStorage.setItem("messageSent", "true");
+      window.location.reload();
     }
   };
 
@@ -62,7 +61,7 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ duration: 2 }}
+              transition={{ delay: 5, duration: 1 }} // Fade out after 5 seconds
               className="bg-green-500 text-white p-3 rounded-md text-center mb-4"
             >
               ✅ Message sent successfully!
