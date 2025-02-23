@@ -17,10 +17,10 @@ const Contact = () => {
       setMessageSent(true);
       localStorage.removeItem("messageSent");
 
-      // Hide the message after 5 seconds
+      // Hide the message after 3 seconds with a fade-out effect
       setTimeout(() => {
         setMessageSent(false);
-      }, 5000);
+      }, 3000);
     }
   }, []);
 
@@ -56,12 +56,12 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Success Message */}
+          {/* Success Message with 3s Fade-Out */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ delay: 5, duration: 1 }} // Fade out after 5 seconds
+              transition={{ delay: 1, duration: 2 }} // Slight fade-out over 3 seconds
               className="bg-green-500 text-white p-3 rounded-md text-center mb-4"
             >
               ✅ Message sent successfully!
