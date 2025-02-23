@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 // Allow only your frontend domain to access the backend
-app.use(cors({ origin: process.env.vite || "*" }));
+app.use(cors({ origin: process.env.VITE_BACKEND_URL || "*" }));
 
 // Nodemailer transport setup
 const transporter = nodemailer.createTransport({
