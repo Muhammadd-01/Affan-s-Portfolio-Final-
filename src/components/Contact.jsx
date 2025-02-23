@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
@@ -10,6 +10,15 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  const [messageSent, setMessageSent] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("messageSent") === "true") {
+      setMessageSent(true);
+      localStorage.removeItem("messageSent"); // Remove after showing
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,8 +38,8 @@ const Contact = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
+        localStorage.setItem("messageSent", "true"); // Store success flag
+        window.location.reload(); // Reload page
       } else {
         alert("Error: " + data.error);
       }
@@ -51,7 +60,14 @@ const Contact = () => {
         >
           Get in Touch
         </motion.h2>
+        
         <div className="max-w-5xl mx-auto">
+          {messageSent && (
+            <div className="bg-green-500 text-white p-3 rounded-md text-center mb-4">
+              ✅ Message sent successfully!
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
