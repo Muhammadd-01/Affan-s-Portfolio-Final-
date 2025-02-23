@@ -10,8 +10,8 @@ app.use(cors());
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: affan.work05@gmail.com, // Your email
-    pass: process.env.EMAIL_PASS, // Your app password
+    user: process.env.EMAIL_USER, // Use environment variable
+    pass: process.env.EMAIL_PASS, // Use environment variable
   },
 });
 
@@ -34,4 +34,12 @@ app.post("/send", async (req, res) => {
     res.status(200).json({ success: "Message sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ error
+    res.status(500).json({ error: "Failed to send message." });
+  }
+});
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
