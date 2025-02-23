@@ -50,14 +50,13 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Silver Neon Success Message */}
+          {/* Neon Silver Glowing Background Message */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ delay: 1, duration: 2 }} // Fade out over 3 seconds
-              className="bg-gray-900 text-[#C0C0C0] p-3 rounded-md text-center mb-4 border border-gray-600 shadow-lg text-lg font-semibold tracking-wide
-                         neon-glow"
+              className="neon-glow p-4 rounded-md text-center mb-4 border border-gray-500 shadow-lg text-lg font-semibold tracking-wide"
             >
               ✨ Message Sent Successfully!
             </motion.div>
@@ -162,11 +161,18 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Custom Neon Glow CSS */}
+      {/* Neon Glowing Background CSS */}
       <style jsx>{`
         .neon-glow {
-          color: #c0c0c0;
-          text-shadow: 0 0 5px #ffffff, 0 0 10px #c0c0c0, 0 0 15px #aaaaaa;
+          background: rgba(192, 192, 192, 0.1); /* Light transparent silver */
+          color: white;
+          border: 2px solid #c0c0c0;
+          box-shadow: 
+            0 0 5px #c0c0c0,
+            0 0 10px #ffffff,
+            0 0 20px #aaaaaa,
+            0 0 30px #c0c0c0;
+          transition: opacity 2s ease-in-out;
         }
       `}</style>
     </section>
