@@ -10,13 +10,18 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [messageSent, setMessageSent] = useState(false);
 
   useEffect(() => {
+    // Check if message was sent before reloading
     if (localStorage.getItem("messageSent") === "true") {
       setMessageSent(true);
-      localStorage.removeItem("messageSent"); // Remove after showing
+      localStorage.removeItem("messageSent"); // Remove flag after showing
+
+      // Set a timeout to hide the message after 2 seconds
+      setTimeout(() => {
+        setMessageSent(false);
+      }, 2000);
     }
   }, []);
 
@@ -27,25 +32,15 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:5000/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    const response = await fetch("http://localhost:5000/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("messageSent", "true"); // Store success flag
-        window.location.reload(); // Reload page
-      } else {
-        alert("Error: " + data.error);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Failed to send message!");
+    if (response.ok) {
+      localStorage.setItem("messageSent", "true"); // Store message sent flag
+      window.location.reload(); // Reload to trigger success message
     }
   };
 
@@ -60,12 +55,18 @@ const Contact = () => {
         >
           Get in Touch
         </motion.h2>
-        
+
         <div className="max-w-5xl mx-auto">
+          {/* Success Message */}
           {messageSent && (
-            <div className="bg-green-500 text-white p-3 rounded-md text-center mb-4">
+            <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 2 }}
+              className="bg-green-500 text-white p-3 rounded-md text-center mb-4"
+            >
               ✅ Message sent successfully!
-            </div>
+            </motion.div>
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -75,7 +76,9 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-semibold mb-6 text-cyan-300">Contact Info</h3>
+              <h3 className="text-3xl font-semibold mb-6 text-cyan-300">
+                Contact Info
+              </h3>
               <div className="space-y-6 text-white">
                 <p className="flex items-center hover:text-cyan-300 transition duration-300 text-lg">
                   <Mail className="mr-3 text-cyan-400" /> affan.work05@gmail.com
@@ -95,9 +98,15 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <form onSubmit={handleSubmit} className="space-y-6 p-8 rounded-xl shadow-2xl border border-gray-700">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6 p-8 rounded-xl shadow-2xl border border-gray-700"
+              >
                 <motion.div whileHover={{ scale: 1.02 }}>
-                  <label htmlFor="name" className="block text-lg font-medium mb-2 text-cyan-300">
+                  <label
+                    htmlFor="name"
+                    className="block text-lg font-medium mb-2 text-cyan-300"
+                  >
                     Name
                   </label>
                   <input
@@ -111,7 +120,10 @@ const Contact = () => {
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.02 }}>
-                  <label htmlFor="email" className="block text-lg font-medium mb-2 text-cyan-300">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium mb-2 text-cyan-300"
+                  >
                     Email
                   </label>
                   <input
@@ -125,7 +137,10 @@ const Contact = () => {
                   />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.02 }}>
-                  <label htmlFor="message" className="block text-lg font-medium mb-2 text-cyan-300">
+                  <label
+                    htmlFor="message"
+                    className="block text-lg font-medium mb-2 text-cyan-300"
+                  >
                     Message
                   </label>
                   <textarea
