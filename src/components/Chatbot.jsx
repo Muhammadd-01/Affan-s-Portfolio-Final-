@@ -8,62 +8,63 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const API_KEY = "your_openai_api_key"; // Replace with your OpenAI API Key
+  const API_KEY = "YOUR_GOOGLE_GEMINI_API_KEY"; // Replace this with your actual Gemini API key
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
     const newMessage = { sender: "user", text: input };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setMessages([...messages, newMessage]);
     setInput("");
     setLoading(true);
 
     try {
       const response = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
+        `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`,
         {
-          model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: input }],
+          contents: [{ role: "user", parts: [{ text: input }] }]
         },
         {
           headers: {
-            Authorization: `Bearer ${API_KEY}`,
             "Content-Type": "application/json",
           },
         }
       );
 
-      const botMessage = { sender: "bot", text: response.data.choices[0].message.content };
+      const botResponse = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "I couldn't understand that.";
 
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
+      setMessages([
+        ...messages,
+        newMessage,
+        { sender: "bot", text: botResponse },
+      ]);
     } catch (error) {
-      setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: "Error! Try again later." }]);
+      console.error("Chatbot Error:", error);
+      setMessages([...messages, { sender: "bot", text: "Error! Try again later." }]);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="fixed bottom-16 right-5 z-50">
+    <div className="fixed bottom-5 right-5 z-50">
       <button
         onClick={() => setOpen(!open)}
-        className="bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition"
+        className="bg-blue-600 text-white p-3 rounded-full shadow-lg"
       >
-        <FaRobot size={24} className="text-neon-blue" />
+        <FaRobot size={24} />
       </button>
 
       {open && (
-        <div className="w-80 h-96 bg-white shadow-2xl rounded-lg flex flex-col border border-gray-300">
-          <div className="p-4 bg-gray-800 text-white font-bold text-center rounded-t-lg">
-            Chat with AI
-          </div>
+        <div className="w-80 h-96 bg-white shadow-xl rounded-lg flex flex-col">
+          <div className="p-4 bg-blue-600 text-white font-bold">Chat with AI</div>
           <div className="flex-1 p-4 overflow-y-auto space-y-2">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`p-2 rounded-md max-w-[75%] ${
+                className={`p-2 rounded-md ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-white self-end ml-auto"
+                    ? "bg-blue-500 text-black self-end" // User messages in black text
                     : "bg-gray-300 text-black self-start"
                 }`}
               >
@@ -78,12 +79,9 @@ const Chatbot = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask something..."
-              className="flex-1 border p-2 rounded-md outline-none"
+              className="flex-1 border p-2 rounded-md"
             />
-            <button
-              onClick={sendMessage}
-              className="bg-blue-600 text-white p-2 rounded-md ml-2 hover:bg-blue-700 transition"
-            >
+            <button onClick={sendMessage} className="bg-blue-600 text-white p-2 rounded-md ml-2">
               <FaPaperPlane />
             </button>
           </div>
