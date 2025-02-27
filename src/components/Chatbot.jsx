@@ -8,22 +8,19 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
-  
+  const API_KEY = "AIzaSyA7y-P6e2bpGVcYgCVCec9TEAWrb0uF6_4"; // Replace with your actual API key
 
   const sendMessage = async () => {
     if (!input.trim()) return;
 
     const newMessage = { sender: "user", text: input };
-
     setMessages((prevMessages) => [...prevMessages, newMessage]);
     setInput("");
     setLoading(true);
 
     try {
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`,
         {
           contents: [{ role: "user", parts: [{ text: input }] }],
         }
@@ -31,10 +28,10 @@ const Chatbot = () => {
 
       console.log("API Response:", response.data);
 
-      // Correct response structure
       const botReply =
-        response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "I didn't understand that.";
+        response.data?.candidates?.[0]?.content?.parts
+          ?.map((p) => p.text)
+          .join(" ") || "I didn't understand that.";
 
       setMessages((prevMessages) => [
         ...prevMessages,
