@@ -12,6 +12,7 @@ const Contact = () => {
   });
 
   const [messageSent, setMessageSent] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +21,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/send", {
+    const response = await fetch("https://formspree.io/f/mvgzjelp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -28,12 +29,15 @@ const Contact = () => {
 
     if (response.ok) {
       setMessageSent(true);
+      setError(false);
       setFormData({ name: "", email: "", message: "" });
 
       // Hide message after 3 seconds with fade-out effect
       setTimeout(() => {
         setMessageSent(false);
       }, 3000);
+    } else {
+      setError(true);
     }
   };
 
@@ -50,7 +54,7 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Neon Silver Glowing Background Message */}
+          {/* Success Message */}
           {messageSent && (
             <motion.div
               initial={{ opacity: 1 }}
@@ -59,6 +63,18 @@ const Contact = () => {
               className="neon-glow p-4 rounded-md text-center mb-4 border border-gray-500 shadow-lg text-lg font-semibold tracking-wide"
             >
               ✨ Message Sent Successfully!
+            </motion.div>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ delay: 1, duration: 2 }}
+              className="p-4 rounded-md text-center mb-4 border border-red-500 shadow-lg text-lg font-semibold tracking-wide bg-red-700 text-white"
+            >
+              ❌ Failed to send message. Try again later!
             </motion.div>
           )}
 
