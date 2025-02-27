@@ -28,7 +28,9 @@ const Resume = () => {
         </motion.h2>
 
         <div className="relative mb-12">
-          <h3 className="text-3xl font-semibold mb-6 text-cyan-300 border-b-2 border-cyan-400 pb-2">Education</h3>
+          <h3 className="text-3xl font-semibold mb-6 text-cyan-300 border-b-2 border-cyan-400 pb-2">
+            Education
+          </h3>
           {education.map((edu, index) => (
             <motion.div
               key={index}
@@ -51,8 +53,8 @@ const Resume = () => {
 
         <div className="text-center mt-12">
           <motion.a
-            href="/path-to-your-resume.pdf"
-            download
+            href="/myResume.pdf"
+            download="My_Resume.pdf"
             className="bg-cyan-400 text-black px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bg-cyan-500"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
