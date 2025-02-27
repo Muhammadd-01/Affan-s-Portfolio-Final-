@@ -8,7 +8,7 @@ const Chatbot = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const API_KEY = "YOUR_GOOGLE_GEMINI_API_KEY"; // Replace this with your actual Gemini API key
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // Load API key from .env.local
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -20,26 +20,17 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
         {
-          contents: [{ role: "user", parts: [{ text: input }] }]
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          contents: [{ role: "user", parts: [{ text: input }] }],
         }
       );
 
-      const botResponse = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "I couldn't understand that.";
+      const botReply = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "I didn't understand that.";
 
-      setMessages([
-        ...messages,
-        newMessage,
-        { sender: "bot", text: botResponse },
-      ]);
+      setMessages([...messages, newMessage, { sender: "bot", text: botReply }]);
     } catch (error) {
-      console.error("Chatbot Error:", error);
+      console.error("Error fetching response:", error);
       setMessages([...messages, { sender: "bot", text: "Error! Try again later." }]);
     } finally {
       setLoading(false);
@@ -64,7 +55,7 @@ const Chatbot = () => {
                 key={index}
                 className={`p-2 rounded-md ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-black self-end" // User messages in black text
+                    ? "bg-blue-500 text-white self-end"
                     : "bg-gray-300 text-black self-start"
                 }`}
               >
