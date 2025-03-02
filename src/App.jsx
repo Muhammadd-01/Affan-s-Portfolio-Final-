@@ -114,7 +114,7 @@ function App() {
         <Resume />
         <Contact />
         <Footer />
-<TestGeminiAPI />
+{/* <TestGeminiAPI /> */}
 
         {/* Fixed container for both WhatsApp and Chatbot */}
         <div className="fixed right-4 z-30 flex flex-col items-end space-y-4">
