@@ -65,9 +65,10 @@ const Resume = () => {
           {languages.map((lang, index) => (
             <motion.div
               key={index}
-              className="mb-4 p-4 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900"
+              className="mb-4 p-6 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 cursor-pointer transition duration-300"
               initial="initial"
               whileInView="animate"
+              whileHover="hover"
               viewport={{ once: true }}
               variants={cardVariants}
               transition={{ duration: 0.3, delay: index * 0.2 }}
