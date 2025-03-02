@@ -21,7 +21,7 @@ const cardVariants = {
 
 const Resume = () => {
   return (
-    <section id="resume" className="py-20 bg-black text-white">
+    <section id="resume" className="py-20 text-white">
       <div className="mx-auto px-4 max-w-5xl">
         <motion.h2
           className="text-5xl font-bold mb-12 text-center text-cyan-400"
