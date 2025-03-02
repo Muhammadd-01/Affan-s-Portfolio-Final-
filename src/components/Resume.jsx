@@ -8,6 +8,11 @@ const education = [
   { year: "2020 - 2021", degree: "SSC", school: "MJM School" },
 ];
 
+const languages = [
+  { name: "Urdu", level: "Native" },
+  { name: "English", level: "Fluent" },
+];
+
 const cardVariants = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0 },
@@ -27,6 +32,7 @@ const Resume = () => {
           Resume
         </motion.h2>
 
+        {/* Education Section */}
         <div className="relative mb-12">
           <h3 className="text-3xl font-semibold mb-6 text-cyan-300 border-b-2 border-cyan-400 pb-2">
             Education
@@ -47,6 +53,29 @@ const Resume = () => {
                 <span className="text-gray-400">{edu.year}</span>
               </div>
               <p className="text-gray-400">{edu.school}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Languages Section */}
+        <div className="relative mb-12">
+          <h3 className="text-3xl font-semibold mb-6 text-cyan-300 border-b-2 border-cyan-400 pb-2">
+            Languages
+          </h3>
+          {languages.map((lang, index) => (
+            <motion.div
+              key={index}
+              className="mb-4 p-4 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={cardVariants}
+              transition={{ duration: 0.3, delay: index * 0.2 }}
+            >
+              <div className="flex justify-between items-center">
+                <h4 className="text-xl font-medium text-cyan-200">{lang.name}</h4>
+                <span className="text-gray-400">{lang.level}</span>
+              </div>
             </motion.div>
           ))}
         </div>
