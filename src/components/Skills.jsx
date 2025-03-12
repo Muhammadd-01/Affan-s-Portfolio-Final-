@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const skillsData = [
   { name: "React", level: "Expert" },
@@ -35,13 +36,29 @@ const Skills = () => {
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="relative rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 hover:border-cyan-400 hover:border-opacity-50"
+            className="relative rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 hover:border-cyan-400 hover:border-opacity-50 overflow-hidden"
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ rotate: 5, scale: 1.1 }}
           >
             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 via-transparent to-purple-600 opacity-10 blur-md transition-all duration-700 group-hover:opacity-30 group-hover:blur-xl"></div>
+            
+            {/* Circulating Light Ray Effect */}
+            <div className="absolute inset-0 rounded-xl border border-transparent overflow-hidden pointer-events-none">
+              <motion.div
+                className="absolute w-full h-full rounded-xl border-2 border-cyan-400 opacity-30"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                style={{
+                  maskImage:
+                    "radial-gradient(circle, rgba(255,255,255,0.8) 20%, transparent 70%)",
+                  WebkitMaskImage:
+                    "radial-gradient(circle, rgba(255,255,255,0.8) 20%, transparent 70%)",
+                }}
+              ></motion.div>
+            </div>
+            
             <div className="relative text-center">
               <motion.h3
                 className="text-2xl font-semibold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300"
@@ -60,7 +77,6 @@ const Skills = () => {
                 {skill.level}
               </motion.p>
             </div>
-            <div className="absolute inset-0 rounded-xl border border-white border-opacity-10 group-hover:border-opacity-50 transition-all duration-500"></div>
           </motion.div>
         ))}
       </div>
