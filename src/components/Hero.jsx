@@ -39,6 +39,14 @@ const Hero = () => {
     animation: "gradient-move 3s infinite alternate",
   };
 
+  // Smooth scroll function
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
@@ -98,22 +106,22 @@ const Hero = () => {
           </motion.p>
 
           <div className="space-x-4">
-            <motion.a
-              href="#contact"
+            <motion.button
+              onClick={() => scrollToSection("contact")}
               className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Let's Connect
-            </motion.a>
-            <motion.a
-              href="#projects"
+            </motion.button>
+            <motion.button
+              onClick={() => scrollToSection("projects")}
               className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Explore My Work
-            </motion.a>
+            </motion.button>
           </div>
 
           <div className="mt-8 flex justify-center md:justify-start space-x-4">
