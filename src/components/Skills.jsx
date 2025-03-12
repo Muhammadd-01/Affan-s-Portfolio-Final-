@@ -41,20 +41,17 @@ const Skills = () => {
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ rotate: 5, scale: 1.1 }}
           >
-            {/* Meteor Ray Effect on Border */}
+            {/* Circulating Light Effect */}
             <motion.div
               className="absolute inset-0 rounded-xl border-2 border-transparent pointer-events-none"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
             >
               <motion.div
-                className="absolute w-4 h-4 bg-cyan-400 rounded-full"
+                className="absolute w-3 h-3 bg-cyan-400 rounded-full shadow-lg"
                 animate={{
-                  path: [
-                    "M 0 0 L 100% 0 L 100% 100% L 0 100% L 0 0"
-                  ],
+                  x: ["0%", "100%", "100%", "0%", "0%"],
+                  y: ["0%", "0%", "100%", "100%", "0%"],
                 }}
-                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
               />
             </motion.div>
             
