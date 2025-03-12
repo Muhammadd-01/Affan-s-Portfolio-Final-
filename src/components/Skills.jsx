@@ -41,20 +41,6 @@ const Skills = () => {
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ rotate: 5, scale: 1.1 }}
           >
-            {/* Circulating Light Effect */}
-            <motion.div
-              className="absolute inset-0 rounded-xl border-2 border-transparent pointer-events-none"
-            >
-              <motion.div
-                className="absolute w-3 h-3 bg-cyan-400 rounded-full shadow-lg"
-                animate={{
-                  x: ["0%", "100%", "100%", "0%", "0%"],
-                  y: ["0%", "0%", "100%", "100%", "0%"],
-                }}
-                transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-              />
-            </motion.div>
-            
             <div className="relative text-center">
               <motion.h3
                 className="text-2xl font-semibold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300"
