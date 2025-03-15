@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { gsap } from "gsap";
 
 const Hero = () => {
@@ -97,7 +97,7 @@ const Hero = () => {
           <div className="mt-8 flex justify-center md:justify-start space-x-4">
             <SocialIcon href="https://github.com/Muhammadd-01" icon={<FaGithub />} />
             <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
-            <SocialIcon href="https://twitter.com/affan_codes" icon={<FaTwitter />} />
+            <SocialIcon href="https://www.instagram.com" icon={<FaInstagram />} />
           </div>
         </div>
       </div>
