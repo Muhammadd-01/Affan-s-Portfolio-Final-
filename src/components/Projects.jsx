@@ -116,6 +116,14 @@ const Projects = () => {
               <div className="p-4 text-white">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-400 mb-4">{project.category}</p>
+                <div className="flex space-x-4">
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
+                    <FaGithub size={24} />
+                  </a>
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
+                    <FaExternalLinkAlt size={24} />
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
