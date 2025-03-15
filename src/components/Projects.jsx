@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
 
 const projects = [
@@ -51,17 +51,6 @@ const projects = [
   },
   {
     id: 5,
-    title: "IoT Smart Home Hub",
-    category: "IoT",
-    image: "https://via.placeholder.com/400x300/FFA500/FFFFFF?text=IoT+Smart+Home",
-    description:
-      "A centralized smart home system that integrates various IoT devices and provides a user-friendly interface for home automation.",
-    technologies: ["Raspberry Pi", "Python", "MQTT", "React"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: 6,
     title: "AI Image Generator",
     category: "Web",
     image: "https://via.placeholder.com/400x300/000000/FFFFFF?text=AI+Image+Generator",
@@ -75,7 +64,6 @@ const projects = [
 
 const Projects = () => {
   const [filter, setFilter] = useState("All")
-  const [selectedProject, setSelectedProject] = useState(null)
 
   const filteredProjects =
     filter === "All"
@@ -99,7 +87,7 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {["All", "Web", "Mobile", "IoT"].map((category) => (
+          {["All", "Web", "Mobile"].map((category) => (
             <motion.button
               key={category}
               onClick={() => setFilter(category)}
@@ -123,13 +111,24 @@ const Projects = () => {
             <motion.div
               key={project.id}
               layout
-              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105 w-[400px] h-[450px]"
+              className="relative bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              onClick={() => setSelectedProject(project)}
             >
-              <img src={project.image} alt={project.title} className="w-full h-60 object-cover mb-4 rounded-[1.5rem]" />
+              {/* Border Animation */}
+              <motion.div
+                className="absolute inset-0 border-4 border-transparent rounded-[2rem]"
+                animate={{
+                  borderColor: ["#00C9FF", "#92FE9D", "#00C9FF"],
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-60 object-cover mb-4 rounded-[1.5rem]"
+              />
               <div className="p-4 text-white">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-400 mb-4">{project.category}</p>
