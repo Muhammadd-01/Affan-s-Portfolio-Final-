@@ -106,7 +106,7 @@ const Projects = () => {
             <motion.div
               key={project.id}
               layout
-              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white hover:animate-hover-glow"
+              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[500px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white hover:animate-hover-glow"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -116,12 +116,13 @@ const Projects = () => {
               <div className="p-4 text-white">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-400 mb-4">{project.category}</p>
+                <p className="text-sm text-gray-300 mb-4">{project.description}</p>
                 <div className="flex space-x-4">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
-                    <FaGithub size={26} className="hover:text-primary" />
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition transform hover:rotate-6">
+                    <FaGithub size={28} className="hover:text-primary" />
                   </a>
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
-                    <HiExternalLink size={26} className="hover:text-primary" />
+                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition transform hover:-rotate-6">
+                    <HiExternalLink size={28} className="hover:text-primary" />
                   </a>
                 </div>
               </div>
