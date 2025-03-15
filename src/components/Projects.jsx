@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const projects = [
   {
@@ -29,17 +29,6 @@ const projects = [
   },
   {
     id: 3,
-    title: "AR Shopping Experience",
-    category: "Mobile",
-    image: "https://via.placeholder.com/400x300/FF0000/FFFFFF?text=AR+Shopping",
-    description:
-      "An augmented reality mobile app that allows users to visualize products in their own space before purchasing.",
-    technologies: ["React Native", "ARKit", "ARCore", "Node.js"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: 4,
     title: "Real-time Collaboration Platform",
     category: "Web",
     image: "https://via.placeholder.com/400x300/800080/FFFFFF?text=Collaboration+Platform",
@@ -50,7 +39,7 @@ const projects = [
     live: "#",
   },
   {
-    id: 5,
+    id: 4,
     title: "AI Image Generator",
     category: "Web",
     image: "https://via.placeholder.com/400x300/000000/FFFFFF?text=AI+Image+Generator",
@@ -60,18 +49,23 @@ const projects = [
     github: "#",
     live: "#",
   }
-]
+];
 
 const Projects = () => {
-  const [filter, setFilter] = useState("All")
+  const [filter, setFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     filter === "All"
       ? projects
-      : projects.filter((project) => project.category === filter)
+      : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Meteor Animation */}
+        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-meteor"></div>
+      </div>
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-4xl font-bold mb-12 text-center text-white"
@@ -87,7 +81,7 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {["All", "Web", "Mobile"].map((category) => (
+          {['All', 'Web'].map((category) => (
             <motion.button
               key={category}
               onClick={() => setFilter(category)}
@@ -105,30 +99,19 @@ const Projects = () => {
         </motion.div>
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center relative"
         >
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
               layout
-              className="relative bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px]"
+              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
+              onClick={() => setSelectedProject(project)}
             >
-              {/* Border Animation */}
-              <motion.div
-                className="absolute inset-0 border-4 border-transparent rounded-[2rem]"
-                animate={{
-                  borderColor: ["#00C9FF", "#92FE9D", "#00C9FF"],
-                }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-60 object-cover mb-4 rounded-[1.5rem]"
-              />
+              <img src={project.image} alt={project.title} className="w-full h-60 object-cover mb-4 rounded-[1.5rem]" />
               <div className="p-4 text-white">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-400 mb-4">{project.category}</p>
@@ -138,7 +121,7 @@ const Projects = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
