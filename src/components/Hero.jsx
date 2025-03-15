@@ -4,7 +4,6 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { gsap } from "gsap";
 
 const Hero = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [currentWord, setCurrentWord] = useState(0);
   const words = ["Full-Stack Developer", "UI/UX Enthusiast", "Tech Innovator"];
   const textRef = useRef(null);
@@ -24,14 +23,6 @@ const Hero = () => {
     );
   }, [currentWord]);
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   const gradientText = {
     background: "linear-gradient(90deg, #00C9FF, #92FE9D)",
     WebkitBackgroundClip: "text",
@@ -39,7 +30,6 @@ const Hero = () => {
     animation: "gradient-move 3s infinite alternate",
   };
 
-  // Smooth scroll function
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -51,41 +41,22 @@ const Hero = () => {
     <section id="hero" className="min-h-screen flex items-center justify-center py-20">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
         
-        {/* Profile Picture Container */}
-        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 transition-transform duration-500 ease-in-out hover:-translate-y-3 relative group order-first md:order-none">
-          <motion.div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="w-full h-full rounded-full overflow-hidden"
-          >
-            <motion.img
-              key={isHovered ? "hovered" : "default"}
-              src={
-                isHovered
-                  ? "/src/assets/image2.jpg" // Hovered image
-                  : "/src/assets/image1.jpg" // Default image
-              }
-              alt="Profile"
-              className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 opacity-30 blur-xl transition duration-500 ease-in-out group-hover:opacity-50"></div>
-          </motion.div>
+        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 relative order-first md:order-none">
+          <motion.img
+            src="/src/assets/image1.jpg"
+            alt="Profile"
+            className="w-full h-full object-cover"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 opacity-30 blur-xl"></div>
         </div>
 
-        {/* Introduction Text */}
         <div className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center">
-          <h1
-            className="text-4xl md:text-6xl font-bold mb-4"
-            style={gradientText}
-          >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4" style={gradientText}>
             Hi, I'm Affan
           </h1>
-
           <div ref={textRef}>
             <motion.div
               key={currentWord}
@@ -95,7 +66,6 @@ const Hero = () => {
               {words[currentWord]}
             </motion.div>
           </div>
-
           <motion.p
             className="text-lg mb-8 max-w-2xl text-gray-300"
             initial={{ opacity: 0 }}
