@@ -21,9 +21,9 @@ const skillsData = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 text-white relative overflow-hidden">
+    <section id="skills" className="py-20 text-white overflow-hidden">
       <motion.h2
-        className="text-5xl font-extrabold mb-12 text-center relative z-10 tracking-widest uppercase"
+        className="text-5xl font-extrabold mb-12 text-center tracking-widest uppercase"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,13 +35,13 @@ const Skills = () => {
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="relative rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 overflow-hidden"
+            className="rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:scale-110 hover:shadow-2xl group border border-gray-700 overflow-hidden"
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
             whileHover={{ rotate: 5, scale: 1.1 }}
           >
-            <div className="relative text-center">
+            <div className="text-center">
               <motion.h3
                 className="text-2xl font-semibold mb-2 text-white group-hover:text-cyan-400 transition-colors duration-300"
                 initial={{ x: -50, opacity: 0 }}
