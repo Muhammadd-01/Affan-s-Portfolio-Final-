@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { HiExternalLink } from "react-icons/hi";
 
 const projects = [
   {
@@ -63,7 +64,6 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        {/* Moving Meteor Animation */}
         <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-moving-meteor"></div>
         <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-moving-meteor delay-1000"></div>
       </div>
@@ -118,10 +118,10 @@ const Projects = () => {
                 <p className="text-sm text-gray-400 mb-4">{project.category}</p>
                 <div className="flex space-x-4">
                   <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
-                    <FaGithub size={24} />
+                    <FaGithub size={26} className="hover:text-primary" />
                   </a>
                   <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400 transition">
-                    <FaExternalLinkAlt size={24} />
+                    <HiExternalLink size={26} className="hover:text-primary" />
                   </a>
                 </div>
               </div>
