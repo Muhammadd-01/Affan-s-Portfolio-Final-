@@ -63,9 +63,9 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        {/* Meteor Animation */}
-        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-meteor"></div>
-        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-meteor delay-1000"></div>
+        {/* Moving Meteor Animation */}
+        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-moving-meteor"></div>
+        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-moving-meteor delay-1000"></div>
       </div>
       <div className="container mx-auto px-4">
         <motion.h2
@@ -106,7 +106,7 @@ const Projects = () => {
             <motion.div
               key={project.id}
               layout
-              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white"
+              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white hover:animate-hover-glow"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
