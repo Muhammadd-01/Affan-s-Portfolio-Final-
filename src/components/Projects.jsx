@@ -8,7 +8,7 @@ const projects = [
   {
     id: 1,
     title: "AI-Powered Task Manager",
-    category: "Web",
+    category: "Web Application",
     image: "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=AI+Task+Manager",
     description:
       "An intelligent task management application that uses machine learning to prioritize and categorize tasks, enhancing productivity.",
@@ -19,7 +19,7 @@ const projects = [
   {
     id: 2,
     title: "Blockchain Voting System",
-    category: "Web",
+    category: "Website",
     image: "https://via.placeholder.com/400x300/008000/FFFFFF?text=Blockchain+Voting",
     description:
       "A secure and transparent voting system built on blockchain technology, ensuring tamper-proof elections.",
@@ -30,7 +30,7 @@ const projects = [
   {
     id: 3,
     title: "Real-time Collaboration Platform",
-    category: "Web",
+    category: "Web Application",
     image: "https://via.placeholder.com/400x300/800080/FFFFFF?text=Collaboration+Platform",
     description:
       "A real-time collaboration tool for remote teams, featuring video conferencing, shared whiteboards, and project management tools.",
@@ -41,7 +41,7 @@ const projects = [
   {
     id: 4,
     title: "AI Image Generator",
-    category: "Web",
+    category: "Website",
     image: "https://via.placeholder.com/400x300/000000/FFFFFF?text=AI+Image+Generator",
     description:
       "An AI-powered tool that generates stunning images based on user input, powered by deep learning models.",
@@ -65,6 +65,7 @@ const Projects = () => {
       <div className="absolute inset-0 pointer-events-none">
         {/* Meteor Animation */}
         <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-meteor"></div>
+        <div className="absolute w-2 h-2 bg-white rounded-full shadow-lg animate-meteor delay-1000"></div>
       </div>
       <div className="container mx-auto px-4">
         <motion.h2
@@ -81,7 +82,7 @@ const Projects = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {['All', 'Web'].map((category) => (
+          {["All", "Website", "Web Application"].map((category) => (
             <motion.button
               key={category}
               onClick={() => setFilter(category)}
@@ -105,7 +106,7 @@ const Projects = () => {
             <motion.div
               key={project.id}
               layout
-              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow"
+              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[450px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
