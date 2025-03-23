@@ -49,12 +49,12 @@ const projects = [
   {
     id: 5,
     title: "To-Do List App",
-    category: "Website", // Now correctly under "Website" filter
+    category: "Website", // Corrected category
     image: "https://via.placeholder.com/400x300/FF5733/FFFFFF?text=To-Do+List+App",
     description: "A simple yet powerful to-do list app with task management, filtering, and a sleek UI.",
     technologies: ["React", "Local Storage", "Tailwind CSS"],
-    github: "#", // Add your GitHub link here if available
-    live: "https://to-do-app-silk-nu.vercel.app", // Added your live link
+    github: "https://github.com/Muhammadd-01/To-Do_App.git", // GitHub Repo
+    live: "https://to-do-app-silk-nu.vercel.app", // Live deployed link
   }
   
   
