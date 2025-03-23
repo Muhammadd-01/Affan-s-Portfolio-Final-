@@ -50,7 +50,7 @@ const projects = [
     id: 5,
     title: "To-Do List App",
     category: "Website", // Corrected category
-    image: "https://via.placeholder.com/400x300/FF5733/FFFFFF?text=To-Do+List+App",
+    image: "todo.png",
     description: "A simple yet powerful to-do list app with task management, filtering, and a sleek UI.",
     technologies: ["React", "Local Storage", "Tailwind CSS"],
     github: "https://github.com/Muhammadd-01/To-Do_App.git", // GitHub Repo
