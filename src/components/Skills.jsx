@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 
 const skillsData = [
   { name: "React", level: "Expert" },
+  { name: "Angular", level: "Intermediate" },
   { name: "JavaScript", level: "Expert" },
   { name: "Node.js", level: "Advanced" },
   { name: "TypeScript", level: "Advanced" },
