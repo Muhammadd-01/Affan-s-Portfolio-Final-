@@ -5,18 +5,14 @@ const skillsData = [
   { name: "JavaScript", level: "Expert" },
   { name: "Node.js", level: "Advanced" },
   { name: "TypeScript", level: "Advanced" },
-  { name: "GraphQL", level: "Intermediate" },
-  { name: "Python", level: "Intermediate" },
-  { name: "Docker", level: "Intermediate" },
-  { name: "AWS", level: "Intermediate" },
+  { name: "SQL Server", level: "Intermediate" },
+  { name: "MySQL", level: "Intermediate" },
   { name: "Git", level: "Advanced" },
   { name: "HTML/CSS", level: "Expert" },
   { name: "MongoDB", level: "Intermediate" },
   { name: "Next.js", level: "Advanced" },
   { name: "Three.js", level: "Intermediate" },
-  { name: "Cybersecurity", level: "Intermediate" },
-  { name: "WebGL", level: "Beginner" },
-  { name: "Blockchain", level: "Beginner" },
+
 ];
 
 const Skills = () => {
