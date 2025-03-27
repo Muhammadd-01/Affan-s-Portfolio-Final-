@@ -1,23 +1,24 @@
 import { motion } from "framer-motion";
 
 const skillsData = [
-  { name: "React.js Development", level: "Expert", category: "Frontend Development" },
-  { name: "Angular Framework", level: "Intermediate", category: "Frontend Development" },
-  { name: "PHP Development", level: "Intermediate", category: "Backend Development" },
-  { name: "JavaScript (ES6+)", level: "Expert", category: "Frontend Development" },
-  { name: "Node.js Backend Development", level: "Advanced", category: "Backend Development" },
-  { name: "Laravel (PHP Framework)", level: "Advanced", category: "Backend Development" },
-  { name: "TypeScript", level: "Advanced", category: "Frontend Development" },
-  { name: "SQL Server", level: "Intermediate", category: "Database Management" },
-  { name: "MySQL Database", level: "Intermediate", category: "Database Management" },
-  { name: "MongoDB (NoSQL Database)", level: "Intermediate", category: "Database Management" },
-  { name: "Git Version Control", level: "Advanced", category: "Tools & DevOps" },
-  { name: "HTML5 & CSS3", level: "Expert", category: "Frontend Development" },
-  { name: "Next.js (React Framework)", level: "Advanced", category: "Full-Stack Development" },
-  { name: "Three.js (WebGL 3D Graphics)", level: "Intermediate", category: "Frontend Graphics/Animation" },
-  { name: "Search Engine Optimization (SEO)", level: "Advanced", category: "Digital Marketing" },
-  { name: "LinkedIn Profile Optimization", level: "Advanced", category: "Digital Branding" }
+  { name: "React.js", level: "Expert", category: "Frontend" },
+  { name: "Angular", level: "Intermediate", category: "Frontend" },
+  { name: "PHP", level: "Intermediate", category: "Backend" },
+  { name: "JavaScript", level: "Expert", category: "Frontend" },
+  { name: "Node.js", level: "Advanced", category: "Backend" },
+  { name: "Laravel", level: "Advanced", category: "Backend" },
+  { name: "TypeScript", level: "Advanced", category: "Frontend" },
+  { name: "SQL Server", level: "Intermediate", category: "Database" },
+  { name: "MySQL", level: "Intermediate", category: "Database" },
+  { name: "MongoDB", level: "Intermediate", category: "Database" },
+  { name: "Git", level: "Advanced", category: "Tools" },
+  { name: "HTML/CSS", level: "Expert", category: "Frontend" },
+  { name: "Next.js", level: "Advanced", category: "Full-Stack" },
+  { name: "Three.js", level: "Intermediate", category: "Frontend" },
+  { name: "SEO", level: "Advanced", category: "Digital Marketing" },
+  { name: "LinkedIn Optimization", level: "Advanced", category: "Branding" }
 ];
+
 
 
 const Skills = () => {
