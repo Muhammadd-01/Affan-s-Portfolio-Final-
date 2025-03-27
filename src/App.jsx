@@ -12,8 +12,7 @@ import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import WhatsAppButton from "./components/WhatsAppButton"
 import UpButton from "./components/UpButton"
-import Chatbot from "./components/Chatbot"
-import TestGeminiAPI from "./components/TestGeminiAPI"
+
 
 function App() {
   const mountRef = useRef(null)
