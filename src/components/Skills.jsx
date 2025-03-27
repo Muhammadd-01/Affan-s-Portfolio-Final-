@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
 
 const skillsData = [
-  { name: "React", level: "Expert" },
-  { name: "Angular", level: "Intermediate" },
-  { name: "PHP Developer", level: "Intermediate" },
-  { name: "JavaScript", level: "Expert" },
-  { name: "Node.js", level: "Advanced" },
-  { name: "Laravel", level: "Advanced" },
-  { name: "TypeScript", level: "Advanced" },
-  { name: "SQL Server", level: "Intermediate" },
-  { name: "MySQL", level: "Intermediate" },
-  { name: "Git", level: "Advanced" },
-  { name: "HTML/CSS", level: "Expert" },
-  { name: "MongoDB", level: "Intermediate" },
-  { name: "Next.js", level: "Advanced" },
-  { name: "Three.js", level: "Intermediate" },
-
+  { name: "React.js Development", level: "Expert", category: "Frontend Development" },
+  { name: "Angular Framework", level: "Intermediate", category: "Frontend Development" },
+  { name: "PHP Development", level: "Intermediate", category: "Backend Development" },
+  { name: "JavaScript (ES6+)", level: "Expert", category: "Frontend Development" },
+  { name: "Node.js Backend Development", level: "Advanced", category: "Backend Development" },
+  { name: "Laravel (PHP Framework)", level: "Advanced", category: "Backend Development" },
+  { name: "TypeScript", level: "Advanced", category: "Frontend Development" },
+  { name: "SQL Server", level: "Intermediate", category: "Database Management" },
+  { name: "MySQL Database", level: "Intermediate", category: "Database Management" },
+  { name: "MongoDB (NoSQL Database)", level: "Intermediate", category: "Database Management" },
+  { name: "Git Version Control", level: "Advanced", category: "Tools & DevOps" },
+  { name: "HTML5 & CSS3", level: "Expert", category: "Frontend Development" },
+  { name: "Next.js (React Framework)", level: "Advanced", category: "Full-Stack Development" },
+  { name: "Three.js (WebGL 3D Graphics)", level: "Intermediate", category: "Frontend Graphics/Animation" },
+  { name: "Search Engine Optimization (SEO)", level: "Advanced", category: "Digital Marketing" },
+  { name: "LinkedIn Profile Optimization", level: "Advanced", category: "Digital Branding" }
 ];
+
 
 const Skills = () => {
   return (
