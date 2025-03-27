@@ -8,6 +8,7 @@ import {
   SiVite, SiVercel, SiNetlify
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
+import { useState } from "react";
 
 const skills = {
   Frontend: [
@@ -41,19 +42,20 @@ const skills = {
 };
 
 const SkillCard = ({ name, level, category, icon }) => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="w-64 h-40 text-white border border-gray-600 rounded-2xl p-5 flex flex-col justify-center items-center gap-2 m-3 transition-all duration-300 hover:border-blue-500"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="w-64 h-40 text-white border border-gray-600 rounded-2xl p-5 flex flex-col justify-center items-center gap-2 m-3 transition-all duration-300"
     >
       <div className="text-4xl">{icon}</div>
-      <motion.div
-        whileHover={{ scale: 1.1, color: "#ffffff" }}
-        className="text-xl font-semibold transition duration-300"
-      >
+      <div className={`text-lg font-bold transition-colors duration-300 ${hovered ? "text-blue-400" : "text-white"}`}>
         {name}
-      </motion.div>
-      <div className="text-sm text-gray-400 group-hover:text-white transition duration-300">
+      </div>
+      <div className={`text-sm transition-colors duration-300 ${hovered ? "text-gray-300" : "text-gray-400"}`}>
         {level} • {category}
       </div>
     </motion.div>
@@ -64,8 +66,8 @@ const Skills = () => {
   return (
     <div className="flex flex-col items-center justify-center py-10 px-4">
       {Object.entries(skills).map(([category, skillList]) => (
-        <div key={category} className="mb-10 w-full flex flex-col items-center">
-          <h2 className="text-3xl font-bold text-white mb-6">{category}</h2>
+        <div key={category} className="mb-10">
+          <h2 className="text-2xl font-semibold text-white mb-6 text-center">{category}</h2>
           <div className="flex flex-wrap justify-center">
             {skillList.map((skill, index) => (
               <SkillCard
