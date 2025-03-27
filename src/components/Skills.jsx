@@ -5,6 +5,7 @@ const skillsData = [
   { name: "Angular", level: "Intermediate" },
   { name: "JavaScript", level: "Expert" },
   { name: "Node.js", level: "Advanced" },
+  { name: "Laravel", level: "Advanced" },
   { name: "TypeScript", level: "Advanced" },
   { name: "SQL Server", level: "Intermediate" },
   { name: "MySQL", level: "Intermediate" },
