@@ -12,11 +12,16 @@ const skillsData = [
   { name: "MySQL", level: "Intermediate", category: "Database" },
   { name: "MongoDB", level: "Intermediate", category: "Database" },
   { name: "Git", level: "Advanced", category: "Tools" },
+  { name: "GitHub", level: "Advanced", category: "Tools" },
+  { name: "Vercel", level: "Advanced", category: "Tools" },
+  { name: "Netlify", level: "Advanced", category: "Tools" },
   { name: "HTML/CSS", level: "Expert", category: "Frontend" },
   { name: "Next.js", level: "Advanced", category: "Full-Stack" },
   { name: "Three.js", level: "Intermediate", category: "Frontend" },
   { name: "SEO", level: "Advanced", category: "Digital Marketing" },
-  { name: "LinkedIn Optimization", level: "Advanced", category: "Branding" }
+  { name: "LinkedIn Optimization", level: "Advanced", category: "Branding" },
+  { name: "Tailwind CSS", level: "Expert", category: "Frontend" },
+  { name: "Vite", level: "Advanced", category: "Tools" }
 ];
 
 const tiltVariants = {
