@@ -20,20 +20,16 @@ const skillsData = [
 ];
 
 const tiltVariants = {
+  initial: { rotateX: 0, rotateY: 0, scale: 1 },
   hover: {
     rotateX: -5,
     rotateY: 5,
-    scale: 1.05,
+    scale: 1.08,
     transition: {
       type: "spring",
       stiffness: 200,
       damping: 10
     }
-  },
-  initial: {
-    rotateX: 0,
-    rotateY: 0,
-    scale: 1
   }
 };
 
@@ -50,20 +46,28 @@ const Skills = () => {
         My Skills
       </motion.h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-7xl mx-auto">
         {skillsData.map((skill, index) => (
           <motion.div
             key={skill.name}
-            className="rounded-2xl p-6 shadow-md bg-white/5 backdrop-blur-lg border border-white/10 cursor-pointer hover:border-cyan-500"
-            initial="initial"
-            animate="initial"
-            whileHover="hover"
+            className="rounded-xl p-6 shadow-lg bg-opacity-10 backdrop-blur-xl transform transition-all duration-500 hover:shadow-2xl group border border-gray-700 overflow-hidden"
             variants={tiltVariants}
-            transition={{ delay: index * 0.05 }}
+            initial="initial"
+            whileHover="hover"
+            animate="initial"
           >
-            <div className="text-center space-y-2">
-              <h3 className="text-xl font-bold text-cyan-400">{skill.name}</h3>
-              <p className="text-sm text-gray-300">{skill.level} • {skill.category}</p>
+            <div className="text-center">
+              <motion.h3
+                className="text-2xl font-semibold mb-1 text-white group-hover:text-cyan-400 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+              >
+                {skill.name}
+              </motion.h3>
+              <p className="text-sm text-gray-400 mt-1">
+                <span className="font-medium text-white">{skill.level}</span>
+                <span className="mx-1 text-cyan-500">•</span>
+                <span className="uppercase tracking-wide text-cyan-300">{skill.category}</span>
+              </p>
             </div>
           </motion.div>
         ))}
