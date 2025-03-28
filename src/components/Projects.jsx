@@ -49,15 +49,33 @@ const projects = [
   {
     id: 5,
     title: "To-Do List App",
-    category: "Website", // Corrected category
+    category: "Website",
     image: "todo.png",
     description: "A simple yet powerful to-do list app with task management, filtering, and a sleek UI.",
     technologies: ["React", "Local Storage", "Tailwind CSS"],
-    github: "https://github.com/Muhammadd-01/To-Do_App.git", // GitHub Repo
-    live: "https://to-do-app-silk-nu.vercel.app", // Live deployed link
+    github: "https://github.com/Muhammadd-01/To-Do_App.git",
+    live: "https://to-do-app-silk-nu.vercel.app",
+  },
+  {
+    id: 6,
+    title: "Elegance Barber Salon",
+    category: "Web Application",
+    image: "https://via.placeholder.com/400x300/FF5733/FFFFFF?text=Elegance+Salon",
+    description: "A modern barber salon booking system with appointment scheduling, customer management, and payment integration.",
+    technologies: ["PHP", "Laravel", "MySQL"],
+    github: "https://github.com/Muhammadd-01/ElaganceSalon.git",
+    live: "#",
+  },
+  {
+    id: 7,
+    title: "Auction Bidding Site",
+    category: "Web Application",
+    image: "https://via.placeholder.com/400x300/1E90FF/FFFFFF?text=Auction+Bidding",
+    description: "A real-time auction bidding platform built using C# and ASP.NET Core, with user authentication and admin controls.",
+    technologies: ["C#", "ASP.NET Core", "SQL Server"],
+    github: "https://github.com/Muhammadd-01/Auction_Project.git",
+    live: "#",
   }
-  
-  
 ];
 
 const Projects = () => {
