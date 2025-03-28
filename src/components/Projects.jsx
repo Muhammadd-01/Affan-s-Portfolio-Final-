@@ -98,7 +98,20 @@ const Projects = () => {
         </motion.div>
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {filteredProjects.map((project) => (
-            <motion.div key={project.id} layout className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform hover:scale-105 w-[400px] h-[500px] relative border-4 border-transparent hover:border-white animate-border-glow hover:shadow-white hover:animate-hover-glow" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
+            <motion.div
+              key={project.id}
+              layout
+              className="bg-secondary rounded-[2rem] overflow-hidden shadow-lg transition duration-300 transform w-[400px] h-[500px] relative border-4 border-transparent hover:border-white"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              whileHover={{
+                scale: 1.05,
+                rotateX: -5, // Tilt effect on X-axis
+                rotateY: 5,  // Tilt effect on Y-axis
+                transition: { duration: 0.3 },
+              }}
+            >
               <img src={project.image} alt={project.title} className="w-full h-60 object-cover mb-4 rounded-[1.5rem]" />
               <div className="p-4 text-white">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
