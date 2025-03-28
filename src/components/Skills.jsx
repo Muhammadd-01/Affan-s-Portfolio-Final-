@@ -64,7 +64,7 @@ const SkillCard = ({ name, level, category, icon }) => {
 
 const Skills = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-10 px-4">
+    <div id="skills" className="flex flex-col items-center justify-center py-10 px-4">
       {Object.entries(skills).map(([category, skillList]) => (
         <div key={category} className="mb-10">
           <h2 className="text-2xl font-semibold text-white mb-6 text-center">{category}</h2>
