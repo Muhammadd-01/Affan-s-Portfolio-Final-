@@ -38,7 +38,7 @@ const Navbar = () => {
             to="hero"
             smooth={true}
             duration={500}
-            className="text-neon-blue font-extrabold text-3xl cursor-pointer"
+            className="text-white font-extrabold text-3xl cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff] transition-all duration-300"
           >
             Affan
           </Link>
@@ -51,10 +51,9 @@ const Navbar = () => {
                 to={item.toLowerCase()}
                 smooth={true}
                 duration={500}
-                className="text-white text-lg hover:text-neon-blue transition-colors duration-300 cursor-pointer relative group"
+                className="text-white text-lg transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
               >
                 {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-neon-blue transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </div>
@@ -63,7 +62,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-neon-blue hover:text-white transition duration-300"
+              className="text-white hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff] transition duration-300"
             >
               {isOpen ? <X size={32} /> : <Menu size={32} />}
             </button>
@@ -87,7 +86,7 @@ const Navbar = () => {
                 to={item.toLowerCase()}
                 smooth={true}
                 duration={500}
-                className="text-3xl text-white hover:text-neon-blue transition-colors duration-300 cursor-pointer"
+                className="text-white text-2xl transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
                 onClick={() => setIsOpen(false)}
               >
                 {item}
