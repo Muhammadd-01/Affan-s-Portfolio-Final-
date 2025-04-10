@@ -83,7 +83,7 @@ const Resume = () => {
 
         <div className="text-center mt-12">
           <motion.a
-            href="/myResume.pdf"
+            href="/AffanResume.pdf"
             download="My_Resume.pdf"
             className="bg-cyan-400 text-black px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bg-cyan-500"
             whileHover={{ scale: 1.1 }}
@@ -94,7 +94,7 @@ const Resume = () => {
         </div>
       </div>
     </section>
-  );
+  ); 
 };
 
 export default Resume;
