@@ -76,17 +76,7 @@ const projects = [
     github: "https://github.com/Muhammadd-01/Auction_Project.git",
     live: "#",
   },
-  {
-    id: 8,
-    title: "Recipe App",
-    category: "Website",
-    image: "recipe.png",
-    description: "A visually rich and responsive recipe website featuring interactive food cards, filters by cuisine, and smooth UI animations.",
-    technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-    github: "https://github.com/Muhammadd-01/Recipe_App",
-    live: "https://recipe-app-two-weld.vercel.app/"
-  }
-  
+
 ];
 
 const Projects = () => {
