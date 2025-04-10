@@ -83,7 +83,7 @@ const projects = [
     image: "recipe.png",
     description: "A visually rich and responsive recipe website featuring interactive food cards, filters by cuisine, and smooth UI animations.",
     technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-    github: "https://github.com/Muhammadd-01/Recipe-App",
+    github: "https://github.com/Muhammadd-01/Recipe_App",
     live: "https://recipe-app.vercel.app"
   }
   
