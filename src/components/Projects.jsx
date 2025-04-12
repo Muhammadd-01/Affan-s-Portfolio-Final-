@@ -8,15 +8,16 @@ import { HiExternalLink } from "react-icons/hi";
 const projects = [
 
   {
-    id: 1,
-    title: "Blockchain Voting System",
-    category: "Website",
-    image: "https://via.placeholder.com/400x300/008000/FFFFFF?text=Blockchain+Voting",
-    description: "A secure and transparent voting system built on blockchain technology, ensuring tamper-proof elections.",
-    technologies: ["Ethereum", "Solidity", "Web3.js", "React"],
-    github: "#",
-    live: "#",
-  },
+    "id": 1,
+    "title": "Recipe Explorer",
+    "category": "Website",
+    "image": "https://via.placeholder.com/400x300/FF6347/FFFFFF?text=Recipe+Explorer",
+    "description": "A deliciously responsive recipe site built using HTML, CSS, JavaScript, and Bootstrap, featuring step-by-step cooking instructions, ingredient filters, and user-submitted dishes.",
+    "technologies": ["HTML", "CSS", "JavaScript", "Bootstrap"],
+    "github": "https://github.com/Muhammadd-01/Recipe_App.git",
+    "live": "https://recipe-app-two-weld.vercel.app"
+  }
+,  
 
   {
     id: 2,
