@@ -62,7 +62,7 @@ const projects = [
     "id": 6,
     "title": "Archive Site",
     "category": "Web Application",
-    "image": "archive.png",
+    "image": "archieve.png",
     "description": "A digital archive platform built using React and Vite for storing, categorizing, and exploring historical records, research documents, and case studies with smooth UI and filtering options.",
     "technologies": ["React", "Vite", "JavaScript"],
     "github": "https://github.com/Muhammadd-01/archieveSite.git",
