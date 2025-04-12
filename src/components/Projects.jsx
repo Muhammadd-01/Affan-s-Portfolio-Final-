@@ -6,18 +6,9 @@ import { FaGithub } from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
 
 const projects = [
+
   {
     id: 1,
-    title: "AI-Powered Task Manager",
-    category: "Web Application",
-    image: "https://via.placeholder.com/400x300/0000FF/FFFFFF?text=AI+Task+Manager",
-    description: "An intelligent task management application that uses machine learning to prioritize and categorize tasks, enhancing productivity.",
-    technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: 2,
     title: "Blockchain Voting System",
     category: "Website",
     image: "https://via.placeholder.com/400x300/008000/FFFFFF?text=Blockchain+Voting",
@@ -26,28 +17,9 @@ const projects = [
     github: "#",
     live: "#",
   },
+
   {
-    id: 3,
-    title: "Real-time Collaboration Platform",
-    category: "Web Application",
-    image: "https://via.placeholder.com/400x300/800080/FFFFFF?text=Collaboration+Platform",
-    description: "A real-time collaboration tool for remote teams, featuring video conferencing, shared whiteboards, and project management tools.",
-    technologies: ["WebRTC", "Socket.io", "React", "Express"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: 4,
-    title: "AI Image Generator",
-    category: "Website",
-    image: "https://via.placeholder.com/400x300/000000/FFFFFF?text=AI+Image+Generator",
-    description: "An AI-powered tool that generates stunning images based on user input, powered by deep learning models.",
-    technologies: ["Python", "TensorFlow", "React"],
-    github: "#",
-    live: "#",
-  },
-  {
-    id: 5,
+    id: 2,
     title: "To-Do List App",
     category: "Website",
     image: "todo.png",
@@ -57,7 +29,7 @@ const projects = [
     live: "https://to-do-app-silk-nu.vercel.app",
   },
   {
-    id: 6,
+    id: 3,
     title: "Elegance Barber Salon",
     category: "Web Application",
     image: "https://via.placeholder.com/400x300/FF5733/FFFFFF?text=Elegance+Salon",
@@ -67,7 +39,7 @@ const projects = [
     live: "#",
   },
   {
-    id: 7,
+    id: 4,
     title: "Auction Bidding Site",
     category: "Web Application",
     image: "https://via.placeholder.com/400x300/1E90FF/FFFFFF?text=Auction+Bidding",
@@ -77,20 +49,20 @@ const projects = [
     live: "#",
   },
   {
-    "id": 8,
+    "id": 5,
     "title": "Medicare Website",
     "category": "Web Application",
-    "image": "https://via.placeholder.com/400x300/20B2AA/FFFFFF?text=Medicare+App",
+    "image": "medicare.png",
     "description": "A professional and responsive medical website built with React and Vite that suggests medicines based on user symptoms. Includes dosage levels, health articles, and secure feedback features.",
     "technologies": ["React", "Vite", "TailwindCSS"],
     "github": "https://github.com/Muhammadd-01/Official-Medicare.git",
     "live": "https://official-medicare.vercel.app"
   },
   {
-    "id": 9,
+    "id": 6,
     "title": "Archive Site",
     "category": "Web Application",
-    "image": "https://via.placeholder.com/400x300/696969/FFFFFF?text=Archive+Hub",
+    "image": "archive.png",
     "description": "A digital archive platform built using React and Vite for storing, categorizing, and exploring historical records, research documents, and case studies with smooth UI and filtering options.",
     "technologies": ["React", "Vite", "JavaScript"],
     "github": "https://github.com/Muhammadd-01/archieveSite.git",
