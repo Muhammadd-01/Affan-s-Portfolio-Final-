@@ -76,7 +76,26 @@ const projects = [
     github: "https://github.com/Muhammadd-01/Auction_Project.git",
     live: "#",
   },
-
+  {
+    "id": 8,
+    "title": "Medicare Website",
+    "category": "Medical Platform",
+    "image": "https://via.placeholder.com/400x300/20B2AA/FFFFFF?text=Medicare+App",
+    "description": "A professional and responsive medical website built with React and Vite that suggests medicines based on user symptoms. Includes dosage levels, health articles, and secure feedback features.",
+    "technologies": ["React", "Vite", "TailwindCSS"],
+    "github": "https://github.com/Muhammadd-01/Medicare_App.git",
+    "live": "#"
+  },
+  {
+    "id": 9,
+    "title": "Archive Site",
+    "category": "Content Platform",
+    "image": "https://via.placeholder.com/400x300/696969/FFFFFF?text=Archive+Hub",
+    "description": "A digital archive platform built using React and Vite for storing, categorizing, and exploring historical records, research documents, and case studies with smooth UI and filtering options.",
+    "technologies": ["React", "Vite", "JavaScript"],
+    "github": "https://github.com/Muhammadd-01/Archive_Hub.git",
+    "live": "#"
+  }
 ];
 
 const Projects = () => {
