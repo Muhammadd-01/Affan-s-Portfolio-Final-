@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import {
   SiTypescript, SiMongodb, SiMysql, SiNextdotjs, SiTailwindcss, SiBootstrap,
-  SiVite, SiVercel, SiNetlify
+  SiVite, SiVercel, 
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
 import { useState } from "react";
