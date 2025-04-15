@@ -4,7 +4,7 @@ Welcome to my personal portfolio, built using **React + Vite** — a fast, respo
 
 This is more than just a résumé — it's a digital experience. Clean UI, smooth animations, dark mode, motion-reactive visuals, and SEO packed.
 
-> 🚀 GitHub Repo: [Muhammadd-01/Affan-s-Portfolio-Final](https://github.com/Muhammadd-01/Affan-s-Portfolio-Final)
+> 🚀 GitHub Repo: [Muhammadd-01/Affan-s-Portfolio-Final-](https://github.com/Muhammadd-01/Affan-s-Portfolio-Final)
 
 ---
 
@@ -39,7 +39,7 @@ This is more than just a résumé — it's a digital experience. Clean UI, smoot
 ## 🚀 Getting Started Locally
 
 ```bash
-git clone https://github.com/Muhammadd-01/Affan-s-Portfolio-Final.git
+git clone https://github.com/Muhammadd-01/Affan-s-Portfolio-Final-.git
 cd Affan-s-Portfolio-Final
 npm install
 npm run dev
