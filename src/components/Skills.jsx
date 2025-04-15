@@ -43,7 +43,7 @@ const skills = {
     { name: "Git", level: "Advanced", icon: <FaGitAlt /> },
     { name: "GitHub", level: "Advanced", icon: <FaGithub /> },
     { name: "Vercel", level: "Advanced", icon: <SiVercel /> },
-    // { name: "Netlify", level: "Intermediate", icon: <SiNetlify /> },
+    // { name: "Netlify", level: "Intermediate", icon: <SiNetlify /> }, 
     { name: "Vite", level: "Advanced", icon: <SiVite /> },
   ],
   "Full-Stack": [

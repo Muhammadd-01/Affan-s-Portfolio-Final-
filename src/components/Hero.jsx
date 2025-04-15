@@ -55,7 +55,7 @@ const Hero = () => {
 
         <div className="text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-4" style={gradientText}>
-            Hi, I'm Affan
+            Hi, I'm Muhammad Affan
           </h1>
           <div ref={textRef}>
             <motion.div
