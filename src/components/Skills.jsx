@@ -5,7 +5,7 @@ import {
 } from "react-icons/fa";
 import {
   SiTypescript, SiMongodb, SiMysql, SiNextdotjs, SiTailwindcss, SiBootstrap,
-  SiVite, SiVercel,
+  SiVite, SiVercel, SiNetlify
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
 import { useState } from "react";
@@ -43,6 +43,7 @@ const skills = {
     { name: "Git", level: "Advanced", icon: <FaGitAlt /> },
     { name: "GitHub", level: "Advanced", icon: <FaGithub /> },
     { name: "Vercel", level: "Advanced", icon: <SiVercel /> },
+    // { name: "Netlify", level: "Intermediate", icon: <SiNetlify /> },
     { name: "Vite", level: "Advanced", icon: <SiVite /> },
   ],
   "Full-Stack": [
