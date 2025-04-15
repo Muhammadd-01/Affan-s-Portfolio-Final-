@@ -46,7 +46,7 @@ const skills = {
     { name: "Vite", level: "Advanced", icon: <SiVite /> },
   ],
   "Full-Stack": [
-    { name: "Next.js", level: "Advanced", icon: <SiNextdotjs /> },
+    // { name: "Next.js", level: "Advanced", icon: <SiNextdotjs /> },
   ],
 };
 
