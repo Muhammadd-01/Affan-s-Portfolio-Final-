@@ -4,7 +4,7 @@ import {
   FaGitAlt, FaGithub, FaHtml5, FaMicrosoft
 } from "react-icons/fa";
 import {
-  SiTypescript, SiMongodb, SiMysql, SiNextdotjs, SiTailwindcss,
+  SiTypescript, SiMongodb, SiMysql, SiNextdotjs, SiTailwindcss, SiBootstrap,
   SiVite, SiVercel, SiNetlify
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
@@ -25,6 +25,7 @@ const skills = {
     { name: "TypeScript", level: "Advanced", icon: <SiTypescript /> },
     { name: "HTML/CSS", level: "Expert", icon: <FaHtml5 /> },
     { name: "Tailwind CSS", level: "Expert", icon: <SiTailwindcss /> },
+    { name: "Bootstrap", level: "Expert", icon: <SiBootstrap /> }
   ],
   Backend: [
     { name: "C#", level: "Advanced", icon: <FaMicrosoft /> }, // ✅ C# moved here
