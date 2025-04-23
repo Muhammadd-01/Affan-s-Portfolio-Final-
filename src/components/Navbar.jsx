@@ -18,7 +18,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["About", "Skills", "Projects", "Resume", "Contact"];
+  const navItems = ["Home", "About", "Skills", "Projects", "Resume", "Contact"];
 
   return (
     <motion.nav
@@ -48,7 +48,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link
                 key={item}
-                to={item.toLowerCase()}
+                to={item === "Home" ? "hero" : item.toLowerCase()}
                 smooth={true}
                 duration={500}
                 className="text-white text-lg transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
@@ -83,7 +83,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link
                 key={item}
-                to={item.toLowerCase()}
+                to={item === "Home" ? "hero" : item.toLowerCase()}
                 smooth={true}
                 duration={500}
                 className="text-white text-2xl transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
