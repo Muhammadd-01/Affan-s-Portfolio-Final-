@@ -43,7 +43,7 @@ const Hero = () => {
         
         <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-10 md:mb-0 relative order-first md:order-none">
           <motion.img
-            src="#"
+            src=""
             alt="Profile"
             className="w-full h-full object-cover"
             initial={{ opacity: 0 }}
