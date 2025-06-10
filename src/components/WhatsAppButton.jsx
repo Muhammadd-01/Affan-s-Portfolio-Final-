@@ -1,9 +1,13 @@
 import { motion } from "framer-motion"
 
 const WhatsAppButton = () => {
+
+  const message = encodeURIComponent("Hi Affan! I just visited your portfolio and would like to connect.");
+  const phone = "923128538773"; // Your WhatsApp number in international format`
+  const link = `https://wa.me/${phone}?text=${message}`;
   return (
     <motion.a
-      href="https://wa.me/923128538773"
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg z-50"
