@@ -87,7 +87,7 @@ const Hero = () => {
           <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
           <SocialIcon href="https://www.instagram.com" icon={<FaInstagram />} />
           <SocialIcon href="https://www.facebook.com" icon={<FaFacebook />} />
-          <SocialIcon href="https://www.Twitter.com" icon={<FaTwitter />} />
+          <SocialIcon href="https://x.com/affann_23" icon={<FaTwitter />} />
         </div>
       </div>
     </section>

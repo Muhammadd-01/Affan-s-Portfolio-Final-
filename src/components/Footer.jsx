@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const Footer = () => {
@@ -109,11 +109,14 @@ const Footer = () => {
               <a href="https://github.com/Muhammadd-01" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <FaGithub size={24} />
               </a>
-              <a href="https://www.instagram.com/almuharib._.7/" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
+              <a href="https://www.instagram.com/affann._12" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <FaInstagram size={24} />
               </a>
               <a href="https://www.linkedin.com/in/muhammad-affan-8ab604280" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <FaLinkedin size={24} />
+              </a>
+              <a href="https://x.com/affann_23" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
+                <FaTwitter size={24} />
               </a>
             </div>
           </motion.div>
