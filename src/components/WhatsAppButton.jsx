@@ -47,3 +47,5 @@ const WhatsAppButton = () => {
     </motion.a>
   );
 };
+
+export default WhatsAppButton;
