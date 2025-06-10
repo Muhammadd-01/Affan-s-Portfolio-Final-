@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import {
   FaReact, FaAngular, FaPhp, FaJs, FaNode, FaLaravel,
-  FaGitAlt, FaGithub, FaHtml5, FaMicrosoft
+  FaGitAlt, FaGithub, FaHtml5, FaMicrosoft , FaLayerGroup
 } from "react-icons/fa";
 import {
-  SiTypescript, SiMongodb, SiMysql, SiNextdotjs, SiTailwindcss, SiBootstrap,
+  SiTypescript, SiMongodb, SiMysql,  SiTailwindcss, SiBootstrap,
   SiVite, SiVercel, SiNetlify
 } from "react-icons/si";
 import { MdStorage } from "react-icons/md";
@@ -47,7 +47,7 @@ const skills = {
     { name: "Vite", level: "Advanced", icon: <SiVite /> },
   ],
   "Full-Stack": [
-    // { name: "Next.js", level: "Advanced", icon: <SiNextdotjs /> },
+     { name: "MERN Stack", level: "Advanced", icon: <FaLayerGroup /> },
   ],
 };
 
