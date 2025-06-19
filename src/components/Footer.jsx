@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import {SiX} from "react-icons/si";
 
 const Footer = () => {
   const [typedText, setTypedText] = useState("");
@@ -116,7 +117,7 @@ const Footer = () => {
                 <FaLinkedin size={24} />
               </a>
               <a href="https://x.com/affann_23" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
-                <FaTwitter size={24} />
+                <SiX size={24} />
               </a>
             </div>
           </motion.div>
