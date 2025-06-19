@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaInstagram, FaFacebook , FaTwitter } from "react-icons/fa";
-import {Six} from "react-icons/si";
+import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import {SiX} from "react-icons/si";
 import { gsap } from "gsap";
 
 const Hero = () => {
@@ -88,7 +88,7 @@ const Hero = () => {
           <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
           <SocialIcon href="https://www.instagram.com" icon={<FaInstagram />} />
           <SocialIcon href="https://www.facebook.com" icon={<FaFacebook />} />
-          <SocialIcon href="https://x.com/affann_23" icon={<Six />} />
+          <SocialIcon href="https://x.com/affann_23" icon={<SiX />} />
         </div>
       </div>
     </section>
