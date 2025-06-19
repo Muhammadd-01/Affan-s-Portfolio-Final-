@@ -40,7 +40,7 @@ const Navbar = () => {
             duration={500}
             className="text-white font-extrabold text-3xl cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff] transition-all duration-300"
           >
-            Affan
+            Muhammad Affan
           </Link>
 
           {/* Desktop Navigation */}
