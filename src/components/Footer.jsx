@@ -7,7 +7,8 @@ const Footer = () => {
   const [typedText, setTypedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
   const aboutText =
-    "We are passionate about crafting elegant and user-centric digital solutions. Based in Karachi, we blend creativity with technology to bring ideas to life.";
+    "Muhammad Affan — Full-stack web developer building modern apps with clean UI/UX, based in Karachi.";
+
 
   useEffect(() => {
     let index = 0;
@@ -38,7 +39,7 @@ const Footer = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <h3 className="text-2xl font-bold mb-4">About Us</h3>
+            <h3 className="text-2xl font-bold mb-4">About Me</h3>
             <p className="text-gray-300 leading-relaxed text-justify">
               {aboutText.substring(0, typedText.length)}
               <span className={`border-r-4 border-teal-400 animate-typing`}></span>
