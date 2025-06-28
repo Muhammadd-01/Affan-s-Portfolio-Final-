@@ -20,9 +20,9 @@ const AspNetCoreIcon = () => (
 const skills = {
   Frontend: [
     { name: "React.js", level: "Expert", icon: <FaReact /> },
-    { name: "Angular", level: "Intermediate", icon: <FaAngular /> },
+    // { name: "Angular", level: "Intermediate", icon: <FaAngular /> },
     { name: "JavaScript", level: "Expert", icon: <FaJs /> },
-    { name: "TypeScript", level: "Advanced", icon: <SiTypescript /> },
+    // { name: "TypeScript", level: "Advanced", icon: <SiTypescript /> },
     { name: "HTML/CSS", level: "Expert", icon: <FaHtml5 /> },
     { name: "Tailwind CSS", level: "Expert", icon: <SiTailwindcss /> },
     { name: "Bootstrap", level: "Expert", icon: <SiBootstrap /> },
@@ -31,13 +31,13 @@ const skills = {
     { name: "C#", level: "Advanced", icon: <FaMicrosoft /> },
     { name: "ASP.NET Core", level: "Advanced", icon: <AspNetCoreIcon /> },
     { name: "PHP", level: "Intermediate", icon: <FaPhp /> },
-    { name: "Node.js", level: "Advanced", icon: <FaNode /> },
+    // { name: "Node.js", level: "Advanced", icon: <FaNode /> },
     { name: "Laravel", level: "Advanced", icon: <FaLaravel /> },
   ],
   Database: [
     { name: "SQL Server", level: "Intermediate", icon: <MdStorage /> },
     { name: "MySQL", level: "Intermediate", icon: <SiMysql /> },
-    { name: "MongoDB", level: "Intermediate", icon: <SiMongodb /> },
+    // { name: "MongoDB", level: "Intermediate", icon: <SiMongodb /> },
   ],
   Tools: [
     { name: "Git", level: "Advanced", icon: <FaGitAlt /> },
@@ -46,9 +46,9 @@ const skills = {
     // { name: "Netlify", level: "Intermediate", icon: <SiNetlify /> }, 
     { name: "Vite", level: "Advanced", icon: <SiVite /> },
   ],
-  "Full-Stack": [
-     { name: "MERN Stack", level: "Advanced", icon: <FaLayerGroup /> },
-  ],
+  // "Full-Stack": [
+  //     { name: "MERN Stack", level: "Advanced", icon: <FaLayerGroup /> },
+  // ],
 };
 
 const SkillCard = ({ name, level, category, icon }) => {
