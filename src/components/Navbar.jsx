@@ -71,30 +71,31 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="md:hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-lg flex flex-col items-center justify-center space-y-8"
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.5 }}
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item}
-                to={item === "Home" ? "hero" : item.toLowerCase()}
-                smooth={true}
-                duration={500}
-                className="text-white text-2xl transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
-                onClick={() => setIsOpen(false)}
-              >
-                {item}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+  <AnimatePresence>
+  {isOpen && (
+    <motion.div
+      className="md:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80 backdrop-blur-lg flex flex-col items-center justify-center space-y-8 z-50"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      {navItems.map((item) => (
+        <Link
+          key={item}
+          to={item === "Home" ? "hero" : item.toLowerCase()}
+          smooth={true}
+          duration={500}
+          className="text-white text-2xl transition-all duration-300 cursor-pointer hover:text-neon-blue hover:drop-shadow-[0_0_6px_#00ffff]"
+          onClick={() => setIsOpen(false)}
+        >
+          {item}
+        </Link>
+      ))}
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </motion.nav>
   );
 };
