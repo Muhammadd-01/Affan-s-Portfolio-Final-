@@ -32,12 +32,10 @@ const Contact = () => {
       setError(false);
       setFormData({ name: "", email: "", message: "" });
 
-      // Hide message after 3 seconds with fade-out effect
-      setTimeout(() => {
-        setMessageSent(false);
-      }, 3000);
+      setTimeout(() => setMessageSent(false), 3000);
     } else {
       setError(true);
+      setTimeout(() => setError(false), 3000);
     }
   };
 
@@ -54,29 +52,33 @@ const Contact = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto">
-          {/* Success Message */}
-          {messageSent && (
-            <motion.div
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }} // Fade out over 3 seconds
-              className="neon-glow p-4 rounded-md text-center mb-4 border border-gray-500 shadow-lg text-lg font-semibold tracking-wide"
-            >
-              ✨ Message Sent Successfully!
-            </motion.div>
-          )}
+      {/* Success Message */}
 
-          {/* Error Message */}
-          {error && (
-            <motion.div
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
-              transition={{ delay: 1, duration: 2 }}
-              className="p-4 rounded-md text-center mb-4 border border-red-500 shadow-lg text-lg font-semibold tracking-wide bg-red-700 text-white"
-            >
-              ❌ Failed to send message. Try again later!
-            </motion.div>
-          )}
+{messageSent && (
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.4 }}
+    className="glass-notification success"
+  >
+    ✨ Message Sent Successfully!
+  </motion.div>
+)}
+
+{/* Error Message */}
+{error && (
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.4 }}
+    className="glass-notification error"
+  >
+    ❌ Failed to send message. Try again later!
+  </motion.div>
+)}
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <motion.div
@@ -176,21 +178,69 @@ const Contact = () => {
           </div>
         </div>
       </div>
+{/* Liquid Glass Notification Styles */}
+<style jsx>{`
+ .glass-notification {
+  position: absolute;
+  top: -20px; /* floats above the component */
+  right: -20px; /* more to the right */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  min-width: 220px;
+  cursor: default;
+  overflow: hidden;
+  animation: fadeInOut 3s forwards;
+}
 
-      {/* Neon Glowing Background CSS */}
-      <style jsx>{`
-        .neon-glow {
-          background: rgba(192, 192, 192, 0.1); /* Light transparent silver */
-          color: white;
-          border: 2px solid #c0c0c0;
-          box-shadow: 
-            0 0 5px #c0c0c0,
-            0 0 10px #ffffff,
-            0 0 20px #aaaaaa,
-            0 0 30px #c0c0c0;
-          transition: opacity 2s ease-in-out;
-        }
-      `}</style>
+/* shimmer / hover effect like Labs */
+.glass-notification::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  transform: rotate(25deg);
+  transition: all 0.5s ease-in-out;
+  pointer-events: none;
+}
+.glass-notification:hover::before {
+  transform: rotate(25deg) translateX(20%);
+}
+
+.glass-notification.success {
+  border-color: #00ffea;
+  color: #00ffea;
+}
+
+.glass-notification.error {
+  border-color: #ff3860;
+  color: #ff3860;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+`}</style>
+
     </section>
   );
 };
