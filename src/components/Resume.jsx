@@ -14,7 +14,7 @@ const languages = [
 ];
 
 const cardVariants = {
-  initial: { opacity: 0, y: 50 },
+  initial: { opacity: 0, y: 50 }, 
   animate: { opacity: 1, y: 0 },
   hover: { scale: 1.05, boxShadow: "0 10px 30px rgba(0, 255, 255, 0.5)" },
 };
@@ -81,17 +81,19 @@ const Resume = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <motion.a
-            href="/AffanResume.pdf"
-            download="My_Resume.pdf"
-            className="bg-cyan-400 text-black px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bg-cyan-500"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            Download Full Resume
-          </motion.a>
-        </div>
+       <div className="text-center mt-12">
+  <motion.a
+    href="/AffanResume.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="bg-cyan-400 text-black px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105 hover:bg-cyan-500"
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.9 }}
+  >
+    View Full Resume
+  </motion.a>
+</div>
+
       </div>
     </section>
   ); 
