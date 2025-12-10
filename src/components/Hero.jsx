@@ -86,8 +86,8 @@ const Hero = () => {
         <div className="mt-8 flex justify-center space-x-4">
           <SocialIcon href="https://github.com/Muhammadd-01" icon={<FaGithub />} />
           <SocialIcon href="https://www.linkedin.com/in/muhammad-affan-8ab604280" icon={<FaLinkedin />} />
-          <SocialIcon href="https://www.instagram.com" icon={<FaInstagram />} />
-          <SocialIcon href="https://www.facebook.com" icon={<FaFacebook />} />
+          <SocialIcon href="https://www.instagram.com/affann_.12/" icon={<FaInstagram />} />
+          <SocialIcon href="https://www.facebook.com/muhammad.affan.641514/" icon={<FaFacebook />} />
           <SocialIcon href="https://x.com/affann_23" icon={<SiX />} />
         </div>
       </div>

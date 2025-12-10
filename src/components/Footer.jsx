@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import {SiX} from "react-icons/si";
+import { SiX } from "react-icons/si";
 
 const Footer = () => {
   const [typedText, setTypedText] = useState("");
@@ -105,18 +105,21 @@ const Footer = () => {
               </a>
             </p>
             <div className="flex justify-center md:justify-end space-x-4 mt-4">
-              <a href="https://www.facebook.com/profile.php?id=61572493182768" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
-                <FaFacebook size={24} />
-              </a>
               <a href="https://github.com/Muhammadd-01" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <FaGithub size={24} />
-              </a>
-              <a href="https://www.instagram.com/affann._12" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
-                <FaInstagram size={24} />
               </a>
               <a href="https://www.linkedin.com/in/muhammad-affan-8ab604280" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <FaLinkedin size={24} />
               </a>
+              <a href="https://www.instagram.com/affann_.12/" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
+                <FaInstagram size={24} />
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61572493182768" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
+                <FaFacebook size={24} />
+              </a>
+
+
+
               <a href="https://x.com/affann_23" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition duration-300">
                 <SiX size={24} />
               </a>
