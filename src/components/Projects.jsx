@@ -36,17 +36,17 @@ const projects = [
     description: "Islamic Paranormal Investigation website providing guidance and Ruqyah services online.",
     technologies: ["React", "TailwindCSS", "Vite"],
     github: "https://github.com/Muhammadd-01/Paranormal_investigating_website.git", // Optional GitHub
-    live: "https://al-ghani-quran-academy.vercel.app/", // Replace with actual live link
+    live: "https://dar-ul-ruqyah.vercel.app/", // Replace with actual live link
   },
   {
     id: 10,
     title: "Al Ghani Quran Institute",
     category: "Website",
-    image: "YOUR_AL_GHANI_IMAGE_LINK", // Replace with actual image
+    image: "alghani.png", // Replace with actual image
     description: "Official website for Al Ghani Quran Institute offering online courses and Quran learning resources.",
     technologies: ["React", "TailwindCSS", "Vite"],
     github: "https://github.com/Muhammadd-01/AL_Ghani_Quran_Academy.git", // Optional GitHub
-    live: "https://dar-ul-ruqyah.vercel.app/", // Replace with actual live link
+    live: "https://al-ghani-quran-academy.vercel.app/", // Replace with actual live link
   },
 
   // Web Applications
@@ -96,48 +96,39 @@ const projects = [
   },
 
   // Mobile Apps
-  {
-    id: 7,
-    title: "Fitness Tracker App",
-    category: "Mobile App",
-    image: "https://via.placeholder.com/400x300/00BFFF/FFFFFF?text=Fitness+App",
-    description:
-      "A mobile app for tracking workouts, diet, and progress with analytics and notifications.",
-    technologies: ["Flutter", "Firebase", "Dart"],
-    github: "https://github.com/Muhammadd-01/FitnessTrackerApp.git",
-    live: "#",
-  },
-  {
-    id: 8,
-    title: "Budget Manager App",
-    category: "Mobile App",
-    image: "https://via.placeholder.com/400x300/32CD32/FFFFFF?text=Budget+App",
-    description:
-      "A personal finance mobile application to track expenses, savings, and generate monthly reports.",
-    technologies: ["React Native", "Expo", "Firebase"],
-    github: "https://github.com/Muhammadd-01/BudgetManagerApp.git",
-    live: "#",
-  },
-  {
-    id: 11,
-    title: "WatchHub",
-    category: "Mobile App",
-    image: "YOUR_WATCHHUB_IMAGE_LINK", // Replace with actual image
-    description: "A mobile app to watch trending videos and entertainment content easily.",
-    technologies: ["Flutter", "Firebase"],
-    github: "https://github.com/Muhammadd-01/WatchHub_Project.git",
-    live: "#",
-  },
-  {
-    id: 12,
-    title: "Islamic App",
-    category: "Mobile App",
-    image: "YOUR_ISLAMIC_APP_IMAGE_LINK", // Replace with actual image
-    description: "A mobile app providing Islamic knowledge, Quran recitation, and prayer timings.",
-    technologies: ["Flutter", "Firebase"],
-    github: "https://github.com/Muhammadd-01/Islamic_App.git",
-    live: "#",
-  },
+// Mobile Apps
+{
+  id: 7,
+  title: "Fitness Tracker App",
+  category: "Mobile App",
+  image: "https://via.placeholder.com/400x600/00BFFF/FFFFFF?text=Fitness+App", // taller screenshot for mobile
+  description:
+    "A mobile app for tracking workouts, diet, and progress with analytics and notifications.",
+  technologies: ["Flutter", "Firebase", "Dart"],
+  github: "https://github.com/Muhammadd-01/FitnessTrackerApp.git",
+  live: "#",
+},
+{
+  id: 11,
+  title: "WatchHub",
+  category: "Mobile App",
+  image: "YOUR_WATCHHUB_IMAGE_LINK", // Replace with actual screenshot
+  description: "A mobile app to watch trending videos and entertainment content easily.",
+  technologies: ["Flutter", "Firebase"],
+  github: "https://github.com/Muhammadd-01/WatchHub_Project.git",
+  live: "#",
+},
+{
+  id: 13,
+  title: "Currency Converter App",
+  category: "Mobile App",
+  image: "YOUR_CURRENCY_APP_IMAGE_LINK", // Replace with actual screenshot
+  description: "A mobile app for converting currencies with live exchange rates and historical data.",
+  technologies: ["Flutter", "API", "Dart"],
+  github: "YOUR_CURRENCY_APP_GITHUB_LINK",
+  live: "#",
+},
+
 ];
 
 const Projects = () => {
