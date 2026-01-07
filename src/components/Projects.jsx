@@ -32,7 +32,7 @@ const projects = [
     id: 9,
     title: "Dar ul Ruqyah",
     category: "Website",
-    image: "YOUR_DAR_UL_RUQYAH_IMAGE_LINK", // Replace with actual image
+    image: "darulruqyah.png", // Replace with actual image
     description: "Islamic Paranormal Investigation website providing guidance and Ruqyah services online.",
     technologies: ["React", "TailwindCSS", "Vite"],
     github: "https://github.com/Muhammadd-01/Paranormal_investigating_website.git", // Optional GitHub
