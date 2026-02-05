@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { ChevronUp } from "lucide-react"
 
 const UpButton = () => {
@@ -9,14 +9,11 @@ const UpButton = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
+      setIsVisible(window.scrollY > 300)
     }
 
     window.addEventListener("scroll", toggleVisibility)
+    toggleVisibility()
 
     return () => window.removeEventListener("scroll", toggleVisibility)
   }, [])
@@ -29,23 +26,28 @@ const UpButton = () => {
   }
 
   return (
-    <>
+    <AnimatePresence>
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-24 right-8 bg-accent text-white p-3 rounded-full shadow-lg z-50"
+          className="fixed right-6 bg-cyan-500 hover:bg-cyan-600 text-black w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition-colors"
+          style={{
+            zIndex: 9997,
+            bottom: 24, // Fixed at bottom, WhatsApp moves up above it
+            boxShadow: "0 0 15px rgba(0, 255, 255, 0.5)"
+          }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <ChevronUp size={24} />
+          <ChevronUp size={20} />
         </motion.button>
       )}
-    </>
+    </AnimatePresence>
   )
 }
 
 export default UpButton
-
