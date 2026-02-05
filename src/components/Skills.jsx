@@ -69,7 +69,7 @@ const SkillCard = ({ name, level, icon, color, index }) => {
       className="relative group"
     >
       <motion.div
-        className="relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm overflow-hidden cursor-pointer"
+        className="relative p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 overflow-hidden cursor-pointer"
         whileHover={{
           scale: 1.05,
           borderColor: color,
@@ -207,8 +207,8 @@ const Skills = () => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${activeCategory === category
-                  ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-black"
-                  : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
+                ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-black"
+                : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

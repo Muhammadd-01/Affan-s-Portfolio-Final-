@@ -113,9 +113,9 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               className={`fixed top-24 left-1/2 -translate-x-1/2 z-50 px-6 py-4 rounded-2xl flex items-center gap-3 ${status.type === "success"
-                  ? "bg-emerald-500/20 border border-emerald-500/30 text-emerald-400"
-                  : "bg-red-500/20 border border-red-500/30 text-red-400"
-                } backdrop-blur-xl`}
+                ? "bg-emerald-500/20 border border-emerald-500/30 text-emerald-400"
+                : "bg-red-500/20 border border-red-500/30 text-red-400"
+                } bg-black/90`}
             >
               {status.type === "success" ? <CheckCircle className="w-5 h-5" /> : <XCircle className="w-5 h-5" />}
               {status.message}
@@ -200,8 +200,8 @@ const Contact = () => {
               <div className="relative">
                 <motion.label
                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === "name" || formData.name
-                      ? "top-2 text-xs text-cyan-400"
-                      : "top-4 text-gray-400"
+                    ? "top-2 text-xs text-cyan-400"
+                    : "top-4 text-gray-400"
                     }`}
                   animate={{
                     y: focusedField === "name" || formData.name ? 0 : 0,
@@ -226,8 +226,8 @@ const Contact = () => {
               <div className="relative">
                 <motion.label
                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === "email" || formData.email
-                      ? "top-2 text-xs text-cyan-400"
-                      : "top-4 text-gray-400"
+                    ? "top-2 text-xs text-cyan-400"
+                    : "top-4 text-gray-400"
                     }`}
                 >
                   Your Email
@@ -248,8 +248,8 @@ const Contact = () => {
               <div className="relative">
                 <motion.label
                   className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === "message" || formData.message
-                      ? "top-2 text-xs text-cyan-400"
-                      : "top-4 text-gray-400"
+                    ? "top-2 text-xs text-cyan-400"
+                    : "top-4 text-gray-400"
                     }`}
                 >
                   Your Message

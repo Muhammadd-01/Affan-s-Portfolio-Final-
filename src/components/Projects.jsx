@@ -218,10 +218,10 @@ const ProjectCard = forwardRef(({ project, index, onClick, ...props }, ref) => {
               onError={() => setImageError(true)}
             />
           )}
-          
+
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-          
+
           {/* Hover overlay */}
           <motion.div
             className="absolute inset-0 bg-cyan-500/20 flex items-center justify-center"
@@ -230,7 +230,7 @@ const ProjectCard = forwardRef(({ project, index, onClick, ...props }, ref) => {
             transition={{ duration: 0.3 }}
           >
             <motion.span
-              className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium flex items-center gap-2"
+              className="px-4 py-2 rounded-full bg-white/30 text-white text-sm font-medium flex items-center gap-2"
               initial={{ y: 20, opacity: 0 }}
               animate={isHovered ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
               transition={{ duration: 0.3 }}
@@ -419,7 +419,7 @@ const ProjectModal = ({ project, onClose }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85"
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
@@ -562,11 +562,10 @@ const Projects = () => {
             <motion.button
               key={category}
               onClick={() => setFilter(category)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                filter === category
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${filter === category
                   ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-black"
                   : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
-              }`}
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

@@ -112,7 +112,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="mb-6"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 backdrop-blur-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 ">
             <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
             Available for work
             <Sparkles className="w-4 h-4 text-cyan-400" />
@@ -263,7 +263,7 @@ const Hero = () => {
               href="/AffanResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-bold backdrop-blur-sm flex items-center gap-2"
+              className="group relative px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-bold  flex items-center gap-2"
               whileHover={{ scale: 1.05, borderColor: "rgba(0, 255, 255, 0.5)" }}
               whileTap={{ scale: 0.95 }}
             >

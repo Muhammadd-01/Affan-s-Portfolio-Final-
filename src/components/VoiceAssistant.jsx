@@ -125,8 +125,8 @@ const VoiceAssistant = () => {
             <motion.button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`relative flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${isPlaying
-                        ? "bg-cyan-500/20 border-2 border-cyan-400"
-                        : "bg-white/10 border border-white/20 hover:bg-white/20"
+                    ? "bg-cyan-500/20 border-2 border-cyan-400"
+                    : "bg-white/10 border border-white/20 hover:bg-white/20"
                     }`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -171,7 +171,7 @@ const VoiceAssistant = () => {
                         initial={{ opacity: 0, y: -10, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                        className="absolute top-14 right-0 bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 min-w-[200px] shadow-2xl"
+                        className="absolute top-14 right-0 bg-black/95 border border-white/10 rounded-2xl p-4 min-w-[200px] shadow-2xl"
                     >
                         <div className="space-y-3">
                             {/* Mute toggle */}
@@ -197,8 +197,8 @@ const VoiceAssistant = () => {
                                 }}
                                 disabled={isMuted}
                                 className={`flex items-center gap-3 w-full px-3 py-2 rounded-lg transition-colors text-left ${isMuted
-                                        ? "opacity-50 cursor-not-allowed"
-                                        : "hover:bg-white/10"
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : "hover:bg-white/10"
                                     }`}
                             >
                                 <Mic className="w-4 h-4 text-cyan-400" />
@@ -232,7 +232,7 @@ const VoiceAssistant = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
-                        className="fixed top-24 right-4 max-w-sm bg-black/80 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-4 shadow-2xl z-50"
+                        className="fixed top-24 right-4 max-w-sm bg-black/95 border border-cyan-500/30 rounded-2xl p-4 shadow-2xl z-50"
                     >
                         <div className="flex items-start gap-3">
                             {/* Animated equalizer */}
