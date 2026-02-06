@@ -413,25 +413,37 @@ const FeaturedProject = ({ project, onClick }) => {
 const ProjectModal = ({ project, onClose }) => {
   const [imageError, setImageError] = useState(false);
 
+  // Handle escape key to close modal
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') onClose();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85"
+      onKeyDown={handleKeyDown}
+      className="fixed inset-0 z-[1000] flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.95)' }}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-gradient-to-br from-gray-900 to-black border border-white/10"
+        className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-white/10"
+        style={{ backgroundColor: '#0a0a0a' }}
       >
         {/* Close button */}
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className="absolute top-4 right-4 z-[1001] w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-red-500/50 transition-all cursor-pointer"
+          style={{ pointerEvents: 'auto' }}
         >
           <HiX size={24} />
         </button>
@@ -563,8 +575,8 @@ const Projects = () => {
               key={category}
               onClick={() => setFilter(category)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${filter === category
-                  ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-black"
-                  : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
+                ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-black"
+                : "bg-white/5 text-white border border-white/10 hover:bg-white/10"
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
